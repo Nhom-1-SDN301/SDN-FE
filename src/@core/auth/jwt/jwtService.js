@@ -69,8 +69,7 @@ export default class JwtService {
   }
 
   onAccessTokenFetched(accessToken) {
-    this.subscribers = this.subscribers.filter((callback) =>
-      callback(accessToken)
+    this.subscribers = this.subscribers.filter((callback) => callback(accessToken)
     );
   }
 
@@ -104,7 +103,7 @@ export default class JwtService {
 
   refreshToken() {
     return axios.post(this.jwtConfig.refreshEndpoint, {
-      refreshToken: this.getRefreshToken(),
+      refreshToken: this.getRefreshToken()
     });
   }
 }

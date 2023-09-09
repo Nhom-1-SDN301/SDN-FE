@@ -69,7 +69,7 @@ const Routes = [
     },
   },
   {
-    path: "/error",
+    path: "*",
     element: <Error />,
     meta: {
       layout: "blank",

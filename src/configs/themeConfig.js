@@ -6,7 +6,7 @@ import logo from "@src/assets/images/logo/logo.svg";
 //Template config options
 const themeConfig = {
   app: {
-    appName: "Vuexy",
+    appName: "My quizz",
     appLogoImage: logo,
   },
   layout: {
@@ -20,7 +20,7 @@ const themeConfig = {
     },
     navbar: {
       // ? For horizontal menu, navbar type will work for navMenu type
-      type: "floating", // static , sticky , floating, hidden
+      type: "sticky", // static , sticky , floating, hidden
       backgroundColor: "white", // BS color options [primary, success, etc]
     },
     footer: {
