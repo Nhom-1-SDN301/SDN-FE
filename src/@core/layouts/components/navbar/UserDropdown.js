@@ -27,7 +27,26 @@ import {
 // ** Default Avatar Image
 import defaultAvatar from "@src/assets/images/portrait/small/avatar-s-11.jpg";
 
+// ** Redux import
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../../redux/auth";
+
 const UserDropdown = () => {
+  // ** Hooks
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+
+  // ** Handler
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  const displayHighestRole = (roles) => {
+    const roleArr = [...roles];
+    roleArr.sort((r1, r2) => r1.id - r2.id);
+    return roleArr[0]?.name;
+  };
+
   return (
     <UncontrolledDropdown tag="li" className="dropdown-user nav-item">
       <DropdownToggle
@@ -37,8 +56,8 @@ const UserDropdown = () => {
         onClick={(e) => e.preventDefault()}
       >
         <div className="user-nav d-sm-flex d-none">
-          <span className="user-name fw-bold">John Doe</span>
-          <span className="user-status">Admin</span>
+          <span className="user-name fw-bold">{user?.fullName}</span>
+          <span className="user-status">{user?.roles && displayHighestRole(user.roles)}</span>
         </div>
         <Avatar
           img={defaultAvatar}
@@ -81,7 +100,7 @@ const UserDropdown = () => {
           <HelpCircle size={14} className="me-75" />
           <span className="align-middle">FAQ</span>
         </DropdownItem>
-        <DropdownItem tag={Link} to="/login">
+        <DropdownItem tag={Link} onClick={handleLogout}>
           <Power size={14} className="me-75" />
           <span className="align-middle">Logout</span>
         </DropdownItem>

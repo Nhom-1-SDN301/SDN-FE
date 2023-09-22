@@ -7,12 +7,12 @@ import { getRoutes } from "./routes";
 // ** Hooks Imports
 import { useLayout } from "@hooks/useLayout";
 
-const Router = () => {
+const Router = ({ user }) => {
   // ** Hooks
   const { layout } = useLayout();
 
-  const allRoutes = getRoutes(layout);
-
+  const allRoutes = getRoutes(layout, user);
+  
   const routes = useRoutes([...allRoutes]);
 
   return routes;

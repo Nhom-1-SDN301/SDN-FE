@@ -14,12 +14,16 @@ import InputPasswordToggle from "@components/input-password-toggle";
 import {
   Row,
   Col,
+  Card,
+  CardHeader,
   CardTitle,
   CardText,
+  CardBody,
   Form,
   Label,
   Input,
   Button,
+  FormFeedback,
 } from "reactstrap";
 
 // ** Illustrations Imports
@@ -29,9 +33,58 @@ import illustrationsDark from "@src/assets/images/pages/register-v2-dark.svg";
 // ** Styles
 import "@styles/react/pages/page-authentication.scss";
 
+// ** I18n import
+import { useTranslation } from "react-i18next";
+
+// ** Third Party Components
+import * as yup from "yup";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 const Register = () => {
+  const { t } = useTranslation();
+  const SignupSchema = yup.object().shape({
+    email: yup
+      .string()
+      .email()
+      .required(
+        t("validationMessage.required", { field: t("fieldName.email") })
+      ),
+    fullName: yup
+      .string()
+      .required(
+        t("validationMessage.required", { field: t("fieldName.fullName") })
+      ),
+    password: yup
+      .string()
+      .min(6)
+      .required(
+        t("validationMessage.required", { field: t("fieldName.password") })
+      ),
+    cPassword: yup
+      .string()
+      .required(
+        t("validationMessage.required", {
+          field: t("fieldName.confirmPassword"),
+        })
+      )
+      .oneOf([yup.ref("password"), null], "Confirm password not match"),
+    gender: yup.number().required(),
+  });
+
   // ** Hooks
   const { skin } = useSkin();
+  const {
+    reset,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onChange", resolver: yupResolver(SignupSchema) });
+
+  // Handler
+  const onSubmit = () => {
+    console.log("submit");
+  };
 
   const source = skin === "dark" ? illustrationsDark : illustrationsLight;
 
@@ -105,7 +158,7 @@ const Register = () => {
               </g>
             </g>
           </svg>
-          <h2 className="brand-text text-primary ms-1">Vuexy</h2>
+          <h2 className="brand-text text-primary ms-1">QUIZROOM</h2>
         </Link>
         <Col className="d-none d-lg-flex align-items-center p-5" lg="8" sm="12">
           <div className="w-100 d-lg-flex align-items-center justify-content-center px-5">
@@ -119,66 +172,152 @@ const Register = () => {
         >
           <Col className="px-xl-2 mx-auto" xs="12" sm="8" md="6" lg="12">
             <CardTitle tag="h2" className="fw-bold mb-1">
-              Adventure starts here 🚀
+              {`${t("title.registerTitle")} 🚀`}
             </CardTitle>
             <CardText className="mb-2">
-              Make your app management easy and fun!
+              {t("title.registerDescription")}
             </CardText>
             <Form
               className="auth-register-form mt-2"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit(onSubmit)}
             >
               <div className="mb-1">
-                <Label className="form-label" for="register-username">
-                  Username
+                <Label className="form-label" for="email">
+                  {t("fieldName.email")}
                 </Label>
-                <Input
-                  type="text"
-                  id="register-username"
-                  placeholder="johndoe"
-                  autoFocus
+                <Controller
+                  id="email"
+                  name="email"
+                  defaultValue=""
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      type="email"
+                      id="email"
+                      placeholder="john@example.com"
+                      invalid={errors.email && true}
+                      {...field}
+                    />
+                  )}
                 />
+                {errors.email && (
+                  <FormFeedback>{errors.email.message}</FormFeedback>
+                )}
               </div>
               <div className="mb-1">
-                <Label className="form-label" for="register-email">
-                  Email
+                <Label className="form-label" for="password">
+                  {t("fieldName.password")}
                 </Label>
-                <Input
-                  type="email"
-                  id="register-email"
-                  placeholder="john@example.com"
+                <Controller
+                  id="password"
+                  name="password"
+                  defaultValue=""
+                  control={control}
+                  render={({ field }) => (
+                    <InputPasswordToggle
+                      className="input-group-merge"
+                      id="password"
+                      invalid={errors.password && true}
+                      {...field}
+                    />
+                  )}
                 />
+                {errors.password && (
+                  <FormFeedback>{errors.password.message}</FormFeedback>
+                )}
               </div>
               <div className="mb-1">
-                <Label className="form-label" for="register-password">
-                  Password
+                <Label className="form-label" for="cPassword">
+                  {t("fieldName.confirmPassword")}
                 </Label>
-                <InputPasswordToggle
-                  className="input-group-merge"
-                  id="register-password"
+                <Controller
+                  id="cPassword"
+                  name="cPassword"
+                  defaultValue=""
+                  control={control}
+                  render={({ field }) => (
+                    <InputPasswordToggle
+                      className="input-group-merge"
+                      id="cPassword"
+                      invalid={errors.cPassword && true}
+                      {...field}
+                    />
+                  )}
                 />
+                {errors.cPassword && (
+                  <FormFeedback>{errors.cPassword.message}</FormFeedback>
+                )}
+              </div>
+              <div className="mb-1">
+                <Label className="form-label" for="fullName">
+                  {t("fieldName.fullName")}
+                </Label>
+                <Controller
+                  id="fullName"
+                  name="fullName"
+                  defaultValue=""
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      type="text"
+                      id="fullName"
+                      placeholder="johndoe"
+                      autoFocus
+                      invalid={errors.fullName && true}
+                      {...field}
+                    />
+                  )}
+                />
+                {errors.fullName && (
+                  <FormFeedback>{errors.fullName.message}</FormFeedback>
+                )}
+              </div>
+              <div>
+                <Label className="form-label" for="gender">
+                  {t("fieldName.gender")}
+                </Label>
+                <div className="mb-1 demo-inline-spacing">
+                  <div className="form-check mt-1">
+                    <Input
+                      type="radio"
+                      id="male"
+                      name="gender"
+                      value={0}
+                      defaultChecked
+                    />
+                    <Label className="form-check-label" for="male">
+                      {t("fieldName.male")}
+                    </Label>
+                  </div>
+                  <div className="form-check mt-1">
+                    <Input type="radio" name="gender" id="female" value={1} />
+                    <Label className="form-check-label" for="female">
+                      {t("fieldName.female")}
+                    </Label>
+                  </div>
+                </div>
               </div>
               <div className="form-check mb-1">
                 <Input type="checkbox" id="terms" />
                 <Label className="form-check-label" for="terms">
-                  I agree to
+                  {t("fieldName.agreeTo")}
                   <a
                     className="ms-25"
                     href="/"
                     onClick={(e) => e.preventDefault()}
                   >
-                    privacy policy & terms
+                    {t("fieldName.privacyPolicyTerm")}
                   </a>
                 </Label>
               </div>
-              <Button tag={Link} to="/" color="primary" block>
-                Sign up
+              <Button type="submit" color="primary" block>
+                {t("fieldName.signUp")}
               </Button>
             </Form>
             <p className="text-center mt-2">
-              <span className="me-25">Already have an account?</span>
+              <span className="me-25">{t("fieldName.alreadyHaveAccount")}</span>
               <Link to="/login">
-                <span>Sign in instead</span>
+                <span>{t("fieldName.signIn")}</span>
               </Link>
             </p>
             <div className="divider my-2">

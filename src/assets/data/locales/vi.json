@@ -1,0 +1,49 @@
+{
+  "common": {
+    "recent": "Gần đây"
+  },
+  "fieldName": {
+    "email": "Email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "fullName": "Họ tên",
+    "gender": "Giới tính",
+    "male": "Nam",
+    "female": "Nữ",
+    "dob": "Ngày sinh",
+    "avatar": "Ảnh đại diện",
+    "id": "ID",
+    "phone": "Số điện thoại",
+    "address": "Địa chỉ",
+    "role": "Vai trò",
+    "forgotPassword": "Quên mật khẩu?",
+    "alreadyHaveAccount": "Đã có tài khoản?",
+    "rememberMe": "Ghi nhớ đăng nhập",
+    "signIn": "Đăng nhập",
+    "signUp": "Đăng ký",
+    "createAnAccount": "Tạo tài khoản",
+    "agreeTo": "Tôi đồng ý với",
+    "privacyPolicyTerm": "chính sách & điều khoản bảo mật"
+  },
+  "message": {
+    "welcomeTo": "Chào mừng đến",
+    "newOnPlatform": "Mới trên nền tảng của chúng tôi?",
+    "successLogedIn": "Bạn đã đăng nhập thành công"
+  },
+  "validationMessage": {
+    "required": "{{field}} là bắt buộc"
+  },
+  "title": {
+    "loginDescription": "Vui lòng đăng nhập vào tài khoản của bạn và bắt đầu cuộc phiêu lưu",
+    "registerTitle": "Cuộc phiêu lưu bắt đầu từ đây",
+    "registerDescription": "Làm cho việc quản lý ứng dụng của bạn trở nên dễ dàng và thú vị!"
+  },
+  "error": {
+    "unknown": "Xảy ra lỗi không xác định được. Vui lòng thử lại sau!"
+  },
+  "page": {
+    "login": "Đăng nhập",
+    "logout": "Đăng ký",
+    "home": "Trang chủ"
+  }
+}

@@ -1,12 +1,17 @@
 // ** React Imports
 import { useSkin } from "@hooks/useSkin";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
+import toast from "react-hot-toast";
+import { Coffee, X } from "react-feather";
+import { useDispatch, useSelector } from "react-redux";
 
 // ** Icons Imports
 import { Facebook, Twitter, Mail, GitHub } from "react-feather";
 
 // ** Custom Components
 import InputPasswordToggle from "@components/input-password-toggle";
+import Avatar from "@components/avatar";
 
 // ** Reactstrap Imports
 import {
@@ -19,6 +24,7 @@ import {
   Input,
   Button,
 } from "reactstrap";
+import { useTranslation } from "react-i18next";
 
 // ** Illustrations Imports
 import illustrationsLight from "@src/assets/images/pages/login-v2.svg";
@@ -27,10 +33,82 @@ import illustrationsDark from "@src/assets/images/pages/login-v2-dark.svg";
 // ** Styles
 import "@styles/react/pages/page-authentication.scss";
 
+// ** APIs
+import { AuthApi } from "../../../@core/api/quiz/index";
+
+// ** Redux
+import { login } from "../../../redux/auth";
+
+const ToastContent = ({ t, translate, name }) => {
+  return (
+    <div className="d-flex">
+      <div className="me-1">
+        <Avatar size="sm" color="success" icon={<Coffee size={12} />} />
+      </div>
+      <div className="d-flex flex-column">
+        <div className="d-flex justify-content-between">
+          <h6>{name}</h6>
+          <X
+            size={12}
+            className="cursor-pointer"
+            onClick={() => toast.dismiss(t.id)}
+          />
+        </div>
+        <span>{translate("message.successLogedIn")}</span>
+      </div>
+    </div>
+  );
+};
+
 const Login = () => {
   const { skin } = useSkin();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+
+  const {
+    control,
+    setError,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const source = skin === "dark" ? illustrationsDark : illustrationsLight;
+
+  const onSubmit = (data) => {
+    if (Object.values(data).every((field) => Boolean(field))) {
+      AuthApi.login({ email: data.email, password: data.password })
+        .then((res) => {
+          if (res.data.statusCode === 200 && res.data.isSuccess) {
+            dispatch(login(res.data.data));
+            navigate("/home");
+            toast((tt) => (
+              <ToastContent
+                t={tt}
+                translate={t}
+                name={res.data.data.user.fullName}
+              />
+            ));
+          } else
+            toast.error(res.data.messsage, {
+              duration: 5000,
+            });
+        })
+        .catch((err) => {
+          return toast.error(err, {
+            duration: 5000,
+          });
+        });
+    } else {
+      for (const key in data) {
+        if (!Boolean(data[key]) || data[key].length === 0) {
+          setError(key, {
+            type: "manual",
+          });
+        }
+      }
+    }
+  };
 
   return (
     <div className="auth-wrapper auth-cover">
@@ -102,7 +180,7 @@ const Login = () => {
               </g>
             </g>
           </svg>
-          <h2 className="brand-text text-primary ms-1">Vuexy</h2>
+          <h2 className="brand-text text-primary ms-1">QUIZROOM</h2>
         </Link>
         <Col className="d-none d-lg-flex align-items-center p-5" lg="8" sm="12">
           <div className="w-100 d-lg-flex align-items-center justify-content-center px-5">
@@ -116,54 +194,70 @@ const Login = () => {
         >
           <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
             <CardTitle tag="h2" className="fw-bold mb-1">
-              Welcome to Vuexy! 👋
+              {`${t("message.welcomeTo")} Quizroom! 👋`}
             </CardTitle>
-            <CardText className="mb-2">
-              Please sign-in to your account and start the adventure
-            </CardText>
+            <CardText className="mb-2">{t("title.loginDescription")}</CardText>
             <Form
               className="auth-login-form mt-2"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit(onSubmit)}
             >
               <div className="mb-1">
-                <Label className="form-label" for="login-email">
-                  Email
+                <Label className="form-label" for="email">
+                  {t("fieldName.email")}
                 </Label>
-                <Input
-                  type="email"
-                  id="login-email"
-                  placeholder="john@example.com"
-                  autoFocus
+                <Controller
+                  id="email"
+                  name="email"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      autoFocus
+                      type="email"
+                      placeholder="email"
+                      invalid={errors.email && true}
+                      {...field}
+                    />
+                  )}
                 />
               </div>
               <div className="mb-1">
                 <div className="d-flex justify-content-between">
                   <Label className="form-label" for="login-password">
-                    Password
+                    {t("fieldName.password")}
                   </Label>
                   <Link to="/forgot-password">
-                    <small>Forgot Password?</small>
+                    <small>{t("fieldName.forgotPassword")}</small>
                   </Link>
                 </div>
-                <InputPasswordToggle
-                  className="input-group-merge"
-                  id="login-password"
+                <Controller
+                  id="password"
+                  name="password"
+                  control={control}
+                  render={({ field }) => {
+                    return (
+                      <InputPasswordToggle
+                        className="input-group-merge"
+                        invalid={errors.password && true}
+                        {...field}
+                      />
+                    );
+                  }}
                 />
               </div>
               <div className="form-check mb-1">
                 <Input type="checkbox" id="remember-me" />
                 <Label className="form-check-label" for="remember-me">
-                  Remember Me
+                  {t("fieldName.rememberMe")}
                 </Label>
               </div>
-              <Button tag={Link} to="/" color="primary" block>
-                Sign in
+              <Button type="submit" color="primary" block>
+                {t("fieldName.signIn")}
               </Button>
             </Form>
             <p className="text-center mt-2">
-              <span className="me-25">New on our platform?</span>
+              <span className="me-25">{t("message.newOnPlatform")}</span>
               <Link to="/register">
-                <span>Create an account</span>
+                <span>{t("fieldName.createAnAccount")}</span>
               </Link>
             </p>
             <div className="divider my-2">

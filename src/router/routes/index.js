@@ -1,6 +1,8 @@
 // ** React Imports
 import { Fragment, lazy } from "react";
 import { Navigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 // ** Layouts
 import BlankLayout from "@layouts/BlankLayout";
 import VerticalLayout from "@src/layouts/VerticalLayout";
@@ -25,57 +27,69 @@ const TemplateTitle = "%s - Vuexy React Admin Template";
 // ** Default Route
 const DefaultRoute = "/home";
 
-const Home = lazy(() => import("../../views/Home"));
-const SecondPage = lazy(() => import("../../views/SecondPage"));
-const Login = lazy(() => import("../../views/Login"));
-const Register = lazy(() => import("../../views/Register"));
-const ForgotPassword = lazy(() => import("../../views/ForgotPassword"));
-const Error = lazy(() => import("../../views/Error"));
+const Home = lazy(() => import("../../views/pages/Home/index"));
+const SecondPage = lazy(() => import("../../views/pages/SecondPage"));
+const Login = lazy(() => import("../../views/pages/Login/index"));
+const Register = lazy(() => import("../../views/pages/Register/index"));
+const ForgotPassword = lazy(() => import("../../views/pages/ForgotPassword/index"));
+const Error = lazy(() => import("../../views/pages/Error/index"));
 
 // ** Merge Routes
-const Routes = [
-  {
-    path: "/",
-    index: true,
-    element: <Navigate replace to={DefaultRoute} />,
-  },
-  {
-    path: "/home",
-    element: <Home />,
-  },
-  {
-    path: "/second-page",
-    element: <SecondPage />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-    meta: {
-      layout: "blank",
+const useCustomRoutes = (user) => {
+  const authorizedPage = (pageComponent) => {
+    if (user) return pageComponent;
+    return <Navigate to={"/login"} />;
+  };
+
+  const unAuthorizedPage = (pageComponent) => {
+    if (!user) return pageComponent;
+    return <Navigate to={"/home"} />;
+  };
+
+  return [
+    {
+      path: "/",
+      index: true,
+      element: <Navigate replace to={DefaultRoute} />,
     },
-  },
-  {
-    path: "/register",
-    element: <Register />,
-    meta: {
-      layout: "blank",
+    {
+      path: "/home",
+      element: authorizedPage(<Home />),
     },
-  },
-  {
-    path: "/forgot-password",
-    element: <ForgotPassword />,
-    meta: {
-      layout: "blank",
+    {
+      path: "/second-page",
+      element: authorizedPage(<SecondPage />),
     },
-  },
-  {
-    path: "*",
-    element: <Error />,
-    meta: {
-      layout: "blank",
+    {
+      path: "/login",
+      element: unAuthorizedPage(<Login />),
+      meta: {
+        layout: "blank",
+      },
     },
-  },
-];
+    {
+      path: "/register",
+      element: unAuthorizedPage(<Register />),
+      meta: {
+        layout: "blank",
+      },
+    },
+    {
+      path: "/forgot-password",
+      element: unAuthorizedPage(<ForgotPassword />),
+      meta: {
+        layout: "blank",
+      },
+    },
+    {
+      path: "*",
+      element: <Error />,
+      meta: {
+        layout: "blank",
+      },
+    },
+  ];
+};
 
 const getRouteMeta = (route) => {
   if (isObjEmpty(route.element.props)) {
@@ -88,8 +102,10 @@ const getRouteMeta = (route) => {
 };
 
 // ** Return Filtered Array of Routes & Paths
-const MergeLayoutRoutes = (layout, defaultLayout) => {
+const MergeLayoutRoutes = (layout, defaultLayout, user) => {
   const LayoutRoutes = [];
+
+  const Routes = useCustomRoutes(user);
 
   if (Routes) {
     Routes.filter((route) => {
@@ -130,14 +146,14 @@ const MergeLayoutRoutes = (layout, defaultLayout) => {
   return LayoutRoutes;
 };
 
-const getRoutes = (layout) => {
+const getRoutes = (layout, user) => {
   const defaultLayout = layout || "vertical";
   const layouts = ["vertical", "horizontal", "blank"];
 
   const AllRoutes = [];
 
   layouts.forEach((layoutItem) => {
-    const LayoutRoutes = MergeLayoutRoutes(layoutItem, defaultLayout);
+    const LayoutRoutes = MergeLayoutRoutes(layoutItem, defaultLayout, user);
 
     AllRoutes.push({
       path: "/",
@@ -148,4 +164,4 @@ const getRoutes = (layout) => {
   return AllRoutes;
 };
 
-export { DefaultRoute, TemplateTitle, Routes, getRoutes };
+export { DefaultRoute, TemplateTitle, getRoutes };

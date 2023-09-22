@@ -3,9 +3,10 @@ import { Fragment } from "react";
 
 // ** Custom Components
 import NavbarUser from "./NavbarUser";
+import NavbarSearch from "./NavbarSearch";
 
 // ** Third Party Components
-import { Sun, Moon, Menu } from "react-feather";
+import { Sun, Moon, Menu, MicOff } from "react-feather";
 
 // ** Reactstrap Imports
 import { NavItem, NavLink } from "reactstrap";

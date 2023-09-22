@@ -26,9 +26,9 @@ const NavbarSearch = () => {
 
   // ** ComponentDidMount
   useEffect(() => {
-    axios.get("/api/main-search/data").then(({ data }) => {
-      setSuggestions(data.searchArr);
-    });
+    // axios.get("/api/main-search/data").then(({ data }) => {
+    //   setSuggestions(data.searchArr);
+    // });
   }, []);
 
   // ** Removes query in store

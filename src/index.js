@@ -14,6 +14,9 @@ import { ThemeContext } from "./utility/context/ThemeColors";
 // ** ThemeConfig
 import themeConfig from "./configs/themeConfig";
 
+// ** i18n
+import './configs/i18n'
+
 // ** Toast
 import { Toaster } from "react-hot-toast";
 
