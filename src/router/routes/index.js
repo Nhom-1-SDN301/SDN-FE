@@ -28,10 +28,13 @@ const TemplateTitle = "%s - Vuexy React Admin Template";
 const DefaultRoute = "/home";
 
 const Home = lazy(() => import("../../views/pages/Home/index"));
-const SecondPage = lazy(() => import("../../views/pages/SecondPage"));
 const Login = lazy(() => import("../../views/pages/Login/index"));
 const Register = lazy(() => import("../../views/pages/Register/index"));
-const ForgotPassword = lazy(() => import("../../views/pages/ForgotPassword/index"));
+const ForgotPassword = lazy(() =>
+  import("../../views/pages/ForgotPassword/index")
+);
+const StudySet = lazy(() => import("../../views/pages/StudySet/index"));
+const FlashCard = lazy(() => import("../../views/pages/FlashCard/index"));
 const Error = lazy(() => import("../../views/pages/Error/index"));
 
 // ** Merge Routes
@@ -57,10 +60,6 @@ const useCustomRoutes = (user) => {
       element: authorizedPage(<Home />),
     },
     {
-      path: "/second-page",
-      element: authorizedPage(<SecondPage />),
-    },
-    {
       path: "/login",
       element: unAuthorizedPage(<Login />),
       meta: {
@@ -80,6 +79,14 @@ const useCustomRoutes = (user) => {
       meta: {
         layout: "blank",
       },
+    },
+    {
+      path: "/study-set",
+      element: authorizedPage(<StudySet />),
+    },
+    {
+      path: "/flash-card/:studySetId",
+      element: authorizedPage(<FlashCard />),
     },
     {
       path: "*",

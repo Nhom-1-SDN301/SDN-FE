@@ -1,10 +1,10 @@
-// ** JWT import
+// ** Axios import
 import axiosClient from '../../auth/jwt/jwtService';
 
 // ** Constants import
 import { QUIZ_API_URL } from "../../constants/index";
 
-export const AuthApi = {
+export const authApi = {
   login: (data) => axiosClient.post(`${QUIZ_API_URL}/auth/login`, data),
   register: (data) => axiosClient.post(`${QUIZ_API_URL}/auth/register`, data),
 };

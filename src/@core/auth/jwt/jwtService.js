@@ -3,6 +3,7 @@ import axios from "axios";
 
 // ** Config import
 import { jwtConfig } from "./jwtDefaultConfig";
+import { authService } from './authService';
 
 const axiosClient = axios.create({
   headers: {
@@ -36,20 +37,18 @@ axiosClient.interceptors.response.use(
         return authService
           .refreshToken()
           .then((rs) => {
-            console.log(rs);
-            if (rs.data) {
-              const { jwtToken, accountInfo, refreshToken } = rs.data.data;
+            console.log(rs.data);
+            if (rs.data?.isSuccess) {
+              const { accessToken, refreshToken } = rs.data.data;
               const payload = {
-                userData: accountInfo,
-                accessToken: jwtToken,
-                refreshToken: refreshToken,
+                accessToken,
+                refreshToken,
               };
               config.headers = {
                 ...config.headers,
-                Authorization: `${jwtConfig.tokenType} ${jwtToken}`,
+                Authorization: `${jwtConfig.tokenType} ${accessToken}`,
               };
-              authService.setLocalStorageWhenLogin(payload);
-              console.log(config);
+              authService.updateStorageWhenRefreshToken(payload);
               return axiosClient(config);
             } else {
               console.log("loi2");
@@ -57,8 +56,8 @@ axiosClient.interceptors.response.use(
               window.location.href = jwtConfig.logoutEndpoint;
             }
           })
-          .catch(() => {
-            console.log("loi1");
+          .catch((err) => {
+            console.log(err);
             authService.removeLocalStorageWhenLogout();
             window.location.href = jwtConfig.logoutEndpoint;
           });

@@ -23,7 +23,11 @@
     "signUp": "Sign up",
     "createAnAccount": "Create an account",
     "agreeTo": "I agree to",
-    "privacyPolicyTerm": "privacy policy & terms"
+    "privacyPolicyTerm": "privacy policy & terms",
+    "yourStudySet": "Your study set",
+    "sharedToYou": "Shared to you",
+    "search": "Search",
+    "terms": "Terms"
   },
   "message": {
     "welcomeTo": "Welcome to",
@@ -44,6 +48,7 @@
   "page": {
     "login": "Login",
     "logout": "Logout",
-    "home": "Home"
+    "home": "Home",
+    "studySet": "Study Set"
   }
 }

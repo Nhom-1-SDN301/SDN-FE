@@ -23,7 +23,11 @@
     "signUp": "Đăng ký",
     "createAnAccount": "Tạo tài khoản",
     "agreeTo": "Tôi đồng ý với",
-    "privacyPolicyTerm": "chính sách & điều khoản bảo mật"
+    "privacyPolicyTerm": "chính sách & điều khoản bảo mật",
+    "yourStudySet": "Học phần của bạn",
+    "sharedToYou": "Chia sẻ cho bạn",
+    "search": "Tìm kiếm",
+    "terms": "Thẻ"
   },
   "message": {
     "welcomeTo": "Chào mừng đến",
@@ -44,6 +48,7 @@
   "page": {
     "login": "Đăng nhập",
     "logout": "Đăng ký",
-    "home": "Trang chủ"
+    "home": "Trang chủ",
+    "studySet": "Học phần"
   }
 }

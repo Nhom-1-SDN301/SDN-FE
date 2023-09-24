@@ -34,7 +34,7 @@ import illustrationsDark from "@src/assets/images/pages/login-v2-dark.svg";
 import "@styles/react/pages/page-authentication.scss";
 
 // ** APIs
-import { AuthApi } from "../../../@core/api/quiz/index";
+import { authApi } from "../../../@core/api/quiz/index";
 
 // ** Redux
 import { login } from "../../../redux/auth";
@@ -77,7 +77,7 @@ const Login = () => {
 
   const onSubmit = (data) => {
     if (Object.values(data).every((field) => Boolean(field))) {
-      AuthApi.login({ email: data.email, password: data.password })
+      authApi.login({ email: data.email, password: data.password })
         .then((res) => {
           if (res.data.statusCode === 200 && res.data.isSuccess) {
             dispatch(login(res.data.data));

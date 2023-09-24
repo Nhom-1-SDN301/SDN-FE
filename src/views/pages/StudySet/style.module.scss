@@ -1,0 +1,40 @@
+@import "../../../@core/scss/base/bootstrap-extended/variables";
+
+.width_button_auto {
+  width: 100%;
+  margin-bottom: 0.5rem;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
+}
+
+.card_study_set {
+  margin: 0;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: $primary 0px 0.125rem 0.25rem !important;
+    transform: translateX(2px);
+  }
+
+  &:not(:first-child) {
+    margin-top: 2rem;
+  }
+
+  .author {
+    &:hover {
+      h6 {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.card_skeleton {
+  margin: 0;
+
+  &:not(:first-child) {
+    margin-top: 2rem;
+  }
+}

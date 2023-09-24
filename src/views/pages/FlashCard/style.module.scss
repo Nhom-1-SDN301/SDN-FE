@@ -1,0 +1,50 @@
+@import "../../../@core/scss/base/bootstrap-extended/variables";
+
+.container {
+  .card_container {
+    position: relative;
+    .card {
+      transform-style: preserve-3d;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      .card_front {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+      }
+
+      .card_back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        transform: rotateX(180deg);
+      }
+    }
+    .card_active {
+      transform: rotateX(180deg);
+    }
+  }
+
+  .card_option {
+    padding: 1rem;
+    width: 32%;
+    flex-direction: row;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: $primary 0px 0.125rem 0.25rem !important;
+      transform: translateX(2px);
+    }
+
+    .card_option__icon {
+        color: $primary;
+    }
+
+    span {
+      margin-left: 0.5rem;
+    }
+  }
+}
