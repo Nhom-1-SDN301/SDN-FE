@@ -1,4 +1,4 @@
-import { Mail, Home } from "react-feather";
+import { Mail, Home, AlertOctagon } from "react-feather";
 
 export default [
   {
@@ -13,4 +13,10 @@ export default [
     icon: <Mail size={20} />,
     navLink: "/study-set",
   },
+  {
+    id: "classroom",
+    title: "Classroom",
+    icon: <AlertOctagon size={20}/>,
+    navLink: "/classroom"
+  }
 ];

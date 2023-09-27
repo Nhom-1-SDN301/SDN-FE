@@ -36,6 +36,7 @@ const ForgotPassword = lazy(() =>
 const StudySet = lazy(() => import("../../views/pages/StudySet/index"));
 const FlashCard = lazy(() => import("../../views/pages/FlashCard/index"));
 const Error = lazy(() => import("../../views/pages/Error/index"));
+const Classroom = lazy(() => import("../../views/pages/Classroom/index"));
 
 // ** Merge Routes
 const useCustomRoutes = (user) => {
@@ -87,6 +88,10 @@ const useCustomRoutes = (user) => {
     {
       path: "/flash-card/:studySetId",
       element: <FlashCard />,
+    },
+    {
+      path: "/classroom",
+      element: <Classroom />,
     },
     {
       path: "*",

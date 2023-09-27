@@ -50,6 +50,7 @@
     "login": "Login",
     "logout": "Logout",
     "home": "Home",
-    "studySet": "Study Set"
+    "studySet": "Study Set",
+    "classroom": "Classroom"
   }
 }
