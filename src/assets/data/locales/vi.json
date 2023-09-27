@@ -40,7 +40,8 @@
   "title": {
     "loginDescription": "Vui lòng đăng nhập vào tài khoản của bạn và bắt đầu cuộc phiêu lưu",
     "registerTitle": "Cuộc phiêu lưu bắt đầu từ đây",
-    "registerDescription": "Làm cho việc quản lý ứng dụng của bạn trở nên dễ dàng và thú vị!"
+    "registerDescription": "Làm cho việc quản lý ứng dụng của bạn trở nên dễ dàng và thú vị!",
+    "termInThisSet": "Số thẻ trong học phần"
   },
   "error": {
     "unknown": "Xảy ra lỗi không xác định được. Vui lòng thử lại sau!"

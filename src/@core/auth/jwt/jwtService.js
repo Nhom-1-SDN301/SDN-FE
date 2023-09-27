@@ -39,10 +39,9 @@ axiosClient.interceptors.response.use(
           .then((rs) => {
             console.log(rs.data);
             if (rs.data?.isSuccess) {
-              const { accessToken, refreshToken } = rs.data.data;
+              const { accessToken } = rs.data.data;
               const payload = {
-                accessToken,
-                refreshToken,
+                accessToken
               };
               config.headers = {
                 ...config.headers,

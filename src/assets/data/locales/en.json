@@ -40,7 +40,8 @@
   "title": {
     "loginDescription": "Please sign-in to your account and start the adventure",
     "registerTitle": "Adventure starts here",
-    "registerDescription": "Make your app management easy and fun!"
+    "registerDescription": "Make your app management easy and fun!",
+    "termInThisSet": "Term in this set"
   },
   "error": {
     "unknown": "Unknown error occurred. Please try again later!"

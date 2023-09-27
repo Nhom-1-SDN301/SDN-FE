@@ -57,7 +57,7 @@ const useCustomRoutes = (user) => {
     },
     {
       path: "/home",
-      element: authorizedPage(<Home />),
+      element: <Home />,
     },
     {
       path: "/login",
@@ -75,18 +75,18 @@ const useCustomRoutes = (user) => {
     },
     {
       path: "/forgot-password",
-      element: unAuthorizedPage(<ForgotPassword />),
+      element: <ForgotPassword />,
       meta: {
         layout: "blank",
       },
     },
     {
       path: "/study-set",
-      element: authorizedPage(<StudySet />),
+      element: <StudySet />,
     },
     {
       path: "/flash-card/:studySetId",
-      element: authorizedPage(<FlashCard />),
+      element: <FlashCard />,
     },
     {
       path: "*",

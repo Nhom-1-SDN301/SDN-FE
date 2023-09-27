@@ -43,7 +43,6 @@ export const authService = {
   },
   updateStorageWhenRefreshToken: (payload) => {
     localStorage.setItem(jwtConfig.storageTokenKeyName, payload.accessToken);
-    localStorage.setItem(jwtConfig.refreshToken, payload.refreshToken);
     const decode = jwt.decode(payload.accessToken);
     localStorage.setItem(
       jwtConfig.expires,

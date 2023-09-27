@@ -1,3 +1,7 @@
+// ** Jwt
+import { jwtConfig } from "../@core/auth/jwt/jwtDefaultConfig";
+import { decode } from 'jsonwebtoken';
+
 import { DefaultRoute } from "../router/routes";
 
 // ** Checks if an object is empty (returns boolean)
@@ -83,3 +87,7 @@ export const selectThemeColors = (theme) => ({
     neutral30: "#ededed", // for input hover border-color
   },
 });
+
+export const extractToken = () => {
+  return decode(localStorage.getItem(jwtConfig.storageTokenKeyName));
+}
