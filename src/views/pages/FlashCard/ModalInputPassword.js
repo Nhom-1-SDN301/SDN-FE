@@ -10,38 +10,49 @@ import {
 } from "reactstrap";
 
 // ** React
-import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useRef, useState } from "react";
 
 // ** Apis
-import { studySetApi } from "../../../@core/api/quiz";
+import { termApi } from "../../../@core/api/quiz";
 
-const ModalInputPassword = ({
-  open,
-  setOpen,
-  setCanAccess,
-  setPasswordStudySet,
-}) => {
+// ** Hooks
+import { useParams } from "react-router-dom";
+import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+// ** Icons
+import { Info } from "react-feather";
+
+const ModalInputPassword = ({ open, setOpen, setCanAccess, setData }) => {
   // ** Hooks
   const [isLoading, setIsLoading] = useState(false);
   const { studySetId } = useParams();
+  const { t } = useTranslation();
   const inputRef = useRef();
 
   // ** Handler
   const handleCheckPassword = async () => {
     setIsLoading(true);
-    const { data } = await studySetApi.checkPassword({
+    const { data } = await termApi.getTerms({
       studySetId,
-      password: inputRef.current?.value,
+      password: inputRef.current.value,
     });
 
     if (data.isSuccess) {
       setOpen(false);
       setCanAccess(true);
-      setPasswordStudySet(inputRef.current?.value);
+      if (data.data?.terms?.length === 0)
+        toast(() => (
+          <div className="d-flex align-items-center">
+            <Info style={{ color: "orange" }} size={20} />
+            <span style={{ marginLeft: ".5rem" }}>
+              {t("message.empty", { value: t("fieldName.studySet") })}
+            </span>
+          </div>
+        ));
+      else setData(data.data.terms);
     } else {
-      toast.error("Invalid password", {
+      toast.error(t("message.invalid", { value: t("fieldName.password") }), {
         duration: 1000,
       });
     }

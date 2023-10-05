@@ -9,7 +9,6 @@ import Avatar from "@components/avatar";
 import { MoreHorizontal, Share } from "react-feather";
 
 const Author = ({ author }) => {
-  console.log(author);
   return (
     <div className={styles.author_container}>
       <div className={styles.author_container__item}>

@@ -37,12 +37,13 @@ const StudySet = lazy(() => import("../../views/pages/StudySet/index"));
 const FlashCard = lazy(() => import("../../views/pages/FlashCard/index"));
 const Error = lazy(() => import("../../views/pages/Error/index"));
 const Classroom = lazy(() => import("../../views/pages/Classroom/index"));
+const Unauthorize = lazy(() => import("../../views/pages/NotAuthorized/index"));
 
 // ** Merge Routes
 const useCustomRoutes = (user) => {
   const authorizedPage = (pageComponent) => {
     if (user) return pageComponent;
-    return <Navigate to={"/login"} />;
+    return <Navigate to={"/home"} />;
   };
 
   const unAuthorizedPage = (pageComponent) => {
@@ -76,14 +77,14 @@ const useCustomRoutes = (user) => {
     },
     {
       path: "/forgot-password",
-      element: <ForgotPassword />,
+      element: unAuthorizedPage(<ForgotPassword />),
       meta: {
         layout: "blank",
       },
     },
     {
       path: "/study-set",
-      element: <StudySet />,
+      element: authorizedPage(<StudySet />),
     },
     {
       path: "/flash-card/:studySetId",
@@ -91,7 +92,14 @@ const useCustomRoutes = (user) => {
     },
     {
       path: "/classroom",
-      element: <Classroom />,
+      element: authorizedPage(<Classroom />),
+    },
+    {
+      path: "/unauthorize",
+      element: <Unauthorize />,
+      meta: {
+        layout: "blank",
+      },
     },
     {
       path: "*",

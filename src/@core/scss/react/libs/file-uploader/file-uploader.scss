@@ -1,11 +1,11 @@
-@import '../../../base/bootstrap-extended/include';
-@import '../../../base/components/include';
+@import "../../../base/bootstrap-extended/include";
+@import "../../../base/components/include";
 
 .dropzone {
   display: flex;
   cursor: pointer;
-  min-height: 300px;
-  align-items: 'center';
+  padding: 1rem 0;
+  align-items: "center";
   justify-content: center;
   background-color: $body-bg;
   border: 1px dashed $primary;

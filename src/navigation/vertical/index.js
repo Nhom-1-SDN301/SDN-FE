@@ -6,17 +6,20 @@ export default [
     title: "Home",
     icon: <Home size={20} />,
     navLink: "/home",
+    authorization: false,
   },
   {
     id: "studySet",
     title: "Study Sets",
     icon: <Mail size={20} />,
     navLink: "/study-set",
+    authorization: true,
   },
   {
     id: "classroom",
     title: "Classroom",
-    icon: <AlertOctagon size={20}/>,
-    navLink: "/classroom"
-  }
+    icon: <AlertOctagon size={20} />,
+    navLink: "/classroom",
+    authorization: true,
+  },
 ];

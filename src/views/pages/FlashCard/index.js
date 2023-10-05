@@ -1,10 +1,12 @@
 // ** React
 import { useContext, useEffect, useRef, useState } from "react";
 import { Card, Row } from "reactstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
 
 // ** Icons
-import { Star } from "react-feather";
+import { Info, Star } from "react-feather";
 import { PiCardsDuotone } from "react-icons/pi";
 import { SiBookstack } from "react-icons/si";
 import { FaRegNoteSticky } from "react-icons/fa6";
@@ -23,22 +25,28 @@ import classNames from "classnames";
 
 // ** Apis
 import { studySetApi } from "../../../@core/api/quiz/studySetApi";
+import { termApi } from "../../../@core/api/quiz";
 
 // ** Components
 import MainCard from "./MainCard";
 import ModalInputPassword from "./ModalInputPassword";
 import Author from "./Author";
 import Detail from "./Detail";
+import ModalRating from "./ModalRating";
 
 const FlashCard = () => {
   // ** Hooks
   const { studySetId } = useParams();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const [canAccess, setCanAccess] = useState(null);
   const [isAuthor, setIsAuthor] = useState(false);
+  const [isGuest, setIsGuest] = useState(!Boolean(getUserIdFromToken()));
   const [passwordStudySet, setPasswordStudySet] = useState(null);
   const [studySet, setStudySet] = useState(null);
   const [data, setData] = useState(null);
   const [openModalPassword, setOpenModalPassword] = useState(false);
+  const [openModalRating, setOpenModalRating] = useState(false);
 
   // ** Context
   const themeColors = useContext(ThemeColors);
@@ -52,7 +60,7 @@ const FlashCard = () => {
           setStudySet(() => respStudySet);
 
           // Constants
-          const isAuthor = getUserIdFromToken() === respStudySet?.user?.id;
+          const isAuthor = getUserIdFromToken() === respStudySet?.user?._id;
           const isPublic = respStudySet?.canVisit === 1;
           const isPublicWithPassword = respStudySet?.canVisit === 2;
           const isPrivate = respStudySet?.canVisit === 3;
@@ -70,17 +78,19 @@ const FlashCard = () => {
             setCanAccess(false);
           }
         }
+        if (resp.data?.statusCode === 404 || resp.data?.statusCode === 500)
+          navigate("/error");
       })
       .catch((err) => {
         console.log(err);
+        navigate("/error");
       });
   }, [studySetId]);
 
   useEffect(() => {
     if (canAccess === false) {
-      console.log("navigate Unauthorize page");
+      navigate("/unauthorize");
     }
-
     if (canAccess) {
       loadStudySet();
     }
@@ -88,20 +98,32 @@ const FlashCard = () => {
 
   // ** Handler
   const loadStudySet = async () => {
-    const { data } = await studySetApi.getAllTermOfStudySet({
+    const { data } = await termApi.getTerms({
       studySetId,
-      password: passwordStudySet,
     });
 
-    if (data.isSuccess) {
+    if (data.isSuccess && data.data?.terms?.length !== 0) {
       setData(data.data?.terms);
+    }
+    if (data.data?.terms?.length === 0) {
+      toast(() => (
+        <div className="d-flex align-items-center">
+          <Info style={{ color: "orange" }} size={20} />
+          <span style={{ marginLeft: ".5rem" }}>
+            {t("message.empty", { value: t("fieldName.studySet") })}
+          </span>
+        </div>
+      ));
     }
   };
 
   return (
     <Row className={styles.container}>
       <h1 style={{ fontWeight: 700 }}>{studySet?.title}</h1>
-      <div className="d-flex align-items-center">
+      <div
+        className={`${styles.rating} d-flex align-items-center`}
+        onClick={() => setOpenModalRating(true)}
+      >
         <Star
           size={16}
           fill={themeColors.colors.warning.main}
@@ -114,7 +136,7 @@ const FlashCard = () => {
             fontSize: "1rem",
           }}
         >
-          {studySet?.avgRate}
+          {studySet?.avgStar}
         </span>
         <span>{`(${studySet?.totalRate} reviews)`}</span>
       </div>
@@ -151,7 +173,6 @@ const FlashCard = () => {
               { [styles.card_disable]: !data }
             )}
             style={{ margin: 0 }}
-            onClick={() => console.log(passwordStudySet)}
           >
             <FaRegNoteSticky className={styles.card_option__icon} size={24} />
             <span>Test</span>
@@ -166,14 +187,20 @@ const FlashCard = () => {
       <Author author={studySet?.user} />
 
       {/* Detail all card */}
-      <Detail studySet={studySet} data={data}/>
+      <Detail studySet={studySet} data={data} setData={setData} isAuthor={isAuthor} />
 
       {/* Modal */}
       <ModalInputPassword
         open={openModalPassword}
         setOpen={setOpenModalPassword}
         setCanAccess={setCanAccess}
-        setPasswordStudySet={setPasswordStudySet}
+        setData={setData}
+      />
+
+      <ModalRating
+        open={openModalRating}
+        setOpen={setOpenModalRating}
+        studySetId={studySetId}
       />
     </Row>
   );

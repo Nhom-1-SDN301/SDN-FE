@@ -13,7 +13,7 @@ export const authService = {
     const refreshTokenApi = axios.create({
       headers: {
         "Content-Type": "application/json",
-        // Authorization: localStorage.getItem(jwtConfig.refreshToken),
+        Authorization: `Bearer ${localStorage.getItem(jwtConfig.refreshToken)}`,
         // Authorization: process.env.REACT_APP_TOKEN
       },
     });
@@ -23,7 +23,7 @@ export const authService = {
       refreshToken: localStorage.getItem(jwtConfig.refreshToken),
     };
 
-    return refreshTokenApi.post(apiUrl, data);
+    return refreshTokenApi.get(apiUrl, data);
   },
   setLocalStorageWhenLogin: (payload) => {
     localStorage.setItem(jwtConfig.userData, JSON.stringify(payload.user));
