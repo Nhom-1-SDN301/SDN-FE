@@ -1,6 +1,16 @@
 {
   "common": {
-    "recent": "Gần đây"
+    "recent": "Gần đây",
+    "comment": "Bình luận",
+    "reviews": "Đánh giá",
+    "everyone": "Mọi người",
+    "userWithPassword": "Truy cập với mật khẩu",
+    "justMe": "Chỉ mình tôi",
+    "placeholder": {
+      "ratingStudySet": "Học phần rất bổ ích",
+      "createStudySetTitle": "Hoa quả...",
+      "createStudySetDescription": "Mô tả về học phần"
+    }
   },
   "fieldName": {
     "email": "Email",
@@ -27,21 +37,49 @@
     "yourStudySet": "Học phần của bạn",
     "sharedToYou": "Chia sẻ cho bạn",
     "search": "Tìm kiếm",
-    "terms": "Thẻ"
+    "terms": "Thẻ",
+    "term": "Thẻ",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "studySet": "Học phần",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "submit": "Gửi",
+    "create": "Tạo",
+    "title": "Tiêu đề",
+    "description": "Mô tả",
+    "visitPassword": "Mật khẩu truy cập",
+    "confirmDelete": "Có, xác nhận xóa!"
   },
   "message": {
     "welcomeTo": "Chào mừng đến",
     "newOnPlatform": "Mới trên nền tảng của chúng tôi?",
-    "successLogedIn": "Bạn đã đăng nhập thành công"
+    "successLogedIn": "Bạn đã đăng nhập thành công",
+    "empty": "{{value}} này hiện đang trống",
+    "invalid": "{{value}} không hợp lệ",
+    "noMoreData": "Đã hết {{value}}",
+    "updateSuccess": "{{value}} đã được cập nhật thành công",
+    "createSuccess": "{{value}} đã được tạo thành công",
+    "deleteSuccess": "{{value}} đã được xóa thành công",
+    "rateSuccess": "Đánh giá học phần thành công",
+    "whoCanSeeStudySet": "Ai có thể xem học phần của bạn?",
+    "areYouSure": "Bạn đã chắc chắn?",
+    "delete": "Bạn sẽ không thể hoàn tác sau khi xóa!"
   },
   "validationMessage": {
-    "required": "{{field}} là bắt buộc"
+    "required": "{{field}} là bắt buộc",
+    "minLength": "{{field}} phải lơn hơn {{value}} ký tự.",
+    "maxLength": "{{field}} không được quá {{value}} ký tự."
   },
   "title": {
     "loginDescription": "Vui lòng đăng nhập vào tài khoản của bạn và bắt đầu cuộc phiêu lưu",
     "registerTitle": "Cuộc phiêu lưu bắt đầu từ đây",
     "registerDescription": "Làm cho việc quản lý ứng dụng của bạn trở nên dễ dàng và thú vị!",
-    "termInThisSet": "Số thẻ trong học phần"
+    "termInThisSet": "Số thẻ trong học phần",
+    "peopleReviews": "Đánh giá của mọi người",
+    "createStudySet": "Tạo học phần"
   },
   "error": {
     "unknown": "Xảy ra lỗi không xác định được. Vui lòng thử lại sau!"

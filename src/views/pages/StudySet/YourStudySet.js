@@ -29,6 +29,8 @@ import { studySetApi } from "../../../@core/api/quiz/index";
 
 // ** Third library
 import _ from "lodash";
+import ModalCreateStudySet from "./ModalCreateStudySet";
+import ModalEditStudySet from "./ModalEditStudySet";
 
 const YourStudySet = () => {
   const { t } = useTranslation();
@@ -39,6 +41,9 @@ const YourStudySet = () => {
 
   const [loadingStudySet, setLoadingStudySet] = useState(false);
   const [loadingSearch, setLoadingSearch] = useState(false);
+
+  const [openModalCreate, setOpenModalCreate] = useState(false);
+  const [selectedStudySet, setSelectedStudySet] = useState(null);
 
   useEffect(() => {
     handleFetch(5, page, search);
@@ -53,7 +58,7 @@ const YourStudySet = () => {
       .getAllCurentStudySet({ limit, offset, search })
       .then((resp) => {
         if (resp.data?.isSuccess) {
-          setStudySets(resp.data?.data?.data);
+          setStudySets(resp.data?.data?.studySets);
           setTotalPage(resp.data?.data?.totalPage);
         }
       })
@@ -69,7 +74,8 @@ const YourStudySet = () => {
   const searchDebounce = useCallback(
     _.debounce((limit, offset, search) => {
       setLoadingSearch(true);
-      handleFetch(limit, offset, search);
+      setPage(0);
+      handleFetch(limit, offset, search, true);
     }, 500),
     []
   );
@@ -78,9 +84,13 @@ const YourStudySet = () => {
     <Row className="justify-content-center">
       <Row className="my-3" xs={1} sm={1} md={2}>
         <Col>
-          <Button.Ripple className={styles.width_button_auto} color="primary">
+          <Button.Ripple
+            className={styles.width_button_auto}
+            color="primary"
+            onClick={() => setOpenModalCreate(true)}
+          >
             <Plus size={14} />
-            <span className="align-middle ms-25">Create</span>
+            <span className="align-middle ms-25">{t("fieldName.create")}</span>
           </Button.Ripple>
         </Col>
         <Col>
@@ -111,11 +121,12 @@ const YourStudySet = () => {
           ) : (
             studySets.map((studySet) => (
               <ItemStudySet
-                key={studySet.id}
-                id={studySet.id}
-                author={studySet.author}
+                key={studySet._id}
+                id={studySet._id}
+                author={studySet.user}
                 numberOfTerms={studySet.numberOfTerms}
                 title={studySet.title}
+                onEdit={() => setSelectedStudySet(studySet)}
               />
             ))
           )}
@@ -139,10 +150,31 @@ const YourStudySet = () => {
           previousLinkClassName="page-link"
           previousClassName="page-item prev"
           containerClassName="pagination react-paginate justify-content-end"
-          initialPage={page}
+          forcePage={page}
           onPageChange={(e) => setPage(e.selected)}
         />
       </Row>
+
+      {/* Modal */}
+      <ModalCreateStudySet
+        open={openModalCreate}
+        setOpen={setOpenModalCreate}
+        handleFetch={handleFetch}
+      />
+      {selectedStudySet && (
+        <ModalEditStudySet
+          key={selectedStudySet?._id}
+          studySet={selectedStudySet}
+          setStudySet={setSelectedStudySet}
+          setData={setStudySets}
+          handleFetch={handleFetch}
+          dataFetch={{
+            limit: 5,
+            offset: page,
+            search,
+          }}
+        />
+      )}
     </Row>
   );
 };

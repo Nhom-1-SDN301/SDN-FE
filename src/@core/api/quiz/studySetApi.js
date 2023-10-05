@@ -13,6 +13,26 @@ export const studySetApi = {
   getStudySetbyId: ({ studySetId }) => {
     return axiosClient.get(`${QUIZ_API_URL}/study-set/${studySetId}`);
   },
+  createStudySet: ({ title, description, canVisit, visitPassword }) => {
+    return axiosClient.post(`${QUIZ_API_URL}/study-set`, {
+      title,
+      description,
+      canVisit,
+      visitPassword,
+    });
+  },
+  deleteStudySet: ({ studySetId }) => {
+    return axiosClient.delete(`${QUIZ_API_URL}/study-set?id=${studySetId}`)
+  },
+  updateSudySet: ({ id, title, description, canVisit, visitPassword }) => {
+    return axiosClient.patch(`${QUIZ_API_URL}/study-set`, {
+      id,
+      title,
+      description,
+      canVisit,
+      visitPassword,
+    });
+  },
   checkPassword: ({ studySetId, password }) => {
     return axiosClient.post(
       `${QUIZ_API_URL}/study-set/${studySetId}/password`,
@@ -24,6 +44,22 @@ export const studySetApi = {
   getAllTermOfStudySet: ({ studySetId, password }) => {
     return axiosClient.post(`${QUIZ_API_URL}/study-set/${studySetId}/term`, {
       password,
+    });
+  },
+  getRatesOfStudySet: ({ studySetId, limit, offset }) => {
+    return axiosClient.get(
+      `${QUIZ_API_URL}/study-set/${studySetId}/rate?limit=${limit}&offset=${offset}`
+    );
+  },
+  getRateStudySetOfUser: ({ studySetId, userId }) => {
+    return axiosClient.get(
+      `${QUIZ_API_URL}/study-set/${studySetId}/rate/user/${userId}`
+    );
+  },
+  putRateStudySet: ({ studySetId, star, comment }) => {
+    return axiosClient.put(`${QUIZ_API_URL}/study-set/${studySetId}/rate`, {
+      star,
+      comment,
     });
   },
 };

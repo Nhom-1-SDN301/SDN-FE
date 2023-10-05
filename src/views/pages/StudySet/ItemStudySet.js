@@ -10,8 +10,9 @@ import styles from "./style.module.scss";
 // ** Hooks
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { Delete, Edit } from "react-feather";
 
-const ItemStudySet = ({ id, numberOfTerms, author, title }) => {
+const ItemStudySet = ({ id, numberOfTerms, author, title, onEdit }) => {
   // ** Hooks
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const ItemStudySet = ({ id, numberOfTerms, author, title }) => {
       className={`${styles.card_study_set}`}
       onClick={handleRidirecToSStudySet}
     >
-      <CardBody>
+      <CardBody className={`${styles.card_study_set__body}`}>
         <div className="d-flex">
           <div
             className="d-flex align-items-center"
@@ -50,7 +51,7 @@ const ItemStudySet = ({ id, numberOfTerms, author, title }) => {
             <Avatar
               size="sm"
               img={
-                author?.avatar ||
+                author?.picture ||
                 "/src/assets/images/portrait/small/avatar-s-11.jpg"
               }
             />
@@ -62,6 +63,20 @@ const ItemStudySet = ({ id, numberOfTerms, author, title }) => {
         <Row className="mt-2">
           <h3 style={{ margin: 0 }}>{title}</h3>
         </Row>
+        <div className={styles.options}>
+          <Button.Ripple
+            className={styles.options_edit}
+            style={{ padding: ".5rem 1rem" }}
+            outline
+            color="primary"
+            onClick={(e) => {
+              e.stopPropagation();
+              onEdit();
+            }}
+          >
+            <Edit size={16} />
+          </Button.Ripple>
+        </div>
       </CardBody>
     </Card>
   );

@@ -77,7 +77,8 @@ const Login = () => {
 
   const onSubmit = (data) => {
     if (Object.values(data).every((field) => Boolean(field))) {
-      authApi.login({ email: data.email, password: data.password })
+      authApi
+        .login({ email: data.email, password: data.password })
         .then((res) => {
           if (res.data.statusCode === 200 && res.data.isSuccess) {
             dispatch(login(res.data.data));
@@ -90,12 +91,12 @@ const Login = () => {
               />
             ));
           } else
-            toast.error(res.data.messsage, {
+            toast.error(res.data.message, {
               duration: 5000,
             });
         })
         .catch((err) => {
-          return toast.error(err, {
+          return toast.error(err?.messsage, {
             duration: 5000,
           });
         });

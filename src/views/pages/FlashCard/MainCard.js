@@ -65,7 +65,7 @@ const MainCard = ({ data, isAuthor }) => {
                 </div>
               </div>
               <div className={styles.card_front__value}>
-                {data[position]?.term}
+                {data[position]?.name}
               </div>
             </div>
             <div className={styles.card_back}>
@@ -94,7 +94,11 @@ const MainCard = ({ data, isAuthor }) => {
             animation="wave"
             height={400}
             width={800}
-            style={{ background: skin === "dark" ? "#2f3852" : "#ccc" }}
+            style={{
+              background: skin === "dark" ? "#2f3852" : "#ccc",
+              maxWidth: "800px",
+              width: "100%",
+            }}
           />
         )}
         <div className="mt-2 d-flex align-items-center">

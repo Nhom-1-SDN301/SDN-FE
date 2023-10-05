@@ -16,6 +16,10 @@
     cursor: pointer;
     box-shadow: $primary 0px 0.125rem 0.25rem !important;
     transform: translateX(2px);
+
+    .options_edit {
+      display: block !important;
+    }
   }
 
   &:not(:first-child) {
@@ -29,6 +33,21 @@
       }
     }
   }
+
+  .card_study_set__body {
+    position: relative;
+
+    .options {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+
+      .options_edit {
+        display: none;
+        animation: slide ease 0.4s;
+      }
+    }
+  }
 }
 
 .card_skeleton {
@@ -36,5 +55,16 @@
 
   &:not(:first-child) {
     margin-top: 2rem;
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(10px);
+    opacity: 0.1;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

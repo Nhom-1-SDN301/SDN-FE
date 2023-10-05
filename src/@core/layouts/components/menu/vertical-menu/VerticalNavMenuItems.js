@@ -6,7 +6,13 @@ import VerticalNavMenuSectionHeader from "./VerticalNavMenuSectionHeader";
 // ** Utils
 import { resolveVerticalNavMenuItemComponent as resolveNavItemComponent } from "@layouts/utils";
 
+// ** Redux
+import { useSelector } from "react-redux";
+
 const VerticalMenuNavItems = (props) => {
+  // ** Hooks
+  const user = useSelector((state) => state.auth.user);
+
   // ** Components Object
   const Components = {
     VerticalNavMenuLink,
@@ -17,14 +23,15 @@ const VerticalMenuNavItems = (props) => {
   // ** Render Nav Menu Items
   const RenderNavItems = props.items.map((item, index) => {
     const TagName = Components[resolveNavItemComponent(item)];
-    if (item.children) {
-      return (
-        canViewMenuGroup(item) && (
-          <TagName item={item} index={index} key={item.id} {...props} />
-        )
-      );
-    }
-    return <TagName key={item.id || item.header} item={item} {...props} />;
+    // if (item.children) {
+    //   return (
+    //     canViewMenuGroup(item) && (
+    //       <TagName item={item} index={index} key={item.id} {...props} />
+    //     )
+    //   );
+    // }
+    if (user || !item.authorization)
+      return <TagName key={item.id || item.header} item={item} {...props} />;
   });
 
   return RenderNavItems;

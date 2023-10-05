@@ -1,6 +1,16 @@
 {
   "common": {
-    "recent": "Recent"
+    "recent": "Recent",
+    "comment": "Comment",
+    "reviews": "Reviews",
+    "everyone": "Everyone",
+    "userWithPassword": "User with a password",
+    "justMe": "Just me",
+    "placeholder": {
+      "ratingStudySet": "Good study set",
+      "createStudySetTitle": "Fruit...",
+      "createStudySetDescription": "Description of study set"
+    }
   },
   "fieldName": {
     "email": "Email",
@@ -27,21 +37,49 @@
     "yourStudySet": "Your study set",
     "sharedToYou": "Shared to you",
     "search": "Search",
-    "terms": "Terms"
+    "terms": "Terms",
+    "term": "Term",
+    "login": "Login",
+    "register": "Register",
+    "studySet": "Study set",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "submit": "Submit",
+    "create": "Create",
+    "title": "Title",
+    "description": "Description",
+    "visitPassword": "Visit password",
+    "confirmDelete": "Yes, delete it!"
   },
   "message": {
     "welcomeTo": "Welcome to",
     "newOnPlatform": "New on our platform?",
-    "successLogedIn": "You have successfully logged in"
+    "successLogedIn": "You have successfully logged in",
+    "empty": "This {{value}} is empty",
+    "invalid": "Invalid {{value}}",
+    "noMoreData": "No more {{value}}",
+    "updateSuccess": "Successfully updated {{value}}",
+    "createSuccess": "Successfully created {{value}}",
+    "deleteSuccess": "Successfully deleted {{value}}",
+    "rateSuccess": "Evaluate the study set successfully",
+    "whoCanSeeStudySet": "Who can see your study set?",
+    "areYouSure": "Are you sure?",
+    "delete": "You won't be able to revert this!"
   },
   "validationMessage": {
-    "required": "{{field}} is required"
+    "required": "{{field}} is required",
+    "minLength": "{{field}} must be longer than {{value}} characters.",
+    "maxLength": "{{field}} must be shorter than {{value}} characters."
   },
   "title": {
     "loginDescription": "Please sign-in to your account and start the adventure",
     "registerTitle": "Adventure starts here",
     "registerDescription": "Make your app management easy and fun!",
-    "termInThisSet": "Term in this set"
+    "termInThisSet": "Term in this set",
+    "peopleReviews": "People's reviews",
+    "createStudySet": "Create study set"
   },
   "error": {
     "unknown": "Unknown error occurred. Please try again later!"
