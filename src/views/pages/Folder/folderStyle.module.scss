@@ -1,0 +1,79 @@
+@import "../../../@core/scss/base/bootstrap-extended/variables";
+
+.width_button_auto {
+  width: 100%;
+  margin-bottom: 0.5rem;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
+}
+
+.card_folder {
+  margin: 0;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: $primary 0px 0.125rem 0.25rem !important;
+    transform: translateX(2px);
+
+    .trash_folder,
+    .edit_folder {
+      display: block;
+      opacity: 0.7;
+    }
+  }
+
+  &:not(:first-child) {
+    margin-top: 2rem;
+  }
+
+  .author {
+    &:hover {
+      h6 {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.card_skeleton {
+  margin: 0;
+
+  &:not(:first-child) {
+    margin-top: 2rem;
+  }
+}
+
+.header_modal{
+  max-width: 800;
+  top: 150;
+  background-color: red;
+}
+
+.name_folder,
+.des_folder{
+  font-size: 20px;
+}
+.des_folder{
+  margin-top: 10px;
+}
+
+.trash_folder {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.edit_folder {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 30px;
+  cursor: pointer;
+  z-index: 2;
+}

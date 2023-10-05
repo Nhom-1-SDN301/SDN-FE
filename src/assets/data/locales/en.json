@@ -51,6 +51,7 @@
     "logout": "Logout",
     "home": "Home",
     "studySet": "Study Set",
-    "classroom": "Classroom"
+    "classroom": "Classroom",
+    "folder": "Folder"
   }
 }

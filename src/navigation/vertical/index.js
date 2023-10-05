@@ -1,4 +1,4 @@
-import { Mail, Home, AlertOctagon } from "react-feather";
+import { Mail, Home, AlertOctagon, Folder } from "react-feather";
 
 export default [
   {
@@ -18,5 +18,11 @@ export default [
     title: "Classroom",
     icon: <AlertOctagon size={20}/>,
     navLink: "/classroom"
+  },
+  {
+    id: "folder",
+    title: "Folder",
+    icon: <Folder  size={20}/>,
+    navLink: "/folder"
   }
 ];

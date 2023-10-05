@@ -51,6 +51,7 @@
     "logout": "Đăng ký",
     "home": "Trang chủ",
     "studySet": "Học phần",
-    "classroom": "Lớp học"
+    "classroom": "Lớp học",
+    "folder" : "Thư mục"
   }
 }
