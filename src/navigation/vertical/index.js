@@ -22,9 +22,6 @@ export default [
     navLink: "/classroom",
     authorization: true,
   },
-    icon: <AlertOctagon size={20}/>,
-    navLink: "/classroom"
-  },
   {
     id: "folder",
     title: "Folder",
