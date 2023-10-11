@@ -1,0 +1,13 @@
+@import "../../../base/bootstrap-extended/include";
+@import "../../../base/components/include";
+
+.ui-loader {
+  background-color: $datatable-bg-color;
+  border-radius: inherit;
+}
+
+.dark-layout {
+  .ui-loader {
+    background-color: $theme-dark-card-bg;
+  }
+}

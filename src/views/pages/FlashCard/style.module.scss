@@ -205,6 +205,91 @@
   }
 }
 
+.option {
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+  }
+
+  span {
+    margin-left: 0.5rem;
+  }
+
+  .option_fullName {
+  }
+
+  .option_email {
+    font-size: 0.75rem;
+    opacity: 0.9;
+  }
+}
+
+.option_selected {
+  background-color: rgba($primary, 0.1);
+
+  .option_fullName,
+  .option_email {
+    color: $primary;
+  }
+}
+
+.list_user {
+  margin: 2rem 0 1rem 0;
+  max-height: 400px;
+  overflow: auto;
+
+  .list_user__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+
+    &:hover {
+      .delete_icon {
+        display: block;
+      }
+
+      background-color: rgba($primary, 0.1);
+      border-radius: 8px;
+    }
+
+    .list_user__item_sub {
+      display: flex;
+      img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+      }
+
+      span {
+        margin-left: 0.5rem;
+      }
+
+      .option_email {
+        font-size: 0.75rem;
+        opacity: 0.9;
+      }
+    }
+
+    .delete_icon {
+      color: $danger;
+      cursor: pointer;
+      display: none;
+
+      &:hover {
+        background-color: rgba($danger, 0.1);
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
 @keyframes slideLeft {
   0% {
     transform: translateX(0);

@@ -22,10 +22,12 @@ import {
   DropdownToggle,
   UncontrolledButtonDropdown,
 } from "reactstrap";
+import { useTranslation } from "react-i18next";
 
 const BreadCrumbs = (props) => {
   // ** Props
   const { data, title } = props;
+  const { t } = useTranslation();
 
   const renderBreadCrumbs = () => {
     return data.map((item, index) => {
@@ -59,7 +61,7 @@ const BreadCrumbs = (props) => {
             <div className="breadcrumb-wrapper vs-breadcrumbs d-sm-block d-none col-12">
               <Breadcrumb>
                 <BreadcrumbItem tag="li">
-                  <Link to="/">Home</Link>
+                  <Link to="/">{t("page.home")}</Link>
                 </BreadcrumbItem>
                 {renderBreadCrumbs()}
               </Breadcrumb>

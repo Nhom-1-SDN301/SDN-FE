@@ -22,7 +22,7 @@ export const studySetApi = {
     });
   },
   deleteStudySet: ({ studySetId }) => {
-    return axiosClient.delete(`${QUIZ_API_URL}/study-set?id=${studySetId}`)
+    return axiosClient.delete(`${QUIZ_API_URL}/study-set?id=${studySetId}`);
   },
   updateSudySet: ({ id, title, description, canVisit, visitPassword }) => {
     return axiosClient.patch(`${QUIZ_API_URL}/study-set`, {
@@ -60,6 +60,11 @@ export const studySetApi = {
     return axiosClient.put(`${QUIZ_API_URL}/study-set/${studySetId}/rate`, {
       star,
       comment,
+    });
+  },
+  shareToUsers: ({ studySetId, users }) => {
+    return axiosClient.post(`${QUIZ_API_URL}/study-set/${studySetId}/share`, {
+      users,
     });
   },
 };
