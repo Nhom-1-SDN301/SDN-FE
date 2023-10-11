@@ -1,4 +1,4 @@
-import { Mail, Home, AlertOctagon, Lock, Circle } from "react-feather";
+import { Mail, Home, Folder, Lock, Circle } from "react-feather";
 
 const getMenuData = ({ t }) => [
   {
@@ -43,6 +43,12 @@ const getMenuData = ({ t }) => [
       },
     ],
   },
+  {
+    id: "folder",
+    title: "Folder",
+    icon: <Folder  size={20}/>,
+    navLink: "/folder"
+  }
 ];
 
 export default getMenuData;

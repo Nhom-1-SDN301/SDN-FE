@@ -116,6 +116,7 @@
     "classroom": "Classroom",
     "managment": "Managment",
     "user": "User",
-    "moderator": "Moderator"
+    "moderator": "Moderator",
+    "folder": "Folder"
   }
 }

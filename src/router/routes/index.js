@@ -13,6 +13,7 @@ import PublicRoute from "@components/routes/PublicRoute";
 
 // ** Utils
 import { isObjEmpty } from "@utils";
+import { Info } from "react-feather";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -29,6 +30,7 @@ const DefaultRoute = "/home";
 const Home = lazy(() => import("../../views/pages/Home/index"));
 const Login = lazy(() => import("../../views/pages/Login/index"));
 const Register = lazy(() => import("../../views/pages/Register/index"));
+const Folder = lazy(() => import("../../views/pages/Folder/index"));
 const ForgotPassword = lazy(() =>
   import("../../views/pages/ForgotPassword/index")
 );
@@ -62,6 +64,14 @@ const useCustomRoutes = (user) => {
       path: "/",
       index: true,
       element: <Navigate replace to={DefaultRoute} />,
+    },
+    {
+      path: "/folder",
+      element: <Folder />,
+    },
+    {
+      path: "/folder/:inforFolder",
+      element: <Info />,
     },
     {
       path: "/home",
