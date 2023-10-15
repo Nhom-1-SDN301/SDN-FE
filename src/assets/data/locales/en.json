@@ -9,7 +9,9 @@
     "placeholder": {
       "ratingStudySet": "Good study set",
       "createStudySetTitle": "Fruit...",
-      "createStudySetDescription": "Description of study set"
+      "createStudySetDescription": "Description of study set",
+      "createFolderDescription": "Description of folder",
+      "createFolderTitle": "Title of folder"
     }
   },
   "fieldName": {
@@ -42,6 +44,7 @@
     "login": "Login",
     "register": "Register",
     "studySet": "Study set",
+    "folder" : "Folder",
     "edit": "Edit",
     "delete": "Delete",
     "cancel": "Cancel",
@@ -51,7 +54,9 @@
     "title": "Title",
     "description": "Description",
     "visitPassword": "Visit password",
-    "confirmDelete": "Yes, delete it!"
+    "confirmDelete": "Yes, delete it!",
+    "createNewFolder": "Create New Folder"
+    
   },
   "message": {
     "welcomeTo": "Welcome to",
@@ -71,7 +76,8 @@
   "validationMessage": {
     "required": "{{field}} is required",
     "minLength": "{{field}} must be longer than {{value}} characters.",
-    "maxLength": "{{field}} must be shorter than {{value}} characters."
+    "maxLength": "{{field}} must be shorter than {{value}} characters.",
+    "duplicated": "{{field}} is duplicated"
   },
   "title": {
     "loginDescription": "Please sign-in to your account and start the adventure",
@@ -79,7 +85,9 @@
     "registerDescription": "Make your app management easy and fun!",
     "termInThisSet": "Term in this set",
     "peopleReviews": "People's reviews",
-    "createStudySet": "Create study set"
+    "createStudySet": "Create study set",
+    "createNewFolder": "Create New Folder"
+
   },
   "error": {
     "unknown": "Unknown error occurred. Please try again later!"
@@ -90,6 +98,7 @@
     "home": "Home",
     "studySet": "Study Set",
     "classroom": "Classroom",
-    "folder": "Folder"
+    "folder": "Folder",
+    "infoFolder" : "InfoFolder"
   }
 }

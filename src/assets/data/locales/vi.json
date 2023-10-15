@@ -9,7 +9,9 @@
     "placeholder": {
       "ratingStudySet": "Học phần rất bổ ích",
       "createStudySetTitle": "Hoa quả...",
-      "createStudySetDescription": "Mô tả về học phần"
+      "createStudySetDescription": "Mô tả về học phần",
+      "createFolderDescription": "Mô tả thư mục",
+      "createFolderTitle": "Tiêu đề thư mục"
     }
   },
   "fieldName": {
@@ -42,6 +44,7 @@
     "login": "Đăng nhập",
     "register": "Đăng ký",
     "studySet": "Học phần",
+    "folder" : "Thư mục",
     "edit": "Chỉnh sửa",
     "delete": "Xóa",
     "cancel": "Hủy",
@@ -51,9 +54,10 @@
     "title": "Tiêu đề",
     "description": "Mô tả",
     "visitPassword": "Mật khẩu truy cập",
-    "confirmDelete": "Có, xác nhận xóa!"
+    "confirmDelete": "Có, xác nhận xóa!",
+    "createNewFolder": "Tạo mới thư mục"
   },
-  "message": {
+  "message": {  
     "welcomeTo": "Chào mừng đến",
     "newOnPlatform": "Mới trên nền tảng của chúng tôi?",
     "successLogedIn": "Bạn đã đăng nhập thành công",
@@ -71,7 +75,8 @@
   "validationMessage": {
     "required": "{{field}} là bắt buộc",
     "minLength": "{{field}} phải lơn hơn {{value}} ký tự.",
-    "maxLength": "{{field}} không được quá {{value}} ký tự."
+    "maxLength": "{{field}} không được quá {{value}} ký tự.",
+    "duplicated": "{{field}} bị trùng lặp"
   },
   "title": {
     "loginDescription": "Vui lòng đăng nhập vào tài khoản của bạn và bắt đầu cuộc phiêu lưu",
@@ -90,6 +95,7 @@
     "home": "Trang chủ",
     "studySet": "Học phần",
     "classroom": "Lớp học",
-    "folder" : "Thư mục"
+    "folder" : "Thư mục",
+    "infoFolder" : "Thông tin thư mục"
   }
 }
