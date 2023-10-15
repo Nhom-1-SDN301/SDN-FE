@@ -1,5 +1,5 @@
-@import '../../../base/bootstrap-extended/include';
-@import '../../../base/components/include';
+@import "../../../base/bootstrap-extended/include";
+@import "../../../base/components/include";
 
 // InValid Select
 .react-select.is-invalid {
@@ -24,7 +24,7 @@
   &.select__control--is-focused,
   &.react-select__control--is-focused {
     box-shadow: none;
-    border-color: $primary;
+    border-color: $primary !important;
   }
 
   .select__indicator svg {
@@ -176,7 +176,7 @@
   }
 }
 
-html[dir='rtl'] {
+html[dir="rtl"] {
   .select__control {
     .select__loading-indicator {
       flex-direction: row-reverse;

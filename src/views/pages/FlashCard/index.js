@@ -18,7 +18,7 @@ import { ThemeColors } from "@src/utility/context/ThemeColors";
 import styles from "./style.module.scss";
 
 // ** Utils
-import { getUserIdFromToken } from "../../../utility/Can";
+import { getUserIdFromToken, isJwtExpir } from "../../../utility/Can";
 
 // ** Third libs
 import classNames from "classnames";
@@ -33,6 +33,8 @@ import ModalInputPassword from "./ModalInputPassword";
 import Author from "./Author";
 import Detail from "./Detail";
 import ModalRating from "./ModalRating";
+import { jwtConfig } from "../../../@core/auth/jwt/jwtDefaultConfig";
+import { authService } from "../../../@core/auth/jwt/authService";
 
 const FlashCard = () => {
   // ** Hooks
@@ -41,8 +43,6 @@ const FlashCard = () => {
   const navigate = useNavigate();
   const [canAccess, setCanAccess] = useState(null);
   const [isAuthor, setIsAuthor] = useState(false);
-  const [isGuest, setIsGuest] = useState(!Boolean(getUserIdFromToken()));
-  const [passwordStudySet, setPasswordStudySet] = useState(null);
   const [studySet, setStudySet] = useState(null);
   const [data, setData] = useState(null);
   const [openModalPassword, setOpenModalPassword] = useState(false);
@@ -60,15 +60,20 @@ const FlashCard = () => {
           setStudySet(() => respStudySet);
 
           // Constants
-          const isAuthor = getUserIdFromToken() === respStudySet?.user?._id;
+          const userId = getUserIdFromToken();
+          const isAuthor = userId === respStudySet?.user?._id;
           const isPublic = respStudySet?.canVisit === 1;
           const isPublicWithPassword = respStudySet?.canVisit === 2;
           const isPrivate = respStudySet?.canVisit === 3;
 
           setIsAuthor(isAuthor);
 
+          const isShared = Boolean(
+            respStudySet.shareTo.find((_id) => userId === _id)
+          );
+
           // can access
-          if ((isAuthor && isPrivate) || isPublic || isAuthor) {
+          if ((isAuthor && isPrivate) || isPublic || isAuthor || isShared) {
             setCanAccess(true);
           } else if (isPublicWithPassword) {
             // access with password
@@ -91,8 +96,30 @@ const FlashCard = () => {
     if (canAccess === false) {
       navigate("/unauthorize");
     }
-    if (canAccess) {
-      loadStudySet();
+    if (canAccess && getUserIdFromToken()) {
+      if (isJwtExpir()) {
+        authService
+          .refreshToken()
+          .then((rs) => {
+            if (rs.data?.isSuccess) {
+              const { accessToken } = rs.data.data;
+              const payload = {
+                accessToken,
+              };
+              authService.updateStorageWhenRefreshToken(payload);
+              loadStudySet();
+            } else {
+              console.log("loi2");
+              authService.removeLocalStorageWhenLogout();
+              window.location.href = jwtConfig.logoutEndpoint;
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            authService.removeLocalStorageWhenLogout();
+            window.location.href = jwtConfig.logoutEndpoint;
+          });
+      } else loadStudySet();
     }
   }, [canAccess]);
 
@@ -115,6 +142,17 @@ const FlashCard = () => {
         </div>
       ));
     }
+  };
+
+  const handleCommingSoon = () => {
+    toast(() => (
+      <div className="d-flex align-items-center">
+        <Info style={{ color: "orange" }} size={20} />
+        <span style={{ marginLeft: ".5rem" }}>
+          {t("message.commingSoon")}
+        </span>
+      </div>
+    ));
   };
 
   return (
@@ -163,6 +201,7 @@ const FlashCard = () => {
               { [styles.card_disable]: !data }
             )}
             style={{ margin: 0 }}
+            onClick={handleCommingSoon}
           >
             <SiBookstack className={styles.card_option__icon} size={24} />
             <span>Learn</span>
@@ -173,6 +212,7 @@ const FlashCard = () => {
               { [styles.card_disable]: !data }
             )}
             style={{ margin: 0 }}
+            onClick={handleCommingSoon}
           >
             <FaRegNoteSticky className={styles.card_option__icon} size={24} />
             <span>Test</span>
@@ -184,10 +224,15 @@ const FlashCard = () => {
       <MainCard data={data} isAuthor={isAuthor} />
 
       {/* Author */}
-      <Author author={studySet?.user} />
+      <Author author={studySet?.user} isAuthor={isAuthor} />
 
       {/* Detail all card */}
-      <Detail studySet={studySet} data={data} setData={setData} isAuthor={isAuthor} />
+      <Detail
+        studySet={studySet}
+        data={data}
+        setData={setData}
+        isAuthor={isAuthor}
+      />
 
       {/* Modal */}
       <ModalInputPassword

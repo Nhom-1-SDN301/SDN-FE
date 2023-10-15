@@ -1,31 +1,54 @@
-import { Mail, Home, AlertOctagon, Folder } from "react-feather";
+import { Mail, Home, Folder, Lock, Circle } from "react-feather";
 
-export default [
+const getMenuData = ({ t }) => [
   {
     id: "home",
-    title: "Home",
+    title: t('page.home'),
     icon: <Home size={20} />,
     navLink: "/home",
     authorization: false,
+    can: [1, 2, 3],
   },
   {
     id: "studySet",
-    title: "Study Sets",
+    title: t('page.studySet'),
     icon: <Mail size={20} />,
     navLink: "/study-set",
     authorization: true,
+    can: [1, 2, 3],
   },
   {
-    id: "classroom",
-    title: "Classroom",
-    icon: <AlertOctagon size={20} />,
-    navLink: "/classroom",
+    id: "managment",
+    title: t('page.managment'),
+    icon: <Lock size={20} />,
+    navLink: "/managment",
     authorization: true,
+    can: [1, 2],
+    children: [
+      {
+        id: "user-managment",
+        title: t('page.user'),
+        icon: <Circle size={12} />,
+        navLink: "/managment/user",
+        authorization: true,
+        can: [1],
+      },
+      {
+        id: "modorator-managment",
+        title: t('page.moderator'),
+        icon: <Circle size={12} />,
+        navLink: "/managment/moderator",
+        authorization: true,
+        can: [1, 2],
+      },
+    ],
   },
   {
     id: "folder",
-    title: "Folder",
+    title: t('fieldName.folder'),
     icon: <Folder  size={20}/>,
     navLink: "/folder"
   }
 ];
+
+export default getMenuData;

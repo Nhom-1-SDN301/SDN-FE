@@ -6,10 +6,14 @@ import { Outlet } from "react-router-dom";
 import Layout from "@layouts/HorizontalLayout";
 
 // ** Menu Items Array
-import navigation from "@src/navigation/horizontal";
+import getMenuHorizontalData from "@src/navigation/horizontal";
+
+// ** I18n
+import { useTranslation } from "react-i18next";
 
 const HorizontalLayout = (props) => {
   // const [menuData, setMenuData] = useState([])
+  const { t } = useTranslation();
 
   // ** For ServerSide navigation
   // useEffect(() => {
@@ -17,7 +21,7 @@ const HorizontalLayout = (props) => {
   // }, [])
 
   return (
-    <Layout menuData={navigation} {...props}>
+    <Layout menuData={getMenuHorizontalData({ t })} {...props}>
       <Outlet />
     </Layout>
   );

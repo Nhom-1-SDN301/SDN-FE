@@ -1,7 +1,6 @@
 // ** React Imports
 import { Fragment, lazy } from "react";
 import { Navigate } from "react-router-dom";
-import toast from "react-hot-toast";
 
 // ** Layouts
 import BlankLayout from "@layouts/BlankLayout";
@@ -40,11 +39,19 @@ const FlashCard = lazy(() => import("../../views/pages/FlashCard/index"));
 const Error = lazy(() => import("../../views/pages/Error/index"));
 // const Classroom = lazy(() => import("../../views/pages/Classroom/index"));
 const Unauthorize = lazy(() => import("../../views/pages/NotAuthorized/index"));
+const UserManagment = lazy(() =>
+  import("../../views/pages/Managment/User/index")
+);
+const ModeratorManagment = lazy(() =>
+  import("../../views/pages/Managment/Moderator/index")
+);
 
 // ** Merge Routes
 const useCustomRoutes = (user) => {
-  const authorizedPage = (pageComponent) => {
-    if (user) return pageComponent;
+  const authorizedPage = (pageComponent, can = []) => {
+    if (user && can.includes(user.role.id)) return pageComponent;
+    else if (!user || !can.includes(user.role.id))
+      return <Navigate to={"/unauthorize"} />;
     return <Navigate to={"/home"} />;
   };
 
@@ -95,16 +102,20 @@ const useCustomRoutes = (user) => {
     },
     {
       path: "/study-set",
-      element: authorizedPage(<StudySet />),
+      element: authorizedPage(<StudySet />, [1, 2, 3]),
     },
     {
       path: "/flash-card/:studySetId",
       element: <FlashCard />,
     },
-    // {
-    //   path: "/classroom",
-    //   element: authorizedPage(<Classroom />),
-    // },
+    {
+      path: "/managment/user",
+      element: authorizedPage(<UserManagment />, [1]),
+    },
+    {
+      path: "/managment/moderator",
+      element: authorizedPage(<ModeratorManagment />, [1, 2]),
+    },
     {
       path: "/unauthorize",
       element: <Unauthorize />,

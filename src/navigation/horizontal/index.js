@@ -1,6 +1,6 @@
 import { Mail, Home } from "react-feather";
 
-export default [
+const getMenuData = ({ t }) => [
   {
     id: "home",
     title: "Home",
@@ -14,3 +14,5 @@ export default [
     navLink: "/second-page",
   },
 ];
+
+export default getMenuData;

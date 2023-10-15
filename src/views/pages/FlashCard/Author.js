@@ -1,14 +1,27 @@
 // ** Reactstrap
-import { Button } from "reactstrap";
+import { Button, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+
+// ** React
+import { useState } from "react";
 
 // ** Styles
 import styles from "./style.module.scss";
 
-// ** Components
-import Avatar from "@components/avatar";
+// ** Icons
 import { MoreHorizontal, Share } from "react-feather";
 
-const Author = ({ author }) => {
+// ** I18n
+import { useTranslation } from "react-i18next";
+
+// ** Components
+import Avatar from "@components/avatar";
+import ModalShare from "./ModalShare";
+
+const Author = ({ author, isAuthor }) => {
+  // ** Hooks
+  const { t } = useTranslation();
+  const [openModalShare, setOpenModalShare] = useState(false);
+
   return (
     <div className={styles.author_container}>
       <div className={styles.author_container__item}>
@@ -29,20 +42,41 @@ const Author = ({ author }) => {
           </div>
         </div>
         <div className="d-flex">
-          <Button.Ripple
-            className="d-flex align-items-center"
-            color="primary"
-            outline
-            style={{ marginRight: '.5rem' }}
-          >
-            <Share size={16} />
-            <span style={{ marginLeft: ".5rem" }}>Share</span>
-          </Button.Ripple>
-          <Button.Ripple color="primary" outline>
-            <MoreHorizontal size={16} />
-          </Button.Ripple>
+          {isAuthor && (
+            <Button.Ripple
+              className="d-flex align-items-center"
+              color="primary"
+              outline
+              style={{ marginRight: ".5rem" }}
+              onClick={() => setOpenModalShare(true)}
+            >
+              <Share size={16} />
+              <span style={{ marginLeft: ".5rem" }}>
+                {t("fieldName.share")}
+              </span>
+            </Button.Ripple>
+          )}
+          <UncontrolledDropdown direction="up">
+            <DropdownToggle color="primary" outline>
+              <MoreHorizontal size={16} />
+            </DropdownToggle>
+            <DropdownMenu end>
+              <DropdownItem href="/" tag="a">
+                Option 1
+              </DropdownItem>
+              <DropdownItem href="/" tag="a">
+                Option 2
+              </DropdownItem>
+              <DropdownItem href="/" tag="a">
+                Option 3
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
         </div>
       </div>
+
+      {/* Modal */}
+      <ModalShare open={openModalShare} setOpen={setOpenModalShare} />
     </div>
   );
 };

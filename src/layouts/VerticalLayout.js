@@ -6,10 +6,14 @@ import { Outlet } from "react-router-dom";
 import Layout from "@layouts/VerticalLayout";
 
 // ** Menu Items Array
-import navigation from "@src/navigation/vertical";
+import getMenuVerticalData from "@src/navigation/vertical";
+
+// ** I18n
+import { useTranslation } from "react-i18next";
 
 const VerticalLayout = (props) => {
   // const [menuData, setMenuData] = useState([])
+  const { t } = useTranslation();
 
   // ** For ServerSide navigation
   // useEffect(() => {
@@ -17,7 +21,7 @@ const VerticalLayout = (props) => {
   // }, [])
 
   return (
-    <Layout menuData={navigation} {...props}>
+    <Layout menuData={getMenuVerticalData({ t })} {...props}>
       <Outlet />
     </Layout>
   );

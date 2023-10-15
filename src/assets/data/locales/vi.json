@@ -6,12 +6,25 @@
     "everyone": "Mọi người",
     "userWithPassword": "Truy cập với mật khẩu",
     "justMe": "Chỉ mình tôi",
+    "admin": "Quản trị viên",
+    "moderator": "Kiểm duyệt viên",
+    "member": "Thành viên",
+    "active": "Hoạt động",
+    "banned": "Bị cấm",
+    "show": "Hiển thị",
+    "entries": "Mục",
+    "export": "Xuất",
+    "suspended": "Cấm",
+    "unSuspended": "Bỏ cấm",
+    "detail": "Chi tiết",
+    "edit": "Chỉnh sửa",
     "placeholder": {
       "ratingStudySet": "Học phần rất bổ ích",
       "createStudySetTitle": "Hoa quả...",
       "createStudySetDescription": "Mô tả về học phần",
       "createFolderDescription": "Mô tả thư mục",
-      "createFolderTitle": "Tiêu đề thư mục"
+      "createFolderTitle": "Tiêu đề thư mục",
+      "searchWithEmail": "...@domain.com"
     }
   },
   "fieldName": {
@@ -38,6 +51,7 @@
     "privacyPolicyTerm": "chính sách & điều khoản bảo mật",
     "yourStudySet": "Học phần của bạn",
     "sharedToYou": "Chia sẻ cho bạn",
+    "share": "Chia sẻ",
     "search": "Tìm kiếm",
     "terms": "Thẻ",
     "term": "Thẻ",
@@ -55,7 +69,12 @@
     "description": "Mô tả",
     "visitPassword": "Mật khẩu truy cập",
     "confirmDelete": "Có, xác nhận xóa!",
-    "createNewFolder": "Tạo mới thư mục"
+    "createNewFolder": "Tạo mới thư mục",
+    "enterEmail": "Nhập email",
+    "status": "Trạng thái",
+    "refresh": "Tải lại",
+    "createDate": "Ngày tạo",
+    "user": "Người dùng"
   },
   "message": {  
     "welcomeTo": "Chào mừng đến",
@@ -67,10 +86,13 @@
     "updateSuccess": "{{value}} đã được cập nhật thành công",
     "createSuccess": "{{value}} đã được tạo thành công",
     "deleteSuccess": "{{value}} đã được xóa thành công",
+    "shareStudySetSuccess": "Chỉ sẻ học phần cho mọi người thành công. Họ sẽ nhận được email sau đó",
     "rateSuccess": "Đánh giá học phần thành công",
     "whoCanSeeStudySet": "Ai có thể xem học phần của bạn?",
     "areYouSure": "Bạn đã chắc chắn?",
-    "delete": "Bạn sẽ không thể hoàn tác sau khi xóa!"
+    "delete": "Bạn sẽ không thể hoàn tác sau khi xóa!",
+    "commingSoon": "Tính năng đang được phát triển",
+    "updateStatusUserSuccess": "Cập nhật trạng thái thành công người dùng {{email}}"
   },
   "validationMessage": {
     "required": "{{field}} là bắt buộc",
@@ -84,7 +106,9 @@
     "registerDescription": "Làm cho việc quản lý ứng dụng của bạn trở nên dễ dàng và thú vị!",
     "termInThisSet": "Số thẻ trong học phần",
     "peopleReviews": "Đánh giá của mọi người",
-    "createStudySet": "Tạo học phần"
+    "createStudySet": "Tạo học phần",
+    "shareStudySet": "Chia sẻ học phần với bạn bè",
+    "filters": "Lọc"
   },
   "error": {
     "unknown": "Xảy ra lỗi không xác định được. Vui lòng thử lại sau!"
@@ -96,6 +120,9 @@
     "studySet": "Học phần",
     "classroom": "Lớp học",
     "folder" : "Thư mục",
-    "infoFolder" : "Thông tin thư mục"
+    "infoFolder" : "Thông tin thư mục",
+    "managment": "Quản lý",
+    "user": "Người dùng",
+    "moderator": "Kiểm duyệt"
   }
 }

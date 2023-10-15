@@ -30,7 +30,8 @@ const VerticalMenuNavItems = (props) => {
     //     )
     //   );
     // }
-    if (user || !item.authorization)
+    const can = item.can?.includes(user?.role?.id);
+    if ((user && can) || !item.authorization)
       return <TagName key={item.id || item.header} item={item} {...props} />;
   });
 

@@ -6,12 +6,25 @@
     "everyone": "Everyone",
     "userWithPassword": "User with a password",
     "justMe": "Just me",
+    "admin": "Admin",
+    "moderator": "Moderator",
+    "member": "Member",
+    "active": "Active",
+    "banned": "Banned",
+    "show": "Show",
+    "entries": "Entries",
+    "export": "Export",
+    "suspended": "Suspended",
+    "unSuspended": "Unsuspended",
+    "detail": "Detail",
+    "edit": "Edit",
     "placeholder": {
       "ratingStudySet": "Good study set",
       "createStudySetTitle": "Fruit...",
       "createStudySetDescription": "Description of study set",
       "createFolderDescription": "Description of folder",
-      "createFolderTitle": "Title of folder"
+      "createFolderTitle": "Title of folder",
+      "searchWithEmail": "...@domain.com"
     }
   },
   "fieldName": {
@@ -38,6 +51,7 @@
     "privacyPolicyTerm": "privacy policy & terms",
     "yourStudySet": "Your study set",
     "sharedToYou": "Shared to you",
+    "share": "Share",
     "search": "Search",
     "terms": "Terms",
     "term": "Term",
@@ -55,8 +69,12 @@
     "description": "Description",
     "visitPassword": "Visit password",
     "confirmDelete": "Yes, delete it!",
-    "createNewFolder": "Create New Folder"
-    
+    "createNewFolder": "Create New Folder",
+    "enterEmail": "Enter email",
+    "status": "Status",
+    "refresh": "Refresh",
+    "createDate": "Created date",
+    "user": "User"
   },
   "message": {
     "welcomeTo": "Welcome to",
@@ -68,10 +86,13 @@
     "updateSuccess": "Successfully updated {{value}}",
     "createSuccess": "Successfully created {{value}}",
     "deleteSuccess": "Successfully deleted {{value}}",
+    "shareStudySetSuccess": "Successfully shared study set to users. They will receive an email within a few minutes",
     "rateSuccess": "Evaluate the study set successfully",
     "whoCanSeeStudySet": "Who can see your study set?",
     "areYouSure": "Are you sure?",
-    "delete": "You won't be able to revert this!"
+    "delete": "You won't be able to revert this!",
+    "commingSoon": "Feature under development",
+    "updateStatusUserSuccess": "Successfullt update status user {{email}}"
   },
   "validationMessage": {
     "required": "{{field}} is required",
@@ -86,8 +107,9 @@
     "termInThisSet": "Term in this set",
     "peopleReviews": "People's reviews",
     "createStudySet": "Create study set",
-    "createNewFolder": "Create New Folder"
-
+    "createNewFolder": "Create New Folder",
+    "shareStudySet": "Share study set with friends",
+    "filters": "Filters"
   },
   "error": {
     "unknown": "Unknown error occurred. Please try again later!"
@@ -98,7 +120,10 @@
     "home": "Home",
     "studySet": "Study Set",
     "classroom": "Classroom",
-    "folder": "Folder",
-    "infoFolder" : "InfoFolder"
+    "infoFolder" : "InfoFolder",
+    "managment": "Managment",
+    "user": "User",
+    "moderator": "Moderator",
+    "folder": "Folder"
   }
 }

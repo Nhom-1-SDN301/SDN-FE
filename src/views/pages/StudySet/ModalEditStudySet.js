@@ -163,6 +163,7 @@ const ModalEditStudySet = ({
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: t("fieldName.confirmDelete"),
+      cancelButtonText: t("fieldName.cancel"),
       customClass: {
         confirmButton: `btn btn-danger`,
         cancelButton: "btn btn-secondary ms-1",
