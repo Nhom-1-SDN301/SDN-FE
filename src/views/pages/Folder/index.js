@@ -75,8 +75,11 @@ const Folder = (id, numberOfTerms, author, title, description) => {
     console.log(`navigate to profile user id: ${author.id}`);
   };
 
+  // const handleEdit = async (id) =>{
+
+  // }
+
   const handleDelete = async (id) => {
-  console.log(id);
   return MySwal.fire({
     title: t("message.areYouSure"),
     text: t("message.delete"),
