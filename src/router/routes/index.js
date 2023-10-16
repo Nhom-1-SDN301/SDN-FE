@@ -41,8 +41,11 @@ const Unauthorize = lazy(() => import("../../views/pages/NotAuthorized/index"));
 const UserManagment = lazy(() =>
   import("../../views/pages/Managment/User/index")
 );
-const ModeratorManagment = lazy(() =>
-  import("../../views/pages/Managment/Moderator/index")
+const ModeratorStudySet = lazy(() =>
+  import("../../views/pages/Managment/Moderator/StudySet/index")
+);
+const StudySetEditTerm = lazy(() =>
+  import("../../views/pages/StudySet/EditTerm")
 );
 
 // ** Merge Routes
@@ -103,6 +106,10 @@ const useCustomRoutes = (user) => {
       element: authorizedPage(<StudySet />, [1, 2, 3]),
     },
     {
+      path: "/study-set/:studySetId/edit",
+      element: authorizedPage(<StudySetEditTerm />, [1, 2, 3]),
+    },
+    {
       path: "/flash-card/:studySetId",
       element: <FlashCard />,
     },
@@ -111,8 +118,8 @@ const useCustomRoutes = (user) => {
       element: authorizedPage(<UserManagment />, [1]),
     },
     {
-      path: "/managment/moderator",
-      element: authorizedPage(<ModeratorManagment />, [1, 2]),
+      path: "/managment/moderator-study-set",
+      element: authorizedPage(<ModeratorStudySet />, [1, 2]),
     },
     {
       path: "/unauthorize",

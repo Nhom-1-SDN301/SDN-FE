@@ -67,4 +67,11 @@ export const studySetApi = {
       users,
     });
   },
+  createReportStudySet: ({ studySetId, types, description }) => {
+    return axiosClient.post(`${QUIZ_API_URL}/study-set-report`, {
+      studySetId,
+      types,
+      description,
+    });
+  },
 };

@@ -1,9 +1,9 @@
-import { Mail, Home, Folder, Lock, Circle } from "react-feather";
+import { Mail, Home, Folder, Lock, Circle, Book } from "react-feather";
 
 const getMenuData = ({ t }) => [
   {
     id: "home",
-    title: t('page.home'),
+    title: t("page.home"),
     icon: <Home size={20} />,
     navLink: "/home",
     authorization: false,
@@ -11,15 +11,15 @@ const getMenuData = ({ t }) => [
   },
   {
     id: "studySet",
-    title: t('page.studySet'),
-    icon: <Mail size={20} />,
+    title: t("page.studySet"),
+    icon: <Book size={20} />,
     navLink: "/study-set",
     authorization: true,
     can: [1, 2, 3],
   },
   {
     id: "managment",
-    title: t('page.managment'),
+    title: t("page.managment"),
     icon: <Lock size={20} />,
     navLink: "/managment",
     authorization: true,
@@ -27,7 +27,7 @@ const getMenuData = ({ t }) => [
     children: [
       {
         id: "user-managment",
-        title: t('page.user'),
+        title: t("page.user"),
         icon: <Circle size={12} />,
         navLink: "/managment/user",
         authorization: true,
@@ -35,20 +35,27 @@ const getMenuData = ({ t }) => [
       },
       {
         id: "modorator-managment",
-        title: t('page.moderator'),
+        title: t("page.moderator"),
         icon: <Circle size={12} />,
-        navLink: "/managment/moderator",
-        authorization: true,
         can: [1, 2],
+        children: [
+          {
+            id: "modorator-managment-study-set",
+            title: t("page.studySet"),
+            navLink: "/managment/moderator-study-set",
+            authorization: true,
+            can: [1, 2],
+          },
+        ],
       },
     ],
   },
   {
     id: "folder",
     title: "Folder",
-    icon: <Folder  size={20}/>,
-    navLink: "/folder"
-  }
+    icon: <Folder size={20} />,
+    navLink: "/folder",
+  },
 ];
 
 export default getMenuData;

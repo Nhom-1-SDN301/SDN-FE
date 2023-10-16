@@ -10,7 +10,7 @@ import styles from "./style.module.scss";
 // ** Hooks
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Delete, Edit } from "react-feather";
+import { Delete, Edit, Plus } from "react-feather";
 
 const ItemStudySet = ({ id, numberOfTerms, author, title, onEdit }) => {
   // ** Hooks
@@ -75,6 +75,18 @@ const ItemStudySet = ({ id, numberOfTerms, author, title, onEdit }) => {
             }}
           >
             <Edit size={16} />
+          </Button.Ripple>
+          <Button.Ripple
+            className={styles.options_edit}
+            style={{ padding: ".5rem 1rem" }}
+            outline
+            color="primary"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/study-set/${id}/edit`);
+            }}
+          >
+            <Plus size={16} />
           </Button.Ripple>
         </div>
       </CardBody>

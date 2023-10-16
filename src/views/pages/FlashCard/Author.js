@@ -1,5 +1,11 @@
 // ** Reactstrap
-import { Button, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+import {
+  Button,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from "reactstrap";
 
 // ** React
 import { useState } from "react";
@@ -8,7 +14,7 @@ import { useState } from "react";
 import styles from "./style.module.scss";
 
 // ** Icons
-import { MoreHorizontal, Share } from "react-feather";
+import { Flag, MoreHorizontal, Share } from "react-feather";
 
 // ** I18n
 import { useTranslation } from "react-i18next";
@@ -16,11 +22,13 @@ import { useTranslation } from "react-i18next";
 // ** Components
 import Avatar from "@components/avatar";
 import ModalShare from "./ModalShare";
+import ModalReport from "./ModalReport";
 
-const Author = ({ author, isAuthor }) => {
+const Author = ({ author, isAuthor, studySetId }) => {
   // ** Hooks
   const { t } = useTranslation();
   const [openModalShare, setOpenModalShare] = useState(false);
+  const [openModalReport, setOpenModalReport] = useState(false);
 
   return (
     <div className={styles.author_container}>
@@ -61,14 +69,19 @@ const Author = ({ author, isAuthor }) => {
               <MoreHorizontal size={16} />
             </DropdownToggle>
             <DropdownMenu end>
-              <DropdownItem href="/" tag="a">
-                Option 1
-              </DropdownItem>
-              <DropdownItem href="/" tag="a">
-                Option 2
-              </DropdownItem>
-              <DropdownItem href="/" tag="a">
-                Option 3
+              <DropdownItem
+                href="/"
+                tag="a"
+                style={{ width: 200, display: "flex", alignItems: "center" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenModalReport(true);
+                }}
+              >
+                <Flag size={20} />
+                <span style={{ marginLeft: ".5rem" }}>
+                  {t("fieldName.report")}
+                </span>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -77,6 +90,12 @@ const Author = ({ author, isAuthor }) => {
 
       {/* Modal */}
       <ModalShare open={openModalShare} setOpen={setOpenModalShare} />
+
+      <ModalReport
+        open={openModalReport}
+        setOpen={setOpenModalReport}
+        studySetId={studySetId}
+      />
     </div>
   );
 };

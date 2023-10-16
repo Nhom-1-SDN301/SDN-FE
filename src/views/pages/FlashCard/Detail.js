@@ -44,6 +44,7 @@ const Detail = ({ studySet, data, isAuthor, setData }) => {
                       fontSize: "1.2rem",
                       paddingRight: "1rem",
                       borderRight: "1px solid rgba(204,204,204,0.6)",
+                      whiteSpace: "pre-wrap",
                     }}
                   >
                     {term.name}
@@ -56,7 +57,9 @@ const Detail = ({ studySet, data, isAuthor, setData }) => {
                       fontSize: "1.2rem",
                     }}
                   >
-                    <div>{term.definition}</div>
+                    <div style={{ whiteSpace: "pre-wrap" }}>
+                      {term.definition}
+                    </div>
                     <div style={{ marginRight: "1rem" }}>
                       {term.picture && (
                         <Image

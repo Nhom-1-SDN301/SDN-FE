@@ -5,6 +5,14 @@ import axiosClient from "../../auth/jwt/jwtService";
 import { QUIZ_API_URL } from "../../constants";
 
 export const termApi = {
+  createTerm: (data) => {
+    return axiosClient.post(`${QUIZ_API_URL}/term`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      responseType: "json",
+    });
+  },
   getTerms: ({ studySetId, password }) => {
     let url = `${QUIZ_API_URL}/term?studySetId=${studySetId}`;
     if (password) url += `&password=${password}`;
@@ -17,5 +25,8 @@ export const termApi = {
       },
       responseType: "json",
     });
+  },
+  deleteTerm: ({ id }) => {
+    return axiosClient.delete(`${QUIZ_API_URL}/term/${id}`);
   },
 };

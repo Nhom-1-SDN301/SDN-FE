@@ -148,9 +148,7 @@ const FlashCard = () => {
     toast(() => (
       <div className="d-flex align-items-center">
         <Info style={{ color: "orange" }} size={20} />
-        <span style={{ marginLeft: ".5rem" }}>
-          {t("message.commingSoon")}
-        </span>
+        <span style={{ marginLeft: ".5rem" }}>{t("message.commingSoon")}</span>
       </div>
     ));
   };
@@ -224,7 +222,11 @@ const FlashCard = () => {
       <MainCard data={data} isAuthor={isAuthor} />
 
       {/* Author */}
-      <Author author={studySet?.user} isAuthor={isAuthor} />
+      <Author
+        author={studySet?.user}
+        isAuthor={isAuthor}
+        studySetId={studySetId}
+      />
 
       {/* Detail all card */}
       <Detail

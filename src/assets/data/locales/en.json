@@ -13,16 +13,31 @@
     "banned": "Banned",
     "show": "Show",
     "entries": "Entries",
+    "import": "Import",
     "export": "Export",
     "suspended": "Suspended",
     "unSuspended": "Unsuspended",
     "detail": "Detail",
     "edit": "Edit",
+    "tellUsMore": "Please tell us more",
+    "history": "History",
+    "add": "Add",
     "placeholder": {
       "ratingStudySet": "Good study set",
       "createStudySetTitle": "Fruit...",
       "createStudySetDescription": "Description of study set",
-      "searchWithEmail": "...@domain.com"
+      "searchWithEmail": "...@domain.com",
+      "reportStudySet": "Which term, card,...",
+      "addATitle": "Add a title",
+      "addADescription": "Add a description",
+      "enterTerm": "Enter term",
+      "enterDefinition": "Enter definition"
+    },
+    "reports": {
+      "inacurrateInfomation": "It contains inacurrate infomation",
+      "InappropriateContent": "It contains inappropriate content",
+      "ifraudulentPurposes": "It is used for fraudulent purposes",
+      "intellectualPropertyRights": "It violates my intellectual property rights"
     }
   },
   "fieldName": {
@@ -53,6 +68,7 @@
     "search": "Search",
     "terms": "Terms",
     "term": "Term",
+    "definition": "Definition",
     "login": "Login",
     "register": "Register",
     "studySet": "Study set",
@@ -70,7 +86,9 @@
     "status": "Status",
     "refresh": "Refresh",
     "createDate": "Created date",
-    "user": "User"
+    "user": "User",
+    "report": "Report",
+    "done": "Done"
   },
   "message": {
     "welcomeTo": "Welcome to",
@@ -88,7 +106,9 @@
     "areYouSure": "Are you sure?",
     "delete": "You won't be able to revert this!",
     "commingSoon": "Feature under development",
-    "updateStatusUserSuccess": "Successfullt update status user {{email}}"
+    "updateStatusUserSuccess": "Successfullt update status user {{email}}",
+    "requiredOptionReportStudySet": "Please select at least 1 reason to report",
+    "reportStudySetSuccess": "Successfully reported study set, you can view report list at"
   },
   "validationMessage": {
     "required": "{{field}} is required",
@@ -103,7 +123,9 @@
     "peopleReviews": "People's reviews",
     "createStudySet": "Create study set",
     "shareStudySet": "Share study set with friends",
-    "filters": "Filters"
+    "filters": "Filters",
+    "reportStudySet": "Report study set",
+    "whyReportStudySet": "Why are you reporting this set?"
   },
   "error": {
     "unknown": "Unknown error occurred. Please try again later!"
@@ -117,6 +139,7 @@
     "managment": "Managment",
     "user": "User",
     "moderator": "Moderator",
-    "folder": "Folder"
+    "folder": "Folder",
+    "edit": "Edit"
   }
 }

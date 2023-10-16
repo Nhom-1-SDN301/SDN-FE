@@ -13,16 +13,31 @@
     "banned": "Bị cấm",
     "show": "Hiển thị",
     "entries": "Mục",
+    "import": "Nhập",
     "export": "Xuất",
     "suspended": "Cấm",
     "unSuspended": "Bỏ cấm",
     "detail": "Chi tiết",
     "edit": "Chỉnh sửa",
+    "tellUsMore": "Hãy cho chúng tôi biết thêm",
+    "history": "Lịch sử",
+    "add": "Thêm",
     "placeholder": {
       "ratingStudySet": "Học phần rất bổ ích",
       "createStudySetTitle": "Hoa quả...",
       "createStudySetDescription": "Mô tả về học phần",
-      "searchWithEmail": "...@domain.com"
+      "searchWithEmail": "...@domain.com",
+      "reportStudySet": "Học phần, thẻ, ...",
+      "addATitle": "Nhập tiêu đề",
+      "addADescription": "Nhập mô tả học phần",
+      "enterTerm": "Nhập thuật ngữ",
+      "enterDefinition": "Nhập định nghĩa"
+    },
+    "reports": {
+      "inacurrateInfomation": "Chứa thông tin không chính xác",
+      "InappropriateContent": "Chứa thông tin không phù hợp",
+      "ifraudulentPurposes": "Được sử dụng nhằm mục đích lừa đảo",
+      "intellectualPropertyRights": "Vi phạm quyền sở hữu trí tuệ"
     }
   },
   "fieldName": {
@@ -53,6 +68,7 @@
     "search": "Tìm kiếm",
     "terms": "Thẻ",
     "term": "Thẻ",
+    "definition": "Định nghĩa",
     "login": "Đăng nhập",
     "register": "Đăng ký",
     "studySet": "Học phần",
@@ -70,7 +86,9 @@
     "status": "Trạng thái",
     "refresh": "Tải lại",
     "createDate": "Ngày tạo",
-    "user": "Người dùng"
+    "user": "Người dùng",
+    "report": "Báo cáo",
+    "done": "Xong"
   },
   "message": {
     "welcomeTo": "Chào mừng đến",
@@ -88,7 +106,9 @@
     "areYouSure": "Bạn đã chắc chắn?",
     "delete": "Bạn sẽ không thể hoàn tác sau khi xóa!",
     "commingSoon": "Tính năng đang được phát triển",
-    "updateStatusUserSuccess": "Cập nhật trạng thái thành công người dùng {{email}}"
+    "updateStatusUserSuccess": "Cập nhật trạng thái thành công người dùng {{email}}",
+    "requiredOptionReportStudySet": "Vui lòng chọn ít nhất 1 lý do để báo cáo",
+    "reportStudySetSuccess": "Báo cáo học phần thành công, bạn có thể xem lịch sử báo cáo tại"
   },
   "validationMessage": {
     "required": "{{field}} là bắt buộc",
@@ -103,7 +123,9 @@
     "peopleReviews": "Đánh giá của mọi người",
     "createStudySet": "Tạo học phần",
     "shareStudySet": "Chia sẻ học phần với bạn bè",
-    "filters": "Lọc"
+    "filters": "Lọc",
+    "reportStudySet": "Báo cáo học phần",
+    "whyReportStudySet": "Tại sao bạn lại báo cáo học phần này?"
   },
   "error": {
     "unknown": "Xảy ra lỗi không xác định được. Vui lòng thử lại sau!"
@@ -117,6 +139,7 @@
     "managment": "Quản lý",
     "user": "Người dùng",
     "moderator": "Kiểm duyệt",
-    "folder": "Thư mục"
+    "folder": "Thư mục",
+    "edit": "Chỉnh sửa"
   }
 }

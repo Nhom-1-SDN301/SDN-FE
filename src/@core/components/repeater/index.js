@@ -13,6 +13,7 @@ const Repeater = (props) => {
 
   // ** Loop passed count times and push it in items Array
   for (let i = 0; i < count; i++) {
+    console.log(i, count);
     items.push(children(i));
   }
 

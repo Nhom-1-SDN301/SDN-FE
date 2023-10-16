@@ -1,4 +1,6 @@
 @import "../../../@core/scss/base/bootstrap-extended/variables";
+@import "../../../@core/scss/base/bootstrap-extended/include";
+@import "../../../@core/scss/base/components/include";
 
 .width_button_auto {
   width: 100%;
@@ -38,6 +40,7 @@
     position: relative;
 
     .options {
+      display: flex;
       position: absolute;
       top: 1rem;
       right: 1rem;
@@ -45,6 +48,10 @@
       .options_edit {
         display: none;
         animation: slide ease 0.4s;
+
+        &:not(:last-child) {
+          margin-right: 0.5rem;
+        }
       }
     }
   }
@@ -56,6 +63,14 @@
   &:not(:first-child) {
     margin-top: 2rem;
   }
+}
+
+.footer {
+  box-shadow: 0 0 15px 0 rgba(34, 41, 47, 0.05);
+}
+
+.footer_dark {
+  background-color: $theme-dark-card-bg !important;
 }
 
 @keyframes slide {
