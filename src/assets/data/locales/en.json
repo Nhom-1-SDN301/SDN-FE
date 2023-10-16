@@ -31,15 +31,15 @@
       "addATitle": "Add a title",
       "addADescription": "Add a description",
       "enterTerm": "Enter term",
-      "enterDefinition": "Enter definition"
+      "enterDefinition": "Enter definition",
+      "createFolderDescription": "Description of folder",
+      "createFolderTitle": "Title of folder"
     },
     "reports": {
       "inacurrateInfomation": "It contains inacurrate infomation",
       "InappropriateContent": "It contains inappropriate content",
       "ifraudulentPurposes": "It is used for fraudulent purposes",
       "intellectualPropertyRights": "It violates my intellectual property rights",
-      "createFolderDescription": "Description of folder",
-      "createFolderTitle": "Title of folder",
       "searchWithEmail": "...@domain.com"
     }
   },
