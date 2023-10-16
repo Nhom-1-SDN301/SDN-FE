@@ -9,7 +9,8 @@
   }
 }
 
-.card_folder {
+.card_folder,
+.card_infoFolder {
   margin: 0;
   position: relative;
 
@@ -19,7 +20,9 @@
     transform: translateX(2px);
 
     .trash_folder,
-    .edit_folder {
+    .edit_folder,
+    .trash_infoFolder,
+    .edit_infoFolder {
       display: block;
       opacity: 0.7;
     }
@@ -46,21 +49,23 @@
   }
 }
 
-.header_modal{
+.header_modal {
   max-width: 800;
   top: 150;
   background-color: red;
 }
 
 .name_folder,
-.des_folder{
-  font-size: 20px;
+.des_folder {
+  font-size: 13px;
 }
-.des_folder{
+
+.des_folder {
   margin-top: 10px;
 }
 
-.trash_folder {
+.trash_folder,
+.trash_infoFolder {
   display: none;
   position: absolute;
   top: 0;
@@ -69,11 +74,33 @@
   z-index: 2;
 }
 
-.edit_folder {
+.edit_folder,
+.edit_infoFolder {
   display: none;
   position: absolute;
   top: 0;
   right: 30px;
   cursor: pointer;
   z-index: 2;
+}
+
+.card_folder {
+  margin-top: 10px;
+}
+
+.inputTitle,
+.inputDes {
+  border: 1px solid red;
+}
+
+.name_folder{
+  color: red;
+}
+.des_folder{
+  color: red;
+}
+
+.requiredInput {
+  color: red;
+  font-size: 15px;
 }

@@ -31,12 +31,13 @@ const Home = lazy(() => import("../../views/pages/Home/index"));
 const Login = lazy(() => import("../../views/pages/Login/index"));
 const Register = lazy(() => import("../../views/pages/Register/index"));
 const Folder = lazy(() => import("../../views/pages/Folder/index"));
-const ForgotPassword = lazy(() =>
-  import("../../views/pages/ForgotPassword/index")
+const InfoFolder = lazy(() => import("../../views/pages/Folder/InfoFolder"))
+const ForgotPassword = lazy(() => import("../../views/pages/ForgotPassword/index")
 );
 const StudySet = lazy(() => import("../../views/pages/StudySet/index"));
 const FlashCard = lazy(() => import("../../views/pages/FlashCard/index"));
 const Error = lazy(() => import("../../views/pages/Error/index"));
+// const Classroom = lazy(() => import("../../views/pages/Classroom/index"));
 const Unauthorize = lazy(() => import("../../views/pages/NotAuthorized/index"));
 const UserManagment = lazy(() =>
   import("../../views/pages/Managment/User/index")
@@ -72,9 +73,10 @@ const useCustomRoutes = (user) => {
       path: "/folder",
       element: <Folder />,
     },
+    
     {
       path: "/folder/:inforFolder",
-      element: <Info />,
+      element: <InfoFolder />,
     },
     {
       path: "/home",

@@ -37,7 +37,10 @@
       "inacurrateInfomation": "Chứa thông tin không chính xác",
       "InappropriateContent": "Chứa thông tin không phù hợp",
       "ifraudulentPurposes": "Được sử dụng nhằm mục đích lừa đảo",
-      "intellectualPropertyRights": "Vi phạm quyền sở hữu trí tuệ"
+      "intellectualPropertyRights": "Vi phạm quyền sở hữu trí tuệ",
+      "createFolderDescription": "Mô tả thư mục",
+      "createFolderTitle": "Tiêu đề thư mục",
+      "searchWithEmail": "...@domain.com"
     }
   },
   "fieldName": {
@@ -72,6 +75,7 @@
     "login": "Đăng nhập",
     "register": "Đăng ký",
     "studySet": "Học phần",
+    "folder" : "Thư mục",
     "edit": "Chỉnh sửa",
     "delete": "Xóa",
     "cancel": "Hủy",
@@ -82,6 +86,7 @@
     "description": "Mô tả",
     "visitPassword": "Mật khẩu truy cập",
     "confirmDelete": "Có, xác nhận xóa!",
+    "createNewFolder": "Tạo mới thư mục",
     "enterEmail": "Nhập email",
     "status": "Trạng thái",
     "refresh": "Tải lại",
@@ -90,7 +95,7 @@
     "report": "Báo cáo",
     "done": "Xong"
   },
-  "message": {
+  "message": {  
     "welcomeTo": "Chào mừng đến",
     "newOnPlatform": "Mới trên nền tảng của chúng tôi?",
     "successLogedIn": "Bạn đã đăng nhập thành công",
@@ -113,7 +118,8 @@
   "validationMessage": {
     "required": "{{field}} là bắt buộc",
     "minLength": "{{field}} phải lơn hơn {{value}} ký tự.",
-    "maxLength": "{{field}} không được quá {{value}} ký tự."
+    "maxLength": "{{field}} không được quá {{value}} ký tự.",
+    "duplicated": "{{field}} bị trùng lặp"
   },
   "title": {
     "loginDescription": "Vui lòng đăng nhập vào tài khoản của bạn và bắt đầu cuộc phiêu lưu",
@@ -136,10 +142,11 @@
     "home": "Trang chủ",
     "studySet": "Học phần",
     "classroom": "Lớp học",
+    "folder" : "Thư mục",
+    "infoFolder" : "Thông tin thư mục",
     "managment": "Quản lý",
     "user": "Người dùng",
     "moderator": "Kiểm duyệt",
-    "folder": "Thư mục",
     "edit": "Chỉnh sửa"
   }
 }

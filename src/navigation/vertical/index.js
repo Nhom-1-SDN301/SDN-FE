@@ -52,10 +52,10 @@ const getMenuData = ({ t }) => [
   },
   {
     id: "folder",
-    title: "Folder",
-    icon: <Folder size={20} />,
-    navLink: "/folder",
-  },
+    title: t('fieldName.folder'),
+    icon: <Folder  size={20}/>,
+    navLink: "/folder"
+  }
 ];
 
 export default getMenuData;
