@@ -31,15 +31,15 @@
       "addATitle": "Nhập tiêu đề",
       "addADescription": "Nhập mô tả học phần",
       "enterTerm": "Nhập thuật ngữ",
-      "enterDefinition": "Nhập định nghĩa"
+      "enterDefinition": "Nhập định nghĩa",
+      "createFolderDescription": "Mô tả thư mục",
+      "createFolderTitle": "Tiêu đề thư mục"
     },
     "reports": {
       "inacurrateInfomation": "Chứa thông tin không chính xác",
       "InappropriateContent": "Chứa thông tin không phù hợp",
       "ifraudulentPurposes": "Được sử dụng nhằm mục đích lừa đảo",
-      "intellectualPropertyRights": "Vi phạm quyền sở hữu trí tuệ",
-      "createFolderDescription": "Mô tả thư mục",
-      "createFolderTitle": "Tiêu đề thư mục",
+      "intellectualPropertyRights": "Vi phạm quyền sở hữu trí tuệ",  
       "searchWithEmail": "...@domain.com"
     }
   },
