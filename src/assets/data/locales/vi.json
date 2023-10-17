@@ -147,6 +147,8 @@
     "managment": "Quản lý",
     "user": "Người dùng",
     "moderator": "Kiểm duyệt",
-    "edit": "Chỉnh sửa"
+    "edit": "Chỉnh sửa",
+    "profileSettings": "Cài đặt hồ sơ",
+    "profileDetails" : "Chi tiết hồ sơ"
   }
 }

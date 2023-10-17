@@ -148,6 +148,7 @@
     "user": "User",
     "moderator": "Moderator",
     "folder": "Folder",
-    "edit": "Edit"
+    "edit": "Edit",
+    "profileSettings": "Profile Settings"
   }
 }
