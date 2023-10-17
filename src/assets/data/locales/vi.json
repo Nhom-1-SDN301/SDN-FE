@@ -22,6 +22,8 @@
     "tellUsMore": "Hãy cho chúng tôi biết thêm",
     "history": "Lịch sử",
     "add": "Thêm",
+    "studySetLinkReport": "Đường dẫn tới học phần",
+    "here": "Đây",
     "placeholder": {
       "ratingStudySet": "Học phần rất bổ ích",
       "createStudySetTitle": "Hoa quả...",
@@ -31,13 +33,19 @@
       "addATitle": "Nhập tiêu đề",
       "addADescription": "Nhập mô tả học phần",
       "enterTerm": "Nhập thuật ngữ",
-      "enterDefinition": "Nhập định nghĩa"
+      "enterDefinition": "Nhập định nghĩa",
+      "enterComment": "Nhập bình luận"
     },
     "reports": {
       "inacurrateInfomation": "Chứa thông tin không chính xác",
+      "inacurrateInfomationShort": "Thông tin sai",
       "InappropriateContent": "Chứa thông tin không phù hợp",
+      "InappropriateContentShort": "Không phù hợp",
       "ifraudulentPurposes": "Được sử dụng nhằm mục đích lừa đảo",
+      "ifraudulentPurposesShort": "Lừa đảo",
       "intellectualPropertyRights": "Vi phạm quyền sở hữu trí tuệ",
+      "intellectualPropertyRightsShort": "Quyền sở hữu",
+      "other": "Khác",
       "createFolderDescription": "Mô tả thư mục",
       "createFolderTitle": "Tiêu đề thư mục",
       "searchWithEmail": "...@domain.com"
@@ -75,7 +83,7 @@
     "login": "Đăng nhập",
     "register": "Đăng ký",
     "studySet": "Học phần",
-    "folder" : "Thư mục",
+    "folder": "Thư mục",
     "edit": "Chỉnh sửa",
     "delete": "Xóa",
     "cancel": "Hủy",
@@ -93,9 +101,22 @@
     "createDate": "Ngày tạo",
     "user": "Người dùng",
     "report": "Báo cáo",
-    "done": "Xong"
+    "done": "Xong",
+    "type": "Loại",
+    "content": "Nội dung",
+    "action": "Action",
+    "accept": "Phê duyệt",
+    "reject": "Từ chối",
+    "reporter": "Người báo cáo",
+    "acceptAll": "Chấp thuật hết",
+    "rejectAll": "Từ chối hết",
+    "acceptReport": "Phê duyệt báo cáo",
+    "rejectReport": "Từ chối báo cáo",
+    "comment": "Bình luận",
+    "temporaryDeletion": "Tạm xóa học phần",
+    "copy": "Sao chép"
   },
-  "message": {  
+  "message": {
     "welcomeTo": "Chào mừng đến",
     "newOnPlatform": "Mới trên nền tảng của chúng tôi?",
     "successLogedIn": "Bạn đã đăng nhập thành công",
@@ -113,7 +134,8 @@
     "commingSoon": "Tính năng đang được phát triển",
     "updateStatusUserSuccess": "Cập nhật trạng thái thành công người dùng {{email}}",
     "requiredOptionReportStudySet": "Vui lòng chọn ít nhất 1 lý do để báo cáo",
-    "reportStudySetSuccess": "Báo cáo học phần thành công, bạn có thể xem lịch sử báo cáo tại"
+    "reportStudySetSuccess": "Báo cáo học phần thành công, bạn có thể xem lịch sử báo cáo tại",
+    "softDeleteMessageText": "{{value}} sẽ tạm thời bị xóa"
   },
   "validationMessage": {
     "required": "{{field}} là bắt buộc",
@@ -142,8 +164,8 @@
     "home": "Trang chủ",
     "studySet": "Học phần",
     "classroom": "Lớp học",
-    "folder" : "Thư mục",
-    "infoFolder" : "Thông tin thư mục",
+    "folder": "Thư mục",
+    "infoFolder": "Thông tin thư mục",
     "managment": "Quản lý",
     "user": "Người dùng",
     "moderator": "Kiểm duyệt",

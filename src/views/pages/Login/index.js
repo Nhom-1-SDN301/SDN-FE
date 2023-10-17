@@ -39,6 +39,15 @@ import { authApi } from "../../../@core/api/quiz/index";
 // ** Redux
 import { login } from "../../../redux/auth";
 
+// ** Firebase
+import { authentication } from "../../../configs/firebase";
+import {
+  FacebookAuthProvider,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+
 const ToastContent = ({ t, translate, name }) => {
   return (
     <div className="d-flex">
@@ -61,10 +70,11 @@ const ToastContent = ({ t, translate, name }) => {
 };
 
 const Login = () => {
+  // ** Hooks
   const { skin } = useSkin();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
 
   const {
     control,
@@ -110,6 +120,124 @@ const Login = () => {
       }
     }
   };
+
+  // ** Handler
+  const handleLoginWithFacebook = () => {
+    const provider = new FacebookAuthProvider();
+
+    signInWithPopup(authentication, provider)
+      .then((result) => {
+        const data = result.user.reloadUserInfo;
+
+        authApi
+          .thirdPartyLogin({
+            email: data.email,
+            fullName: data.displayName,
+            provider: "Facebook",
+            picture: data.photoUrl,
+          })
+          .then(({ data }) => {
+            if (data.isSuccess) {
+              dispatch(login(data.data));
+              navigate("/home");
+              toast((tt) => (
+                <ToastContent
+                  t={tt}
+                  translate={t}
+                  name={data.data.user.fullName}
+                />
+              ));
+            } else {
+              toast.error(data.message);
+            }
+          })
+          .catch((err) => {
+            toast.error(err?.message || t("error.unknow"));
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err?.message || t("error.unknow"));
+      });
+  };
+
+  const handleLoginWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(authentication, provider)
+      .then((result) => {
+        const data = result.user.reloadUserInfo;
+
+        authApi
+          .thirdPartyLogin({
+            email: data.email,
+            fullName: data.displayName,
+            provider: "Google",
+            picture: data.photoUrl,
+          })
+          .then(({ data }) => {
+            if (data.isSuccess) {
+              dispatch(login(data.data));
+              navigate("/home");
+              toast((tt) => (
+                <ToastContent
+                  t={tt}
+                  translate={t}
+                  name={data.data.user.fullName}
+                />
+              ));
+            } else {
+              toast.error(data.message);
+            }
+          })
+          .catch((err) => {
+            toast.error(err?.message || t("error.unknow"));
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err?.message || t("error.unknow"));
+      });
+  };
+
+  // const handleLoginWithGithub = () => {
+  //   const provider = new GithubAuthProvider();
+
+  //   signInWithPopup(authentication, provider)
+  //     .then((result) => {
+  //       const data = result.user.reloadUserInfo;
+
+  //       authApi
+  //         .thirdPartyLogin({
+  //           email: data.email,
+  //           fullName: data.displayName,
+  //           provider: "Github",
+  //           picture: data.photoUrl,
+  //         })
+  //         .then(({ data }) => {
+  //           if (data.isSuccess) {
+  //             dispatch(login(data.data));
+  //             navigate("/home");
+  //             toast((tt) => (
+  //               <ToastContent
+  //                 t={tt}
+  //                 translate={t}
+  //                 name={data.data.user.fullName}
+  //               />
+  //             ));
+  //           } else {
+  //             toast.error(data.message);
+  //           }
+  //         })
+  //         .catch((err) => {
+  //           toast.error(err?.message || t("error.unknow"));
+  //         });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       toast.error(err?.message || t("error.unknow"));
+  //     });
+  // };
 
   return (
     <div className="auth-wrapper auth-cover">
@@ -265,18 +393,19 @@ const Login = () => {
               <div className="divider-text">or</div>
             </div>
             <div className="auth-footer-btn d-flex justify-content-center">
-              <Button color="facebook">
+              <Button color="facebook" onClick={handleLoginWithFacebook}>
                 <Facebook size={14} />
               </Button>
-              <Button color="twitter">
-                <Twitter size={14} />
-              </Button>
-              <Button color="google">
+              <Button color="google" onClick={handleLoginWithGoogle}>
                 <Mail size={14} />
               </Button>
-              <Button className="me-0" color="github">
+              {/* <Button
+                className="me-0"
+                color="github"
+                onClick={handleLoginWithGithub}
+              >
                 <GitHub size={14} />
-              </Button>
+              </Button> */}
             </div>
           </Col>
         </Col>

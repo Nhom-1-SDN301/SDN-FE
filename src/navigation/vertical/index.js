@@ -1,4 +1,12 @@
-import { Mail, Home, Folder, Lock, Circle, Book } from "react-feather";
+import {
+  Mail,
+  Home,
+  Folder,
+  Lock,
+  Circle,
+  Book,
+  BookOpen,
+} from "react-feather";
 
 const getMenuData = ({ t }) => [
   {
@@ -14,6 +22,14 @@ const getMenuData = ({ t }) => [
     title: t("page.studySet"),
     icon: <Book size={20} />,
     navLink: "/study-set",
+    authorization: true,
+    can: [1, 2, 3],
+  },
+  {
+    id: "classroom",
+    title: t("page.classroom"),
+    icon: <BookOpen size={20} />,
+    navLink: "/classroom",
     authorization: true,
     can: [1, 2, 3],
   },
@@ -52,10 +68,12 @@ const getMenuData = ({ t }) => [
   },
   {
     id: "folder",
-    title: t('fieldName.folder'),
-    icon: <Folder  size={20}/>,
-    navLink: "/folder"
-  }
+    title: t("fieldName.folder"),
+    icon: <Folder size={20} />,
+    navLink: "/folder",
+    authorization: true,
+    can: [1, 2, 3],
+  },
 ];
 
 export default getMenuData;

@@ -19,6 +19,7 @@
           font-style: 0.857rem;
           letter-spacing: 0.5px;
           text-transform: uppercase;
+          justify-content: center;
           &:hover {
             opacity: 1;
           }
@@ -59,6 +60,10 @@
             }
           }
         }
+      }
+
+      .rdt_TableCell__center {
+        justify-content: center;
       }
     }
   }

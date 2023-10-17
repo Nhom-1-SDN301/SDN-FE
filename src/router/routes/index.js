@@ -31,8 +31,9 @@ const Home = lazy(() => import("../../views/pages/Home/index"));
 const Login = lazy(() => import("../../views/pages/Login/index"));
 const Register = lazy(() => import("../../views/pages/Register/index"));
 const Folder = lazy(() => import("../../views/pages/Folder/index"));
-const InfoFolder = lazy(() => import("../../views/pages/Folder/InfoFolder"))
-const ForgotPassword = lazy(() => import("../../views/pages/ForgotPassword/index")
+const InfoFolder = lazy(() => import("../../views/pages/Folder/InfoFolder"));
+const ForgotPassword = lazy(() =>
+  import("../../views/pages/ForgotPassword/index")
 );
 const StudySet = lazy(() => import("../../views/pages/StudySet/index"));
 const FlashCard = lazy(() => import("../../views/pages/FlashCard/index"));
@@ -48,6 +49,9 @@ const ModeratorStudySet = lazy(() =>
 const StudySetEditTerm = lazy(() =>
   import("../../views/pages/StudySet/EditTerm")
 );
+const ClassPage = lazy(() => import("../../views/pages/Class/index"));
+const Setting = lazy(() => import("../../views/pages/Setting/index"));
+const Profile = lazy(() => import("../../views/pages/Profile/index"));
 
 // ** Merge Routes
 const useCustomRoutes = (user) => {
@@ -73,7 +77,7 @@ const useCustomRoutes = (user) => {
       path: "/folder",
       element: <Folder />,
     },
-    
+
     {
       path: "/folder/:inforFolder",
       element: <InfoFolder />,
@@ -114,6 +118,18 @@ const useCustomRoutes = (user) => {
     {
       path: "/flash-card/:studySetId",
       element: <FlashCard />,
+    },
+    {
+      path: "/classroom",
+      element: authorizedPage(<ClassPage />, [1, 2, 3]),
+    },
+    {
+      path: "/setting",
+      element: authorizedPage(<Setting />, [1, 2, 3]),
+    },
+    {
+      path: "/profile",
+      element: authorizedPage(<Profile />, [1, 2, 3]),
     },
     {
       path: "/managment/user",
