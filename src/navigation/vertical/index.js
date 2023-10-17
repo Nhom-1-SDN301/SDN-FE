@@ -55,7 +55,19 @@ const getMenuData = ({ t }) => [
     title: t('fieldName.folder'),
     icon: <Folder  size={20}/>,
     navLink: "/folder"
-  }
+  },
+  {
+    id: "folder",
+    title: t('fieldName.folder'),
+    icon: <Folder  size={20}/>,
+    navLink: "/folder"
+  },
+  {
+    id: "permissions",
+    title: "Permissions ",
+    icon: <Circle size={20} />,
+    navLink: "/permissions",
+  },
 ];
 
 export default getMenuData;

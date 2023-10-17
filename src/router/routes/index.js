@@ -48,6 +48,7 @@ const ModeratorStudySet = lazy(() =>
 const StudySetEditTerm = lazy(() =>
   import("../../views/pages/StudySet/EditTerm")
 );
+const Permissions = lazy(() => import("../../views/pages/permissions/index"));
 
 // ** Merge Routes
 const useCustomRoutes = (user) => {
@@ -137,6 +138,15 @@ const useCustomRoutes = (user) => {
         layout: "blank",
       },
     },
+    ,
+    {
+      path: "/permissions",
+      element:<Permissions />,
+      meta: {
+        layout: "blank",
+      },
+    }
+
   ];
 };
 
