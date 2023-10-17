@@ -22,6 +22,16 @@ import { useTranslation } from "react-i18next";
 import CardIntroduction from "../../ui-elements/Intro/CardIntroduction";
 import CardFooter from "../../ui-elements/Footer/CardFooter";
 import style from '../../ui-elements/cards/advance/CardFeatures.module.scss';
+import StatsVertical from '@components/widgets/stats/StatsVertical'
+
+import {
+  Eye,
+  Heart,
+  Award,
+  MessageSquare,
+  Book,
+  UserCheck
+} from 'react-feather'
 
 
 const Home = () => {
@@ -155,7 +165,31 @@ const Home = () => {
           </CardBody>
         </Card>
 
+        <Row className="mb-1 mt-4">
+          <h3>We have</h3>
+        </Row>
         <Row>
+          <Col xl='2' md='4' sm='6'>
+            <StatsVertical icon={<Eye size={21} />} color='info' stats='36.9k' statTitle='Views' className={style.iconWeHave}/>
+          </Col>
+          <Col xl='2' md='4' sm='6'> 
+            <StatsVertical icon={<MessageSquare size={21} />} color='warning' stats='12k' statTitle='Comments' className={style.iconWeHave}/>
+          </Col>
+          <Col xl='2' md='4' sm='6'>
+            <StatsVertical icon={<Heart size={21} />} color='primary' stats='26.8' statTitle='Bookmarks' className={style.iconWeHave}/>
+          </Col>
+          <Col xl='2' md='4' sm='6'>
+            <StatsVertical icon={<Award size={21} />} color='success' stats='689' statTitle='Reviews' className={style.iconWeHave}/>
+          </Col>
+          <Col xl='2' md='4' sm='6'>
+            <StatsVertical icon={<Book size={21} />} color='danger' stats='50+' statTitle='Class Room' className={style.iconWeHave}/>
+          </Col>
+          <Col xl='2' md='4' sm='6'>
+            <StatsVertical icon={<UserCheck size={21} />} color='secondary' stats='97.8k' statTitle='User' className={style.iconWeHave}/>
+          </Col>
+        </Row>
+
+        <Row className="mt-2">
           <ReactPaginate
             nextLabel=""
             pageCount={10}
