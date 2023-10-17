@@ -74,7 +74,7 @@ const defaultOption = {
 const Table = () => {
   // ** Store Vars
   const dispatch = useDispatch();
-  const permission = useSelector((state) => state.auth.permission);
+  const  permission = useSelector((state) => state.auth.permission);
 
   // ** Hooks
   const { t } = useTranslation();
