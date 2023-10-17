@@ -34,7 +34,9 @@
       "addADescription": "Add a description",
       "enterTerm": "Enter term",
       "enterDefinition": "Enter definition",
-      "enterComment": "Enter comment"
+      "enterComment": "Enter comment",
+      "createFolderDescription": "Description of folder",
+      "createFolderTitle": "Title of folder"
     },
     "reports": {
       "inacurrateInfomation": "It contains inacurrate infomation",
@@ -170,6 +172,7 @@
     "user": "User",
     "moderator": "Moderator",
     "folder": "Folder",
-    "edit": "Edit"
+    "edit": "Edit",
+    "profileSettings": "Profile Settings"
   }
 }

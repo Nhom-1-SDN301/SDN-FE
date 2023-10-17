@@ -34,7 +34,9 @@
       "addADescription": "Nhập mô tả học phần",
       "enterTerm": "Nhập thuật ngữ",
       "enterDefinition": "Nhập định nghĩa",
-      "enterComment": "Nhập bình luận"
+      "enterComment": "Nhập bình luận",
+      "createFolderDescription": "Mô tả thư mục",
+      "createFolderTitle": "Tiêu đề thư mục"
     },
     "reports": {
       "inacurrateInfomation": "Chứa thông tin không chính xác",
@@ -169,6 +171,8 @@
     "managment": "Quản lý",
     "user": "Người dùng",
     "moderator": "Kiểm duyệt",
-    "edit": "Chỉnh sửa"
+    "edit": "Chỉnh sửa",
+    "profileSettings": "Cài đặt hồ sơ",
+    "profileDetails" : "Chi tiết hồ sơ"
   }
 }
