@@ -45,6 +45,13 @@ import "./assets/scss/style.scss";
 // ** Service Worker
 import * as serviceWorker from "./serviceWorker";
 
+// ** Swiper style
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
 // ** Lazy load app
 const LazyApp = lazy(() => import("./App"));
 
