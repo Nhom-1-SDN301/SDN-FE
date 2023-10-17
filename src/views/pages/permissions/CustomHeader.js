@@ -60,7 +60,7 @@ const CustomHeader = ({
     const lineDelimiter = "\n";
     const keys = Object.keys(data[0]);
 
-    result = "";
+    result = " ";
     result += keys.join(columnDelimiter);
     result += lineDelimiter;
 

@@ -65,7 +65,7 @@ const getRoles = (t) => [
 
 
 const defaultOption = {
-  search: "",
+  search: " ",
   role: null,
   status: null,
   limit: optionPerPage[0],

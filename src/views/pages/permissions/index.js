@@ -20,7 +20,7 @@ const UserManagment = () => {
   return (
     <div className="app-user-list">
       <h3>Permissions List</h3>
-      <p>Each category (Basic, Professional, and Business) includes the four predefined roles shown below.</p>
+      <p>Each category(Basic, Professional, and Business) includes the four predefined roles shown below.</p>
       <Table />
     </div>
   );

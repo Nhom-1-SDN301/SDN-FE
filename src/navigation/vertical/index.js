@@ -66,7 +66,7 @@ const getMenuData = ({ t }) => [
     id: "permissions",
     title: "Permissions ",
     icon: <Circle size={20} />,
-    navLink: "/permissions",
+    navLink: "/permissions ",
   },
 ];
 

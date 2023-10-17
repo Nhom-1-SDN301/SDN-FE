@@ -90,7 +90,7 @@ const renderGender = (gender, t) => {
   );
 };
 
-export const columns = ({ t, handleUpdateStatusUser }) => [
+export const columns = ({ t }) => [
   {
     name: t("fieldName.user"),
     sortable: true,
