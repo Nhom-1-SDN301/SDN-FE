@@ -41,6 +41,9 @@ export const authService = {
     localStorage.removeItem(jwtConfig.storageTokenKeyName);
     localStorage.removeItem(jwtConfig.refreshToken);
   },
+  updateUser: (payload) => {
+    localStorage.setItem(jwtConfig.userData, JSON.stringify(payload.user));
+  },
   updateStorageWhenRefreshToken: (payload) => {
     localStorage.setItem(jwtConfig.storageTokenKeyName, payload.accessToken);
     const decode = jwt.decode(payload.accessToken);

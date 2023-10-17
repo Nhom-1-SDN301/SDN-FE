@@ -116,7 +116,10 @@
     "rejectReport": "Từ chối báo cáo",
     "comment": "Bình luận",
     "temporaryDeletion": "Tạm xóa học phần",
-    "copy": "Sao chép"
+    "copy": "Sao chép",
+    "account": "Tài khoản",
+    "security": "Bảo mật",
+    "provider": "Nhà cung cấp"
   },
   "message": {
     "welcomeTo": "Chào mừng đến",
@@ -173,6 +176,7 @@
     "moderator": "Kiểm duyệt",
     "edit": "Chỉnh sửa",
     "profileSettings": "Cài đặt hồ sơ",
-    "profileDetails" : "Chi tiết hồ sơ"
+    "profileDetails": "Chi tiết hồ sơ",
+    "setting": "Setting"
   }
 }
