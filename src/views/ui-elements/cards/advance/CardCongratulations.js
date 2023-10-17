@@ -37,7 +37,7 @@ const CardCongratulations = () => {
           size="xl"
         />
         <div className="text-center">
-          <h1 className="mb-1 text-white">Congratulations {user.fullName},</h1>
+          <h1 className="mb-1 text-white">Congratulations {user?.fullName},</h1>
           <CardText className="m-auto w-75">
             You have done <strong>57.6%</strong> more sales today. Check your
             new badge in your profile.
