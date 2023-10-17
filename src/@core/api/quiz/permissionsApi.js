@@ -7,7 +7,7 @@ import { QUIZ_API_URL } from "../../constants";
 export const permissionsApi = {
   getUsersByEmail: ({ email, studySetId }) => {
     return axiosClient.get(
-      `${QUIZ_API_URL}/user/${email}/study-set?studySetId=${studySetId }`
+      `${QUIZ_API_URL}/user/${email}/study-set?studySetId=${studySetId}`
     );
   },
   getUsersByAdmin: ({ limit, offset, search, role, status }) => {

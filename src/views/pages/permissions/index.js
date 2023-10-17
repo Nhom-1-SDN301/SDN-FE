@@ -19,8 +19,7 @@ const UserManagment = () => {
   const { t } = useTranslation();
   return (
     <div className="app-user-list">
-      <h3>Permissions List</h3>
-      <p>Each category(Basic, Professional, and Business) includes the four predefined roles shown below.</p>
+      
       <Table />
     </div>
   );

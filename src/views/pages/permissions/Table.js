@@ -65,7 +65,7 @@ const getRoles = (t) => [
 
 
 const defaultOption = {
-  search: " ",
+  search: "",
   role: null,
   status: null,
   limit: optionPerPage[0],
@@ -74,7 +74,7 @@ const defaultOption = {
 const Table = () => {
   // ** Store Vars
   const dispatch = useDispatch();
-  const  permission = useSelector((state) => state.auth.permission);
+  const permission = useSelector((state) => state.auth.permission);
 
   // ** Hooks
   const { t } = useTranslation();
@@ -187,7 +187,10 @@ const Table = () => {
   return (
     <Fragment>
       <Card>
-       
+        <UILoader blocking={isLoading} loader={<Spinner />}>
+          
+         
+        </UILoader>
       </Card>
 
       <Card className="overflow-hidden">
