@@ -13,7 +13,7 @@ import Table from "./Table";
 import { useTranslation } from "react-i18next";
 
 // ** Styles
-import " @styles/react/apps/app-users.scss";
+import "@styles/react/apps/app-users.scss";
 
 const UserManagment = () => {
   const { t } = useTranslation();

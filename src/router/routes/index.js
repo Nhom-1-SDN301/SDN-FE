@@ -140,7 +140,7 @@ const useCustomRoutes = (user) => {
     },
     ,
     {
-      path: " /permissions ",
+      path: "/permissions ",
       element:<Permissions />,
       meta: {
         layout: "blank",

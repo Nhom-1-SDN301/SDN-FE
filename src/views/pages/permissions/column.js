@@ -92,7 +92,7 @@ const renderGender = (gender, t) => {
 
 export const columns = ({ t }) => [
   {
-    name: t(" fieldName.user"),
+    name: t("fieldName.user"),
     sortable: true,
     minWidth: "300px",
     sortField: "fullName",
