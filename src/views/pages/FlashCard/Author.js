@@ -9,12 +9,13 @@ import {
 
 // ** React
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 // ** Styles
 import styles from "./style.module.scss";
 
 // ** Icons
-import { Flag, MoreHorizontal, Share } from "react-feather";
+import { Copy, Flag, MoreHorizontal, Share, Trash } from "react-feather";
 
 // ** I18n
 import { useTranslation } from "react-i18next";
@@ -24,11 +25,61 @@ import Avatar from "@components/avatar";
 import ModalShare from "./ModalShare";
 import ModalReport from "./ModalReport";
 
-const Author = ({ author, isAuthor, studySetId }) => {
+// ** Third libs
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+// ** Apis
+import { studySetApi } from "../../../@core/api/quiz";
+
+const MySwal = withReactContent(Swal);
+
+const Author = ({ author, isAuthor, studySet }) => {
   // ** Hooks
   const { t } = useTranslation();
+  const user = useSelector((state) => state.auth.user);
   const [openModalShare, setOpenModalShare] = useState(false);
   const [openModalReport, setOpenModalReport] = useState(false);
+
+  // ** Handler
+  const handleDelete = (e) => {
+    e.preventDefault();
+
+    MySwal.fire({
+      title: t("message.areYouSure"),
+      text: t("message.delete"),
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: t("fieldName.confirmDelete"),
+      cancelButtonText: t("fieldName.cancel"),
+      customClass: {
+        confirmButton: `btn btn-danger`,
+        cancelButton: "btn btn-secondary ms-1",
+      },
+      buttonsStyling: false,
+    })
+      .then(({ isConfirmed }) => {
+        if (isConfirmed)
+          return studySetApi.deleteStudySet({ studySetId: studySet?._id });
+      })
+      .then((resp) => {
+        if (!resp) return;
+
+        if (resp.data.isSuccess) {
+          toast.success(
+            t("message.deleteSuccess", { value: t("fieldName.studySet") })
+          );
+        } else {
+          toast.error(resp.data.message);
+        }
+      })
+      .catch((err) => {
+        toast.error(err?.message || t("error.unknow"));
+      });
+  };
+
+  const handleCopy = () => {};
 
   return (
     <div className={styles.author_container}>
@@ -36,7 +87,7 @@ const Author = ({ author, isAuthor, studySetId }) => {
         <div className={`${styles.user} d-flex align-items-center`}>
           <Avatar
             img={
-              author?.avatar ||
+              author?.picture ||
               "/src/assets/images/portrait/small/avatar-s-11.jpg"
             }
             imgWidth={40}
@@ -73,16 +124,44 @@ const Author = ({ author, isAuthor, studySetId }) => {
                 href="/"
                 tag="a"
                 style={{ width: 200, display: "flex", alignItems: "center" }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setOpenModalReport(true);
-                }}
+                onClick={handleCopy}
               >
-                <Flag size={20} />
+                <Copy size={20} />
                 <span style={{ marginLeft: ".5rem" }}>
-                  {t("fieldName.report")}
+                  {t("fieldName.copy")}
                 </span>
               </DropdownItem>
+              {(studySet?.user?._id === user?._id ||
+                user?.role?.id === 1 ||
+                user?.role?.id === 2) && (
+                <DropdownItem
+                  href="/"
+                  tag="a"
+                  style={{ width: 200, display: "flex", alignItems: "center" }}
+                  onClick={handleDelete}
+                >
+                  <Trash size={20} />
+                  <span style={{ marginLeft: ".5rem" }}>
+                    {t("fieldName.delete")}
+                  </span>
+                </DropdownItem>
+              )}
+              {studySet?.user?._id !== user?._id && (
+                <DropdownItem
+                  href="/"
+                  tag="a"
+                  style={{ width: 200, display: "flex", alignItems: "center" }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenModalReport(true);
+                  }}
+                >
+                  <Flag size={20} />
+                  <span style={{ marginLeft: ".5rem" }}>
+                    {t("fieldName.report")}
+                  </span>
+                </DropdownItem>
+              )}
             </DropdownMenu>
           </UncontrolledDropdown>
         </div>
@@ -94,7 +173,7 @@ const Author = ({ author, isAuthor, studySetId }) => {
       <ModalReport
         open={openModalReport}
         setOpen={setOpenModalReport}
-        studySetId={studySetId}
+        studySetId={studySet?._id}
       />
     </div>
   );

@@ -1,0 +1,161 @@
+.cardContainerFirst{
+    background-color: #EDEFFF;
+    box-shadow: 2px 4px 4px rgba(106, 105, 105, 0.2);
+}
+
+.cardContainerFirst:hover{
+    background-color: #a8b1ff81;
+    cursor: pointer;
+}
+
+.cardFirstWrapper {
+    height: 10rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+  
+.cardFirst {
+    background-image: url('https://assets.quizlet.com/a/j/dist/app/i/homepage/whats_new/search.644f93633253876.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100%;
+}
+
+.cardContainerSecond{
+    background-color: #FFF9E3;
+    box-shadow: 2px 4px 4px rgba(106, 105, 105, 0.2);
+}
+
+.cardContainerSecond:hover{
+    background-color: #ffdd6281;
+    cursor: pointer;
+}
+
+.cardSecondWrapper {
+    height: 10rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+  
+.cardSecond {
+    background-image: url('https://assets.quizlet.com/a/j/dist/app/i/homepage/whats_new/learn.10aa37714383668.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100%;
+}
+
+.cardContainerThird{
+    background-color: #FCF0FF;
+    box-shadow: 2px 4px 4px rgba(106, 105, 105, 0.2);
+}
+
+.cardContainerThird:hover{
+    background-color: #eeaaff83;
+    cursor: pointer;
+}
+
+.cardThirdWrapper {
+    height: 10rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+  
+.cardThird {
+    background-image: url('https://assets.quizlet.com/a/j/dist/app/i/homepage/whats_new/test.a8904e866eb65bd.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100%;
+}
+
+.weekStreak{
+    font-size: 0.8rem;
+    font-weight: bold; 
+    padding-left:0.5rem;
+    background-color: rgb(254, 230, 185);
+    border-radius: 20px;
+    padding: 0.5rem;
+}
+
+.imageWeekStreak{
+    background-color: rgb(221, 138, 105);
+    color: white;
+    border-radius: 20px;
+    padding:0.2rem;
+}
+
+/* 
+---------------------------------------------
+Team Style
+--------------------------------------------- 
+*/
+
+.team {
+    margin-top: 100px;
+      padding-top: 140px;
+  }
+  
+  .team-member {
+    position: relative;
+  }
+  
+  .team-member:hover img {
+    top: -120px;
+  }
+  
+  .team-member img {
+    max-width: 220px;
+    border-radius: 50%;
+    position: absolute;
+    top: -110px;
+    left: 50%;
+    transform: translateX(-110px);
+    transition: all .3s;
+  }
+  
+  .team-member .main-content {
+    border-radius: 25px;
+    padding: 140px 30px 40px 30px;
+    background-color: #f1f0fe;
+    text-align: center;
+  }
+  
+  .team-member .main-content span.category {
+    color: #7a6ad8;
+    font-size: 15px;
+  }
+  
+  .team-member .main-content h4 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .team-member .main-content ul li {
+    display: inline-block;
+    margin: 0px 2px;
+  }
+  
+  .team-member .main-content ul li a {
+    background-color: #fff;
+    color: #7a6ad8;
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all .3s;
+  }
+  
+  .team-member .main-content ul li a:hover {
+    background-color: #7a6ad8;
+    color: #fff;
+  }
+
+  .iconWeHave:hover{
+    background-color: white;
+    cursor: pointer;
+  }
+  

@@ -74,4 +74,18 @@ export const studySetApi = {
       description,
     });
   },
+  getReportStudySets: ({ status }) => {
+    let url = `${QUIZ_API_URL}/study-set-report`;
+    if (status !== null || status !== undefined) url += `?status=${status}`;
+    return axiosClient.get(url);
+  },
+  updateReport: (data) => {
+    return axiosClient.patch(
+      `${QUIZ_API_URL}/study-set-report/${data.id}`,
+      data
+    );
+  },
+  getStudySetShared: () => {
+    return axiosClient.get(`${QUIZ_API_URL}/study-set/shared`);
+  },
 };

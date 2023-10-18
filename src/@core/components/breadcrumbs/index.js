@@ -31,7 +31,6 @@ const BreadCrumbs = (props) => {
 
   const renderBreadCrumbs = () => {
     return data.map((item, index) => {
-      console.log("item",item)
       const Wrapper = item.link ? Link : Fragment;
       const isLastItem = data.length - 1 === index;
       return (

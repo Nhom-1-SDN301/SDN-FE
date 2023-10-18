@@ -225,7 +225,7 @@ const FlashCard = () => {
       <Author
         author={studySet?.user}
         isAuthor={isAuthor}
-        studySetId={studySetId}
+        studySet={studySet}
       />
 
       {/* Detail all card */}

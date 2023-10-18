@@ -25,9 +25,13 @@ export const authSlice = createSlice({
       state.user = null;
       authService.removeLocalStorageWhenLogout();
     },
+    setUser: (state, action) => {
+      state.user = action.payload.user;
+      authService.updateUser(action.payload);
+    },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, setUser } = authSlice.actions;
 
 export default authSlice.reducer;

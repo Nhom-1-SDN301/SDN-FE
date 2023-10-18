@@ -22,6 +22,9 @@
     "tellUsMore": "Please tell us more",
     "history": "History",
     "add": "Add",
+    "studySetLinkReport": "Link to study set",
+    "here": "Here",
+    "updateFeatures": "Try these updated features",
     "placeholder": {
       "ratingStudySet": "Good study set",
       "createStudySetTitle": "Fruit...",
@@ -32,14 +35,22 @@
       "addADescription": "Add a description",
       "enterTerm": "Enter term",
       "enterDefinition": "Enter definition",
+      "enterComment": "Enter comment",
       "createFolderDescription": "Description of folder",
       "createFolderTitle": "Title of folder"
     },
     "reports": {
       "inacurrateInfomation": "It contains inacurrate infomation",
+      "inacurrateInfomationShort": "Inacurrate infomation",
       "InappropriateContent": "It contains inappropriate content",
+      "InappropriateContentShort": "Inappropriate content",
       "ifraudulentPurposes": "It is used for fraudulent purposes",
+      "ifraudulentPurposesShort": "fraudulent purposes",
       "intellectualPropertyRights": "It violates my intellectual property rights",
+      "intellectualPropertyRightsShort": "Intellectual property rights",
+      "other": "Other",
+      "createFolderDescription": "Description of folder",
+      "createFolderTitle": "Title of folder",
       "searchWithEmail": "...@domain.com"
     }
   },
@@ -75,7 +86,7 @@
     "login": "Login",
     "register": "Register",
     "studySet": "Study set",
-    "folder" : "Folder",
+    "folder": "Folder",
     "edit": "Edit",
     "delete": "Delete",
     "cancel": "Cancel",
@@ -93,7 +104,25 @@
     "createDate": "Created date",
     "user": "User",
     "report": "Report",
-    "done": "Done"
+    "done": "Done",
+    "type": "Type",
+    "content": "Content",
+    "action": "Action",
+    "accept": "Accept",
+    "reject": "Reject",
+    "reporter": "Reporter",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "acceptReport": "Accept report",
+    "rejectReport": "Reject report",
+    "comment": "Comment",
+    "temporaryDeletion": "Temporary deletion",
+    "copy": "Copy",
+    "account": "Account",
+    "security": "Security",
+    "provider": "Provider",
+    "profile": "Profile",
+    "layout": "Layout"
   },
   "message": {
     "welcomeTo": "Welcome to",
@@ -113,7 +142,9 @@
     "commingSoon": "Feature under development",
     "updateStatusUserSuccess": "Successfullt update status user {{email}}",
     "requiredOptionReportStudySet": "Please select at least 1 reason to report",
-    "reportStudySetSuccess": "Successfully reported study set, you can view report list at"
+    "reportStudySetSuccess": "Successfully reported study set, you can view report list at",
+    "softDeleteMessageText": "{{value}} will be temporarily deleted",
+    "imageLessThanOrEqual": "Image size must less than or equal {{value}}MB"
   },
   "validationMessage": {
     "required": "{{field}} is required",
@@ -143,11 +174,100 @@
     "home": "Home",
     "studySet": "Study Set",
     "classroom": "Classroom",
-    "infoFolder" : "InfoFolder",
+    "infoFolder": "InfoFolder",
     "managment": "Managment",
     "user": "User",
     "moderator": "Moderator",
     "folder": "Folder",
-    "edit": "Edit"
+    "edit": "Edit",
+    "profileSettings": "Profile Settings",
+    "setting": "Setting"
+  },
+  "btn_homePage": {
+    "readOutImpactReport": "Read out impact report"
+  },
+  "title_homePage": {
+    "aboutQuizRoom": "About Quizroom",
+    "makingEveryStudentUnstoppable": "Making every student unstoppable",
+    "makingEveryStudentUnstoppable_DetailFirst": "At Quizroom, we believe that anyone can learn anything. All it takes is a tenacious spirit, the right guidance, and the tools to see it through. We know that students are under more pressure than ever. It can leave them overwhelmed, be anxiety-producing and make it all too easy to burn out.",
+    "makingEveryStudentUnstoppable_DetailSecond": "It's out job to give every students the tools and confidence to succeed, no matter what their motivation, or what they're striving to achieve.",
+    "fromSingleClassroomToSchools": "From a single classroom to schools around the world",
+    "fromSingleClassroomToSchools_Detail": "What started as a simple tool has grown into seven different study modes, tools to help teachers get the most out of their students, and activities to help classes learn and have fun together. And that’s just the start. We’re working on unleashing the magic of one-on-one learning for every student, shaping the future of personalized learning through an assistant to help guide and motivate every learner."
+  },
+  "slider_homePage": {
+    "Recent_press": "Recent press"
+  },
+  "ourPartners_homePage": {
+    "ourPartners": "Our Partners"
+  },
+  "quote_homePage": {
+    "quote1": "Quizroom makes studying a breeze! No more huge stacks of flashcards, no more lost notes. I am so thankful I found this study tool!",
+    "quote2": "I tend to procrastinate studying for tests, if I study at all. Using Quizroom has helped me actually want to study because it has proven successful in preparing me for my tests.",
+    "quote3": "I LOVE QUIZROOM!! It really helped me to ensure that I had an interactive way to study that prevented me from getting bored."
+  },
+  "aboutUs_Footer": {
+    "aboutUs": "About us",
+    "aboutQuizroom": "About Quizroom",
+    "careers": "Careers",
+    "AdvertiseWithUs": "Advertise with us",
+    "GetTheApp": "Get the app"
+  },
+  "forStudents_Footer": {
+    "forStudents": "For students",
+    "flashcards": "Flashcards",
+    "test": "Test",
+    "learn": "Learn",
+    "solutions": "Solutions",
+    "Q_chat": "Q-chat"
+  },
+  "forTeachers_Footer": {
+    "forTeachers": "For teachers",
+    "live": "Live",
+    "checkPoint": "Checkpoint",
+    "blog": "blog"
+  },
+  "resources_Footer": {
+    "resources": "Resources",
+    "helpCentre": "Help centre",
+    "honourCode": "Honour Code",
+    "communityGuide": "Community Guidelines",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "adAndCookiePolicy": "Ad and Cookie Policy"
+  },
+  "language_Footer": {
+    "languages": "Languages",
+    "english": "English (UK)",
+    "vietnamese": "Vietnamese (VN)"
+  },
+  "advantages_homePage": {
+    "advantages": "Advantages of Quizroom",
+    "vastContentLibrary": "Vast Content Library",
+    "vastContentLibrary_content": "It boasts a vast library of user-generated study materials, including flashcards, quizzes, and study sets, covering a wide range of subjects and topics.",
+    "customizable_Flashcards": "Customizable Flashcards",
+    "customizable_Flashcards_content": "Users can create their own flashcards with text, images, and audio, tailoring study materials to their specific needs.",
+    "collaborative_Learning": "Collaborative Learning",
+    "collaborative_Learning_content": "Users can collaborate with classmates and teachers by sharing study sets, fostering a sense of community in learning.",
+    "effective_Study_Strategies": "Effective Study Strategies",
+    "effective_Study_Strategies_content": "Quizroom promotes active recall, spaced repetition, and other research-backed study techniques."
+  },
+  "contactUs_homePage": {
+    "contactUs": "CONTACT US",
+    "contactUs_content": "We are here to ensure you have the best learning experience.",
+    "phone": "Phone",
+    "location": "Location",
+    "call_us": "CALL US",
+    "location_upper": "LOCATION",
+    "hours": "HOURS"
+  },
+  "updateFeatures_homePage": {
+    "title1": "More powerful search",
+    "content1": "Find flashcards on any subjects you need to learn",
+    "title2": "Improve your results with Learn",
+    "content2": "Learn with improved questions, more control and hints",
+    "title3": "Be ready for your exams",
+    "content3": "Test mode with AI-enhanced hints and study guidance",
+    "weekStreak": "4-week streak",
+    "weekStreak_content": "study in the next 7 days to keep your streak going!"
   }
 }

@@ -1,0 +1,310 @@
+.about{
+    font-size: 2.5rem;
+    letter-spacing: normal;
+    font-weight: bolder;
+    color:black;
+}
+
+.aboutDetail{
+    margin-left:8rem;
+    margin-right: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+}
+
+.aboutDetailImg{
+    border-radius: 5%;
+    height: 30rem;
+    box-shadow: 6px 6px 2px rgba(0, 0, 0, 0.2);
+}
+
+.aboutHeadingFirst{
+    letter-spacing: normal;
+    font-weight: bolder;
+    color: black;
+}
+
+.aboutDetailSecond{
+    margin-left:10rem;
+    margin-right: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.aboutDetailSecond_Col{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap:1rem;
+    padding: 2rem 0;
+    cursor: pointer;
+}
+
+.slider .card{
+    transition: transform 0.2s ease;
+    z-index: 0;
+}
+
+.slider .card:hover{
+    transform: scale(1.05);
+    border: 4px solid rgba(184, 247, 248, 0.5);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+  
+  .sliderCardButtonPrev:hover {
+    animation: bounce 1s infinite;
+    cursor: pointer;
+  }
+
+  .sliderCardButtonNext:hover {
+    animation: bounce 1s infinite;
+    cursor: pointer;
+  }
+
+.ourPartnerSection{
+  display: grid;
+  grid-gap: 2rem 2rem;
+  gap: 2rem 2rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.ourPartnerItem{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  height: 6.875rem;
+  border-radius: 16px;
+  box-shadow: 0px 2px 8px 0px #2e385693;
+  line-height: 26px;
+}
+
+.ourPartnerItem img{
+  filter: grayscale(1);
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  opacity: 0.8;
+  padding: 2rem;
+}
+
+.ourPartnerItem::after{
+  box-sizing: inherit;
+}
+
+.ourPartnerItem:hover{
+  border-bottom: 4px solid #7367f0;
+  cursor: pointer;
+}
+
+.quoteSection{
+  padding-left: 8rem;
+  padding-right: 8rem;
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+  margin-top: 2rem;
+
+}
+
+.quoteSection p:first-child{
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 1.33;
+  color: black;
+  margin-bottom: 1rem;
+}
+
+.quoteSection p:last-child{
+  font-size: normal;
+  font-weight: 700;
+}
+
+.quoteSection::before,
+.quoteSection::after {
+  content: url(/_next/static/media/quotes-open.77de17d2.svg);
+  width: 1.5rem; 
+  height: 1.5rem;
+  margin: 0 0.5rem; 
+}
+
+.advantagesSection{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+}
+
+.advantagesItems{
+  flex: 1;
+  height: 280px;
+  color: #1c2025;
+  border-radius: 12px;
+  border: 1px solid #E5EAFA;
+  background: linear-gradient(to top right, rgba(184, 211, 239, 0.3) 40%, rgba(253, 253, 254, 0.2) 100%);
+  padding: 28px;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+  margin: 0 10px 20px;
+}
+
+.advantagesItems:hover{
+  background: #E5EAFA;
+  cursor: pointer;
+}
+
+.advantagesItemIcon{
+  color: #7367f0;
+  border-radius: 6px;
+  border: 0.5px solid #7367f0;
+  padding: 8px;
+  margin-right: 10px;
+  box-shadow: 2px 4px 4px #a9a2f0bd;
+  width: fit-content;
+  margin-bottom: 2rem;
+}
+
+.advantagesItems h4{
+  color: black;
+  font-weight: 700;
+} 
+
+.contactUs{
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: fit-content;
+  max-width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactUsContent{
+  position: relative;
+  background-clip: padding-box;
+  background-origin: padding-box;
+  text-align: center;
+  flex: 1;
+  max-width: 50%;
+}
+
+.contactUsContent h2{
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.contactUs_border{
+  width: 344px;
+  height: 0;
+  margin: 30px auto 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-bottom-width: 0;
+  border-color: #ccb7a9;
+  border-width: 3px;
+  border-style: solid;
+  text-align: center;
+}
+
+.contactUs_span:hover{
+  cursor: pointer;
+}
+
+.contactUsImage{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1;
+  max-width: 50%;
+  transition-duration: inherit;
+}
+
+.contactUsImage_item {
+  background-image: url(https://assets.nicepagecdn.com/d2cc3eaa/3925765/images/r444.jpg);
+  background-position: 50% 50%;
+  margin: 0 auto;
+  width: 548px; 
+  height: 548px; 
+  border-radius: 50% !important;
+  object-fit: cover;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.contactUs_section{
+  margin-top: 4rem;
+  padding: 5rem;
+}
+
+.contactUs_section_container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.contactUs_section_containerItem{
+  color: #111111;
+  background-color: #ddcfc6;
+  display: flex;
+  position: relative;
+  text-align: left;
+  flex: 1;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.contactUs_section_containerItem:hover{
+  background-color: #f4d3be;
+  cursor: pointer;
+}
+
+.contactUs_section_containerItem_block{
+  position: relative;
+  flex: 1;
+  max-width: 100%;
+  transition-duration: inherit;
+  box-sizing: border-box;
+  padding: 40px 30px;
+  padding-left: 60px;
+}
+
+.contactUs_section_containerItem_block h5{
+  font-weight: bolder;
+  margin-bottom: 1rem;
+  font-size: larger;
+}
+
+
+
+
+
+
+
+
+
