@@ -27,6 +27,9 @@
       opacity: 0.7;
     }
   }
+  .trash_folder {
+    color: red; 
+  }
 
   &:not(:first-child) {
     margin-top: 2rem;
@@ -103,4 +106,7 @@
 .requiredInput {
   color: red;
   font-size: 15px;
+}
+.custom-swal-modal{
+  background-color: red;
 }

@@ -132,7 +132,8 @@
     "shareStudySet": "Share study set with friends",
     "filters": "Filters",
     "reportStudySet": "Report study set",
-    "whyReportStudySet": "Why are you reporting this set?"
+    "whyReportStudySet": "Why are you reporting this set?",
+    "editFolder": "Edit Folder"
   },
   "error": {
     "unknown": "Unknown error occurred. Please try again later!"
