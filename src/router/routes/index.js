@@ -52,6 +52,7 @@ const StudySetEditTerm = lazy(() =>
 const ClassPage = lazy(() => import("../../views/pages/Class/index"));
 const Setting = lazy(() => import("../../views/pages/Setting/index"));
 const Profile = lazy(() => import("../../views/pages/Profile/index"));
+const ProfileSetting = lazy(() => import("../../views/pages/ProfileSettings/index"));
 
 // ** Merge Routes
 const useCustomRoutes = (user) => {
@@ -130,6 +131,11 @@ const useCustomRoutes = (user) => {
     {
       path: "/profile",
       element: authorizedPage(<Profile />, [1, 2, 3]),
+    },
+    {
+      path: "/profile-setting",
+      // element: authorizedPage(<ProfileSetting />, [1, 2, 3]),
+      element: (<ProfileSetting />),
     },
     {
       path: "/managment/user",
