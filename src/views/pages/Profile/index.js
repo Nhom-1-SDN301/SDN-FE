@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-// ** I18n
-import { useTranslation } from "react-i18next";
-
-// ** Custom Components
-import BreadCrumbsPage from "@components/breadcrumbs";
-
-const Profile = () => {
-  // ** Hooks
-  const { t } = useTranslation();
-
-  return (
-    <div>
-      <BreadCrumbsPage
-        title={t("page.user")}
-        data={[{ title: t("page.managment") }, { title: t("page.user") }]}
-      />
-    </div>
-  );
-};
-=======
 // ** React Imports
 import { Fragment, useState, useEffect } from 'react'
 
@@ -94,6 +73,5 @@ const Profile = () => {
     </Fragment>
   )
 }
->>>>>>> c22bd3efa5dc006aebcd5e620888fa8f589d49a1
 
 export default Profile
