@@ -18,6 +18,9 @@ import {
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 // ** Custom Components
 import InputPasswordToggle from "@components/input-password-toggle";
@@ -28,21 +31,19 @@ import TwoFactorAuth from "./TwoFactorAuth";
 // ** I18n
 import { useTranslation } from "react-i18next";
 
-const showErrors = (field, valueLen, min) => {
-  if (valueLen === 0) {
-    return `${field} field is required`;
-  } else if (valueLen > 0 && valueLen < min) {
-    return `${field} must be at least ${min} characters`;
-  } else {
-    return "";
-  }
-};
+// ** Styles
+import "@styles/base/plugins/extensions/ext-component-sweet-alerts.scss";
+
+// ** Apis
+import { authApi } from "../../../@core/api/quiz";
 
 const defaultValues = {
   newPassword: "",
   currentPassword: "",
   retypeNewPassword: "",
 };
+
+const MySwal = withReactContent(Swal);
 
 const SecurityTabContent = () => {
   // ** Hooks
@@ -130,8 +131,6 @@ const SecurityTabContent = () => {
     handleSubmit,
     clearErrors,
     reset,
-    setError,
-    getFieldState,
     formState: { errors },
   } = useForm({
     defaultValues,
@@ -141,20 +140,25 @@ const SecurityTabContent = () => {
 
   // ** Handler
   const onSubmit = (data) => {
-    let isError = false;
-
-    // Object.keys(data).forEach((key) => {
-    //   data[key] = data[key].trim();
-    //   if (data[key] === "")
-    //   console.log(key);
-    //     setError(key, {
-    //       type: "manual",
-    //     });
-    // });
-
-    if (isError) return;
-
-    console.log(data);
+    authApi
+      .changePassword({
+        oldPassword: data.currentPassword,
+        password: data.newPassword,
+      })
+      .then(({ data }) => {
+        if (data.isSuccess) {
+          MySwal.fire({
+            title: `${t("fieldName.successfully")}!`,
+            text: t("message.updateSuccess", {
+              value: t("fieldName.password"),
+            }),
+            icon: "success",
+          }).then(() => reset());
+        } else toast.error(data.message);
+      })
+      .catch((err) => {
+        toast.error(err?.message || t("error.unknow"));
+      });
   };
 
   const handleCancel = () => {

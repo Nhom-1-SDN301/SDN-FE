@@ -125,7 +125,8 @@
     "security": "Security",
     "provider": "Provider",
     "profile": "Profile",
-    "layout": "Layout"
+    "layout": "Layout",
+    "successfully": "Successfully"
   },
   "message": {
     "welcomeTo": "Welcome to",
