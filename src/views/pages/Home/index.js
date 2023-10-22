@@ -12,175 +12,196 @@ import {
 } from "reactstrap";
 
 // ** Third Party Components
-import ReactPaginate from 'react-paginate'
+import ReactPaginate from "react-paginate";
 
 // ** Components import
 import CardCongratulations from "../../ui-elements/cards/advance/CardCongratulations";
 import CardTerm from "../../ui-elements/cards/advance/CardTerm";
 import BreadCrumbsPage from "@components/breadcrumbs";
 import { useTranslation } from "react-i18next";
-import CardIntroduction from "../../ui-elements/Intro/CardIntroduction";
-import CardFooter from "../../ui-elements/Footer/CardFooter";
-import style from '../../ui-elements/cards/advance/CardFeatures.module.scss';
+import LoggedInUI from "./LoggedInUI";
 
+// ** Styles
+import style from "../../ui-elements/cards/advance/CardFeatures.module.scss";
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   // ** Hooks
   const { t } = useTranslation();
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <div>
       <BreadCrumbsPage title={t("page.home")} data={[]} />
 
-      {/* <Row className="match-height">
-        <CardIntroduction />
-      </Row> */}
-
-      <Row className="match-height">
-        <CardCongratulations />
-      </Row>
-
-      <Row className="match-height mb-2 mt-2">
-          <Row className="mb-1">
-            <h3>{t("common.updateFeatures")}</h3>
+      {user ? (
+        <Fragment>
+          <Row className="match-height">
+            <CardCongratulations />
           </Row>
-          <Row style={{paddingRight: 0}}>
-            <Col lg="3" md="6">
-              <Card className={style.cardContainerFirst}>
-                <CardBody
-                  className="d-flex flex-column justify-content-between"
-                >
-                  <div className={`${style.cardFirstWrapper} mb-1`}>
-                    <div className={`${style.cardFirst}`}></div>
-                  </div>
-                  <CardTitle className="fw-bolder fs-5">
-                    {t("updateFeatures_homePage.title1")}
-                  </CardTitle>
-                  <CardSubtitle>
-                    {t("updateFeatures_homePage.content1")}
-                  </CardSubtitle>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col lg="3" md="6">
-              <Card className={style.cardContainerSecond}>
-                <CardBody
-                  className="d-flex flex-column justify-content-between"
-                >
-                  <div className={`${style.cardSecondWrapper} mb-1`}>
-                    <div className={`${style.cardSecond}`}></div>
-                  </div>
-                  <CardTitle className="fw-bolder fs-5">
-                    {t("updateFeatures_homePage.title2")}
-                  </CardTitle>
-                  <CardSubtitle>
-                    {t("updateFeatures_homePage.content2")}
-                  </CardSubtitle>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col lg="3" md="6">
-              <Card className={style.cardContainerThird}>
-                <CardBody
-                  className="d-flex flex-column justify-content-between"
-                >
-                  <div className={`${style.cardThirdWrapper} mb-1`}>
-                    <div className={`${style.cardThird}`}></div>
-                  </div>
-                  <CardTitle className="fw-bolder fs-5">
-                    {t("updateFeatures_homePage.title3")}
-                  </CardTitle>
-                  <CardSubtitle>
-                    {t("updateFeatures_homePage.content3")}
-                  </CardSubtitle>
-                </CardBody>
-              </Card>
-            </Col>
+
+          <Row className="match-height mb-2 mt-2">
+            <Row className="mb-1">
+              <h3>{t("common.updateFeatures")}</h3>
+            </Row>
+            <Row style={{ paddingRight: 0 }}>
+              <Col lg="3" md="6">
+                <Card className={style.cardContainerFirst}>
+                  <CardBody className="d-flex flex-column justify-content-between">
+                    <div className={`${style.cardFirstWrapper} mb-1`}>
+                      <div className={`${style.cardFirst}`}></div>
+                    </div>
+                    <CardTitle className="fw-bolder fs-5">
+                      {t("updateFeatures_homePage.title1")}
+                    </CardTitle>
+                    <CardSubtitle>
+                      {t("updateFeatures_homePage.content1")}
+                    </CardSubtitle>
+                  </CardBody>
+                </Card>
+              </Col>
+              <Col lg="3" md="6">
+                <Card className={style.cardContainerSecond}>
+                  <CardBody className="d-flex flex-column justify-content-between">
+                    <div className={`${style.cardSecondWrapper} mb-1`}>
+                      <div className={`${style.cardSecond}`}></div>
+                    </div>
+                    <CardTitle className="fw-bolder fs-5">
+                      {t("updateFeatures_homePage.title2")}
+                    </CardTitle>
+                    <CardSubtitle>
+                      {t("updateFeatures_homePage.content2")}
+                    </CardSubtitle>
+                  </CardBody>
+                </Card>
+              </Col>
+              <Col lg="3" md="6">
+                <Card className={style.cardContainerThird}>
+                  <CardBody className="d-flex flex-column justify-content-between">
+                    <div className={`${style.cardThirdWrapper} mb-1`}>
+                      <div className={`${style.cardThird}`}></div>
+                    </div>
+                    <CardTitle className="fw-bolder fs-5">
+                      {t("updateFeatures_homePage.title3")}
+                    </CardTitle>
+                    <CardSubtitle>
+                      {t("updateFeatures_homePage.content3")}
+                    </CardSubtitle>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
           </Row>
-      </Row>
 
-      <Row className="match-height">
-        <Row className="mb-1">
-          <h3>{t("common.recent")}</h3>
-        </Row>
-        <Row style={{ paddingRight: 0 }}> 
-          <CardTerm />
-          <CardTerm />
-          <CardTerm />
-          <CardTerm />
-          <CardTerm />
-          <CardTerm />
-          <CardTerm />
-          <CardTerm />
-        </Row>
+          <Row className="match-height">
+            <Row className="mb-1">
+              <h3>{t("common.recent")}</h3>
+            </Row>
+            <Row style={{ paddingRight: 0 }}>
+              <CardTerm />
+              <CardTerm />
+              <CardTerm />
+              <CardTerm />
+              <CardTerm />
+              <CardTerm />
+              <CardTerm />
+              <CardTerm />
+            </Row>
 
-        <Card>
-          <CardBody>
-            <div className="d-flex justify-content-evenly align-items-center">
-              <div style={{ marginRight: '20px' }}>
-                <img
-                  src="https://quizlet.com/static/achievements/streak-Week.svg"
-                  alt="Streak Icon"
-                />
-              </div>
-              <div>
-                <h5 style={{ margin: 0, marginBottom: '0.2rem', fontSize: '1rem', fontWeight: 'bold' }}>
-                  {t("updateFeatures_homePage.weekStreak")}
-                </h5>
-                <p style={{ margin: 0, fontSize: '0.9rem', color: '#7a7a7a' }}>
-                  {t("updateFeatures_homePage.weekStreak_content")}
-                </p>
-              </div>
-              <div>
-                <div className="d-flex gap-3 pb-1 hover:cursor-pointer" style={{ fontSize: '0.9rem' }}>
-                  <div>S</div>
-                  <div>M</div>
-                  <div>T</div>
-                  <div>W</div>
-                  <div>T</div>
-                  <div>F</div>
-                  <div>S</div>
+            <Card>
+              <CardBody>
+                <div className="d-flex justify-content-evenly align-items-center">
+                  <div style={{ marginRight: "20px" }}>
+                    <img
+                      src="https://quizlet.com/static/achievements/streak-Week.svg"
+                      alt="Streak Icon"
+                    />
+                  </div>
+                  <div>
+                    <h5
+                      style={{
+                        margin: 0,
+                        marginBottom: "0.2rem",
+                        fontSize: "1rem",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {t("updateFeatures_homePage.weekStreak")}
+                    </h5>
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: "0.9rem",
+                        color: "#7a7a7a",
+                      }}
+                    >
+                      {t("updateFeatures_homePage.weekStreak_content")}
+                    </p>
+                  </div>
+                  <div>
+                    <div
+                      className="d-flex gap-3 pb-1 hover:cursor-pointer"
+                      style={{ fontSize: "0.9rem" }}
+                    >
+                      <div>S</div>
+                      <div>M</div>
+                      <div>T</div>
+                      <div>W</div>
+                      <div>T</div>
+                      <div>F</div>
+                      <div>S</div>
+                    </div>
+                    <div
+                      className={`d-flex gap-3 hover:cursor-pointer ${style.weekStreak}`}
+                      style={{
+                        fontSize: "0.8rem",
+                        fontWeight: "bold",
+                        paddingLeft: "0.5rem",
+                      }}
+                    >
+                      <div>1</div>
+                      <div className={style.imageWeekStreak}>2</div>
+                      <div className={style.imageWeekStreak}>3</div>
+                      <div>4</div>
+                      <div className={style.imageWeekStreak}>5</div>
+                      <div>6</div>
+                      <div className={style.imageWeekStreak}>7</div>
+                    </div>
+                  </div>
                 </div>
-                <div className={`d-flex gap-3 hover:cursor-pointer ${style.weekStreak}`} style={{ fontSize: '0.8rem', fontWeight: 'bold' , paddingLeft:"0.5rem"}}>
-                  <div>1</div>
-                  <div className={style.imageWeekStreak}>2</div>
-                  <div className={style.imageWeekStreak}>3</div>
-                  <div>4</div>
-                  <div className={style.imageWeekStreak}>5</div>
-                  <div>6</div>
-                  <div className={style.imageWeekStreak}>7</div>
-                </div>
-              </div>
-            </div>
-          </CardBody>
-        </Card>
+              </CardBody>
+            </Card>
 
-        <Row>
-          <ReactPaginate
-            nextLabel=""
-            pageCount={10}
-            breakLabel="..."
-            previousLabel=""
-            pageRangeDisplayed={5}
-            marginPagesDisplayed={2}
-            activeClassName="active"
-            pageClassName="page-item"
-            breakClassName="page-item"
-            nextLinkClassName="page-link"
-            pageLinkClassName="page-link"
-            nextClassName="page-item next"
-            breakLinkClassName="page-link"
-            previousLinkClassName="page-link"
-            previousClassName="page-item prev"
-            containerClassName="pagination react-paginate justify-content-end"
-          />
-        </Row>
-      </Row> 
+            <Row>
+              <ReactPaginate
+                nextLabel=""
+                pageCount={10}
+                breakLabel="..."
+                previousLabel=""
+                pageRangeDisplayed={5}
+                marginPagesDisplayed={2}
+                activeClassName="active"
+                pageClassName="page-item"
+                breakClassName="page-item"
+                nextLinkClassName="page-link"
+                pageLinkClassName="page-link"
+                nextClassName="page-item next"
+                breakLinkClassName="page-link"
+                previousLinkClassName="page-link"
+                previousClassName="page-item prev"
+                containerClassName="pagination react-paginate justify-content-end"
+              />
+            </Row>
+          </Row>
+        </Fragment>
+      ) : (
+        <LoggedInUI />
+      )}
 
-      <Row className="match-height mt-5">
+      {/* <Row className="match-height mt-5">
         <CardFooter/>
-      </Row>
-
+      </Row> */}
     </div>
   );
 };

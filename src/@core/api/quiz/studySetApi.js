@@ -85,4 +85,7 @@ export const studySetApi = {
       data
     );
   },
+  getStudySetShared: () => {
+    return axiosClient.get(`${QUIZ_API_URL}/study-set/shared`);
+  },
 };

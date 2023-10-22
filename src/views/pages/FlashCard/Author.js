@@ -131,9 +131,9 @@ const Author = ({ author, isAuthor, studySet }) => {
                   {t("fieldName.copy")}
                 </span>
               </DropdownItem>
-              {(studySet?.user?._id === user._id ||
-                user.role.id === 1 ||
-                user.role.id === 2) && (
+              {(studySet?.user?._id === user?._id ||
+                user?.role?.id === 1 ||
+                user?.role?.id === 2) && (
                 <DropdownItem
                   href="/"
                   tag="a"
@@ -146,7 +146,7 @@ const Author = ({ author, isAuthor, studySet }) => {
                   </span>
                 </DropdownItem>
               )}
-              {studySet?.user?._id !== user._id && (
+              {studySet?.user?._id !== user?._id && (
                 <DropdownItem
                   href="/"
                   tag="a"

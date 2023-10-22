@@ -22,4 +22,12 @@ export const userApi = {
       isDelete,
     });
   },
+  updateUser: ({ data, userId }) => {
+    return axiosClient.patch(`${QUIZ_API_URL}/user/${userId}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      responseType: "json",
+    });
+  },
 };

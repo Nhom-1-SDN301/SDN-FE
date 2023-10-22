@@ -28,7 +28,6 @@ const TemplateTitle = "%s - Vuexy React Admin Template";
 const DefaultRoute = "/home";
 
 const Home = lazy(() => import("../../views/pages/Home/index"));
-const ProfileSettings = lazy(() => import("../../views/pages/ProfileSettings/index"));
 const Login = lazy(() => import("../../views/pages/Login/index"));
 const Register = lazy(() => import("../../views/pages/Register/index"));
 const Folder = lazy(() => import("../../views/pages/Folder/index"));
@@ -88,10 +87,6 @@ const useCustomRoutes = (user) => {
       element: <Home />,
     },
     {
-      path: "/profile-setting",
-      element: <ProfileSettings />,
-    },
-    {
       path: "/login",
       element: unAuthorizedPage(<Login />),
       meta: {
@@ -134,7 +129,7 @@ const useCustomRoutes = (user) => {
     },
     {
       path: "/profile",
-      element: authorizedPage(<Profile />, [1, 2, 3]),
+      element: <Profile />,
     },
     {
       path: "/managment/user",
