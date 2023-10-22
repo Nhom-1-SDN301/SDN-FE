@@ -119,7 +119,7 @@ const ModalEditStudySet = ({
           ? null
           : data.visitPassword.trim(),
     };
-
+    console.log(studySet._id);
     setLoading(true);
     studySetApi
       .updateSudySet(body)

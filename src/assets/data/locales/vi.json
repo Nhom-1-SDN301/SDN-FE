@@ -158,7 +158,8 @@
     "shareStudySet": "Chia sẻ học phần với bạn bè",
     "filters": "Lọc",
     "reportStudySet": "Báo cáo học phần",
-    "whyReportStudySet": "Tại sao bạn lại báo cáo học phần này?"
+    "whyReportStudySet": "Tại sao bạn lại báo cáo học phần này?",
+    "editFolder": "Chỉnh sửa thư mục"
   },
   "error": {
     "unknown": "Xảy ra lỗi không xác định được. Vui lòng thử lại sau!"
