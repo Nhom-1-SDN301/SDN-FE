@@ -4,13 +4,13 @@ import { Card, CardBody, Col, Badge } from "reactstrap";
 // ** Avatar
 import Avatar from "@components/avatar";
 
-const CardTerm = () => {
+const CardTerm = ({ lg = "3", md = "6", bg }) => {
   return (
-    <Col lg="3" md="6">
+    <Col lg={lg} md={md}>
       <Card className="card-congratulations-medal">
         <CardBody
           className="d-flex flex-column justify-content-between"
-          style={{ height: 150 }}
+          style={{ height: 150, backgroundColor: bg }}
         >
           <div>
             <h5>Tên học phần</h5>
