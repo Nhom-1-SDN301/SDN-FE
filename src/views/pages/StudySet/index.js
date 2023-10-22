@@ -15,11 +15,12 @@ import { Search } from "react-feather";
 // ** Components import
 import BreadCrumbsPage from "@components/breadcrumbs";
 import NavbarComponent from "../../ui-elements/navbars/NavbarComponent";
+import YourStudySet from "./YourStudySet";
+import SharedStudySet from "./SharedStudySet";
 
 // ** Hooks
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import YourStudySet from "./YourStudySet";
 
 const StudySet = () => {
   // ** Hooks
@@ -48,6 +49,7 @@ const StudySet = () => {
       />
       <hr style={{ margin: 0 }} />
       {selectIndex === 0 && <YourStudySet />}
+      {selectIndex === 1 && <SharedStudySet />}
     </div>
   );
 };

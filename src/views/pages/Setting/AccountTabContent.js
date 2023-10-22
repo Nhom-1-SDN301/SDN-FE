@@ -29,7 +29,10 @@ import {
 import { selectThemeColors } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
 import defaultAvatar from "../../../assets/images/portrait/small/avatar-s-11.jpg";
-import { formatDateISOToDDMMYYY_HHMM } from "../../../utility/Utils";
+import {
+  formatDateISOTODDMMYYYY,
+  formatDateISOToDDMMYYY_HHMM,
+} from "../../../utility/Utils";
 
 // ** Demo Components
 
@@ -50,7 +53,7 @@ const AccountTabContent = () => {
 
   const defaultValues = {
     fullName: user?.fullName,
-    dob: user?.dob,
+    dob: user?.dob ? formatDateISOTODDMMYYYY(user?.dob) : null,
     gender: user?.gender,
     phone: user?.phone,
     address: user?.address,
@@ -80,6 +83,7 @@ const AccountTabContent = () => {
         }),
       });
     }
+    console.log(data);
 
     const formData = new FormData();
 

@@ -57,7 +57,10 @@
   "fieldName": {
     "email": "Email",
     "password": "Password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
     "confirmPassword": "Confirm password",
+    "confirmNewPassword": "Confirm new password",
     "fullName": "Full name",
     "gender": "Gender",
     "male": "Male",
@@ -150,7 +153,9 @@
     "required": "{{field}} is required",
     "minLength": "{{field}} must be longer than {{value}} characters.",
     "maxLength": "{{field}} must be shorter than {{value}} characters.",
-    "duplicated": "{{field}} is duplicated"
+    "duplicated": "{{field}} is duplicated",
+    "passwordValidate_1": "Password must contain at least one uppercase character, one lowercase character and one symbol",
+    "notMatch": "{{field}} is not match"
   },
   "title": {
     "loginDescription": "Please sign-in to your account and start the adventure",

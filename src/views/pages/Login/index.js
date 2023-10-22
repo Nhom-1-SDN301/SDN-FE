@@ -23,6 +23,7 @@ import {
   Label,
   Input,
   Button,
+  FormFeedback,
 } from "reactstrap";
 import { useTranslation } from "react-i18next";
 
@@ -47,6 +48,11 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+
+// ** Third libs
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import classNames from "classnames";
 
 const ToastContent = ({ t, translate, name }) => {
   return (
@@ -76,12 +82,41 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const Schema = yup.object().shape({
+    email: yup
+      .string()
+      .email(t("message.invalid", { value: t("fieldName.email") }))
+      .required(
+        t("validationMessage.required", { field: t("fieldName.email") })
+      ),
+    password: yup
+      .string()
+      .required(
+        t("validationMessage.required", { field: t("fieldName.password") })
+      )
+      .test(
+        "len",
+        t("validationMessage.minLength", {
+          field: t("fieldName.password"),
+          value: 6,
+        }),
+        (val) => val.length > 5
+      ),
+  });
+
   const {
     control,
     setError,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(Schema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
   const source = skin === "dark" ? illustrationsDark : illustrationsLight;
 
@@ -331,7 +366,12 @@ const Login = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="mb-1">
-                <Label className="form-label" for="email">
+                <Label
+                  className={classNames("form-label", {
+                    "text-danger": errors.email,
+                  })}
+                  for="email"
+                >
                   {t("fieldName.email")}
                 </Label>
                 <Controller
@@ -348,10 +388,20 @@ const Login = () => {
                     />
                   )}
                 />
+                {errors.email && (
+                  <FormFeedback className="text-danger">
+                    {errors.email.message}
+                  </FormFeedback>
+                )}
               </div>
               <div className="mb-1">
                 <div className="d-flex justify-content-between">
-                  <Label className="form-label" for="login-password">
+                  <Label
+                    className={classNames("form-label", {
+                      "text-danger": errors.password,
+                    })}
+                    for="login-password"
+                  >
                     {t("fieldName.password")}
                   </Label>
                   <Link to="/forgot-password">
@@ -372,6 +422,11 @@ const Login = () => {
                     );
                   }}
                 />
+                {errors.password && (
+                  <FormFeedback className="text-danger">
+                    {errors.password.message}
+                  </FormFeedback>
+                )}
               </div>
               <div className="form-check mb-1">
                 <Input type="checkbox" id="remember-me" />
@@ -386,7 +441,7 @@ const Login = () => {
             <p className="text-center mt-2">
               <span className="me-25">{t("message.newOnPlatform")}</span>
               <Link to="/register">
-                <span>{t("fieldName.createAnAccount")}</span>
+                <span className="text-primary">{t("fieldName.createAnAccount")}</span>
               </Link>
             </p>
             <div className="divider my-2">
