@@ -1,7 +1,29 @@
 import React, { useState } from "react";
 
 import { Input, Row, Col } from "reactstrap";
+
+import Select from "react-select";
+
 import CardTerm from "../../ui-elements/cards/advance/CardTerm";
+
+const options = [
+  {
+    value: "all",
+    label: "All courses",
+  },
+  {
+    value: "recent",
+    label: "Recent",
+  },
+  {
+    value: "in-progress",
+    label: "In Progress",
+  },
+  {
+    value: "completed",
+    label: "Completed",
+  },
+];
 
 const Course = ({ courses }) => {
   const [filter, setFilter] = useState("all");
@@ -13,24 +35,9 @@ const Course = ({ courses }) => {
         <Col xs="12" sm="6" md="6" lg="3">
           <Select
             options={options}
-            value={options.find(o => o.value === filter)}
+            value={options.find((o) => o.value === filter)}
             onChange={(e) => setFilter(e.value)}
           />
-          <Input
-            type="select"
-            name="filter"
-            id="filter"
-            value={filter}
-            onChange={(e) => {
-              setFilter(e.target.value);
-              console.log(e.target.value);
-            }}
-          >
-            <option value="all">All Courses</option>
-            <option value="recent">Recent</option>
-            <option value="in-progress">In Progress</option>
-            <option value="completed">Completed</option>
-          </Input>
         </Col>
       </Row>
       <div className="mt-3">
@@ -40,7 +47,7 @@ const Course = ({ courses }) => {
               filter === "all" ? true : course.status === filter
             )
             .map((course, index) => (
-              <CardTerm bg="#F2F3F3" lg="4" md="3" />
+              <CardTerm lg="4" md="3" />
             ))}
         </Row>
       </div>
