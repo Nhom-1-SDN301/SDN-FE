@@ -68,11 +68,21 @@ const getMenuData = ({ t }) => [
   },
   {
     id: "folder",
-    title: t("fieldName.folder"),
-    icon: <Folder size={20} />,
-    navLink: "/folder",
-    authorization: true,
-    can: [1, 2, 3],
+    title: t('fieldName.folder'),
+    icon: <Folder  size={20}/>,
+    navLink: "/folder"
+  },
+  {
+    id: "folder",
+    title: t('fieldName.folder'),
+    icon: <Folder  size={20}/>,
+    navLink: "/folder"
+  },
+  {
+    id: "permissions",
+    title: "Permissions ",
+    icon: <Circle size={20} />,
+    navLink: "/permissions",
   },
 ];
 
