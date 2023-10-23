@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+<<<<<<< HEAD:src/views/pages/Profile/Course.js
 import { Info } from "react-feather";
 import { Card, CardBody, Input, Row, Col } from "reactstrap";
 import Select from 'react-select'
@@ -21,6 +22,11 @@ const options = [
     label: "Completed",
   },
 ];
+=======
+
+import { Input, Row, Col } from "reactstrap";
+import CardTerm from "../../ui-elements/cards/advance/CardTerm";
+>>>>>>> c60b25d074b2184d08af55e3901916642401ca1f:src/views/pages/Profile/Course.jsx
 
 const Course = ({ courses }) => {
   const [filter, setFilter] = useState("all");
@@ -52,20 +58,17 @@ const Course = ({ courses }) => {
           </Input>
         </Col>
       </Row>
-      {courses
-        .filter((course) =>
-          filter === "all" ? true : course.status === filter
-        )
-        .map((course, index) => (
-          <Card key={index}>
-            <CardBody>
-              <h5>{course.name}</h5>
-              <p>Created: {course.created}</p>
-              <p>Students: {course.students}</p>
-              <p>Status: {course.status}</p>
-            </CardBody>
-          </Card>
-        ))}
+      <div className="mt-3">
+        <Row>
+          {courses
+            .filter((course) =>
+              filter === "all" ? true : course.status === filter
+            )
+            .map((course, index) => (
+              <CardTerm bg="#F2F3F3" lg="4" md="3" />
+            ))}
+        </Row>
+      </div>
     </div>
   );
 };
