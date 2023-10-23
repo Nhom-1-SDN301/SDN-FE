@@ -1,32 +1,7 @@
 import React, { useState } from "react";
-<<<<<<< HEAD:src/views/pages/Profile/Course.js
-import { Info } from "react-feather";
-import { Card, CardBody, Input, Row, Col } from "reactstrap";
-import Select from 'react-select'
-
-const options = [
-  {
-    value: "all",
-    label: "All Courses",
-  },
-  {
-    value: "recent",
-    label: "Recent",
-  },
-  {
-    value: "in-progress",
-    label: "In Progress",
-  },
-  {
-    value: "completed",
-    label: "Completed",
-  },
-];
-=======
 
 import { Input, Row, Col } from "reactstrap";
 import CardTerm from "../../ui-elements/cards/advance/CardTerm";
->>>>>>> c60b25d074b2184d08af55e3901916642401ca1f:src/views/pages/Profile/Course.jsx
 
 const Course = ({ courses }) => {
   const [filter, setFilter] = useState("all");
