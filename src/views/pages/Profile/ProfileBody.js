@@ -39,7 +39,6 @@ const ProfileBody = () => {
           container={false}
           className="justify-content-end justify-content-md-between w-100"
           expand="md"
-          light
         >
           <Button color="" className="btn-icon navbar-toggler" onClick={toggle}>
             <AlignJustify size={21} />
