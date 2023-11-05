@@ -9,7 +9,7 @@ import _ from "lodash";
 import styles from './folderStyle.module.scss';
 import { useTranslation } from "react-i18next";
 import { toast } from "react-hot-toast";
-import { folderApi } from "../../../@core/api/quiz/folderApi"
+import { folderApi } from "../../../@core/api/quiz/folderApi";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import ReactPaginate from 'react-paginate';
@@ -28,13 +28,12 @@ const Folder = (id, numberOfTerms, author, title, description) => {
   const [loadingFolder, setLoadingFolder] = useState(false)
   const MySwal = withReactContent(Swal);
   const [page, setPage] = useState(0);
-  
   const [totalPage, setTotalPage] = useState(1);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editFolder, setEditFolder] = useState(null);
   
 
-
+  
   useEffect(() => {
     handleFetch(5, page, search);
   }, [page], [search]);
