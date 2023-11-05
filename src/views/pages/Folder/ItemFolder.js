@@ -12,11 +12,11 @@ const FolderCard = ({ id, numberOfTerms, author, title, description, handleDelet
     if (!Array.isArray(folders)) {
         return null;
     }
-    const infoFolderUrl = `/folder/infoFolder`;
+    const infoFolderUrl = `/folder`;
     return (
         folders.map((folder) => {
             return (
-                <Link to={infoFolderUrl}>
+                <Link to={`${infoFolderUrl}/${folder._id}`}>
                     <Card
                         className={`${styles.card_folder}`}
                     >
