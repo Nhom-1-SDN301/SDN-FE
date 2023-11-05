@@ -29,7 +29,7 @@ const getMenuData = ({ t }) => [
     id: "classroom",
     title: t("page.classroom"),
     icon: <BookOpen size={20} />,
-    navLink: "/classroom",
+    navLink: "/classes",
     authorization: true,
     can: [1, 2, 3],
   },
@@ -68,21 +68,9 @@ const getMenuData = ({ t }) => [
   },
   {
     id: "folder",
-    title: t('fieldName.folder'),
-    icon: <Folder  size={20}/>,
-    navLink: "/folder"
-  },
-  {
-    id: "folder",
-    title: t('fieldName.folder'),
-    icon: <Folder  size={20}/>,
-    navLink: "/folder"
-  },
-  {
-    id: "permissions",
-    title: "Permissions ",
-    icon: <Circle size={20} />,
-    navLink: "/permissions",
+    title: t("fieldName.folder"),
+    icon: <Folder size={20} />,
+    navLink: "/folder",
   },
 ];
 

@@ -7,11 +7,13 @@ import { useState } from "react";
 // ** I18n
 import { useTranslation } from "react-i18next";
 import ModalCreateClass from "./ModalCreateClass";
+import ModalJoinClass from "./ModalJoinClass";
 
 const NoClassView = ({ setData }) => {
   // ** Hooks
   const { t } = useTranslation();
   const [isOpenModalCreate, setIsOpenModalCreate] = useState(false);
+  const [isOpenModalJoin, setIsOpenModalJoin] = useState(false);
 
   return (
     <div
@@ -31,7 +33,11 @@ const NoClassView = ({ setData }) => {
             >
               {t("fieldName.createClass")}
             </Button>
-            <Button color="primary" style={{ marginLeft: ".5rem" }}>
+            <Button
+              color="primary"
+              style={{ marginLeft: ".5rem" }}
+              onClick={() => setIsOpenModalJoin(true)}
+            >
               {t("fieldName.joinClass")}
             </Button>
           </div>
@@ -42,6 +48,12 @@ const NoClassView = ({ setData }) => {
       <ModalCreateClass
         open={isOpenModalCreate}
         setOpen={setIsOpenModalCreate}
+        setData={setData}
+      />
+
+      <ModalJoinClass
+        open={isOpenModalJoin}
+        setOpen={setIsOpenModalJoin}
         setData={setData}
       />
     </div>

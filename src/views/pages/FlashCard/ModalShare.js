@@ -104,6 +104,8 @@ const ModalShare = ({ open, setOpen }) => {
           setUsers([]);
           setOpen(false);
           toast.success(t("message.shareStudySetSuccess"));
+        } else {
+          toast.error(data.message);
         }
       })
       .catch((err) => {

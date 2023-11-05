@@ -122,7 +122,7 @@ const ModalCreateClass = ({ open, setOpen, setData }) => {
               })}
               for="name"
             >
-              {t("fieldName.className")}
+              {t("fieldName.description")}
             </Label>
             <Controller
               name="description"

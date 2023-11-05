@@ -50,11 +50,13 @@ const StudySetEditTerm = lazy(() =>
   import("../../views/pages/StudySet/EditTerm")
 );
 
-const Permissions = lazy(() => import("../../views/pages/permissions/index"));
+// const Permissions = lazy(() => import("../../views/pages/permissions/index"));
 const ClassPage = lazy(() => import("../../views/pages/Class/index"));
+const Classroom = lazy(() => import("../../views/pages/Classroom/index"));
 const Setting = lazy(() => import("../../views/pages/Setting/index"));
 const Profile = lazy(() => import("../../views/pages/Profile/index"));
-
+const Test = lazy(() => import("../../views/pages/Test/index"));
+const TestAttempt = lazy(() => import("../../views/pages/TestAttempt/index"));
 
 // ** Merge Routes
 const useCustomRoutes = (user) => {
@@ -123,8 +125,12 @@ const useCustomRoutes = (user) => {
       element: <FlashCard />,
     },
     {
-      path: "/classroom",
+      path: "/classes",
       element: authorizedPage(<ClassPage />, [1, 2, 3]),
+    },
+    {
+      path: "/classroom/:id",
+      element: authorizedPage(<Classroom />, [1, 2, 3]),
     },
     {
       path: "/setting",
@@ -143,6 +149,17 @@ const useCustomRoutes = (user) => {
       element: authorizedPage(<ModeratorStudySet />, [1, 2]),
     },
     {
+      path: "/classroom/:classId/test/:testId",
+      element: authorizedPage(<Test />, [1, 2, 3]),
+    },
+    {
+      path: "/test-attempt/:testId",
+      element: authorizedPage(<TestAttempt />, [1, 2, 3]),
+      meta: {
+        layout: "blank"
+      }
+    },
+    {
       path: "/unauthorize",
       element: <Unauthorize />,
       meta: {
@@ -156,15 +173,6 @@ const useCustomRoutes = (user) => {
         layout: "blank",
       },
     },
-    ,
-    {
-      path: "/permissions",
-      element:<Permissions />,
-      meta: {
-        layout: "blank",
-      },
-    }
-
   ];
 };
 

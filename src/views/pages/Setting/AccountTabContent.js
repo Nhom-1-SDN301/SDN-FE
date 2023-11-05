@@ -83,7 +83,6 @@ const AccountTabContent = () => {
         }),
       });
     }
-    console.log(data);
 
     const formData = new FormData();
 
@@ -148,6 +147,7 @@ const AccountTabContent = () => {
                     alt="Generic placeholder image"
                     height="100"
                     width="100"
+                    style={{ objectFit: "cover" }}
                   />
                 )}
               />
