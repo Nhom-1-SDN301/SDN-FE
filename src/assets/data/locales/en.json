@@ -48,6 +48,7 @@
     "totalQuestions": "Total questions",
     "questionType": "Question type",
     "timeLeft": "Time left",
+    "timeOut": "Time out",
     "placeholder": {
       "ratingStudySet": "Good study set",
       "createStudySetTitle": "Fruit...",

@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import { Fragment, useEffect, useState } from "react";
 
 // ** Apis
-import { classApi } from "../../../@core/api/quiz";
+import { classApi, testApi } from "../../../@core/api/quiz";
 import DetailTest from "./DetailTest";
 
 const Test = () => {
@@ -22,6 +22,7 @@ const Test = () => {
   const [klass, setKlass] = useState(null);
   const [test, setTest] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [testsHistory, setTestsHistory] = useState([]);
 
   useEffect(() => {
     if (classId && testId) {
@@ -29,6 +30,7 @@ const Test = () => {
       Promise.all([
         handleFetchClass({ classId }),
         handleFetchTest({ classId, testId }),
+        handleFetchTestsHistory({ testId }),
       ])
         .then((resps) => {
           if (resps[0].data.isSuccess) {
@@ -36,6 +38,9 @@ const Test = () => {
           }
           if (resps[1].data.isSuccess) {
             setTest(resps[1].data.data.test);
+          }
+          if (resps[2].data.isSuccess) {
+            setTestsHistory(resps[2].data.data.testsHistory);
           }
         })
         .catch((err) => {
@@ -58,6 +63,10 @@ const Test = () => {
     return classApi.getTest({ classId, testId });
   };
 
+  const handleFetchTestsHistory = async ({ testId }) => {
+    return testApi.getTestsHistory({ testId });
+  };
+
   return (
     <div>
       {loading ? (
@@ -72,7 +81,7 @@ const Test = () => {
               { title: test?.title || "" },
             ]}
           />
-          <DetailTest test={test} />
+          <DetailTest test={test} testsHistory={testsHistory} />
         </Fragment>
       )}
     </div>

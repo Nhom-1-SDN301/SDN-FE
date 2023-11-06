@@ -25,4 +25,7 @@ export const testApi = {
   submitTest: ({ testId, data }) => {
     return axiosClient.post(`${QUIZ_API_URL}/test/${testId}/submit`, data);
   },
+  getTestsHistory: ({ testId }) => {
+    return axiosClient.get(`${QUIZ_API_URL}/test/${testId}/history`);
+  },
 };

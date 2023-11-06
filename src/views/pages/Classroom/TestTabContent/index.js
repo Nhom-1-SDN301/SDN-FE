@@ -54,6 +54,8 @@ const TestTabContent = ({ klass }) => {
       });
   };
 
+  console.log(data);
+
   return (
     <Fragment>
       <div style={{ marginTop: "1rem" }}>
@@ -88,24 +90,31 @@ const TestTabContent = ({ klass }) => {
                     : test.description}
                 </CardText>
                 <div className="d-flex justify-content-between">
-                  <Badge color="primary">
+                  <Badge
+                    color={
+                      test?.endAt > new Date().valueOf() ? "primary" : "danger"
+                    }
+                  >
                     <Clock size={12} className="align-middle me-25" />
-                    <span className="align-middle">{`${formatDistanceToNow(
-                      new Date(test.endAt),
-                      {
-                        locale: i18n.language === "en" ? enUS : vi,
-                      }
-                    )}`}</span>
-                  </Badge>
-                  <CardLink href={`/classroom/${klass._id}/test/${test._id}`}>
-                    <span
-                      className="text-primary"
-                      style={{ marginRight: ".5rem" }}
-                    >
-                      {t("common.doTest")}
+                    <span className="align-middle">
+                      {test?.endAt > new Date().valueOf()
+                        ? `${formatDistanceToNow(new Date(test.endAt), {
+                            locale: i18n.language === "en" ? enUS : vi,
+                          })}`
+                        : t("common.timeOut")}
                     </span>
-                    <ArrowRight style={{ width: 16, height: 16 }} />
-                  </CardLink>
+                  </Badge>
+                  {test?.endAt > new Date().valueOf() && (
+                    <CardLink href={`/classroom/${klass._id}/test/${test._id}`}>
+                      <span
+                        className="text-primary"
+                        style={{ marginRight: ".5rem" }}
+                      >
+                        {t("common.doTest")}
+                      </span>
+                      <ArrowRight style={{ width: 16, height: 16 }} />
+                    </CardLink>
+                  )}
                 </div>
               </CardBody>
             </Card>

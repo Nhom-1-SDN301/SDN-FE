@@ -32,7 +32,7 @@ const InfoTest = ({ label, value }) => {
   );
 };
 
-const DetailTest = ({ test }) => {
+const DetailTest = ({ test, testsHistory }) => {
   // ** Hooks
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -53,10 +53,9 @@ const DetailTest = ({ test }) => {
         cancelButton: "btn btn-secondary ms-1",
       },
       buttonsStyling: false,
-    })
-    .then(({ isConfirmed }) => {
+    }).then(({ isConfirmed }) => {
       if (isConfirmed) {
-        navigate(`/test-attempt/${test._id}`)
+        navigate(`/test-attempt/${test._id}`);
       }
     });
   };
@@ -89,12 +88,16 @@ const DetailTest = ({ test }) => {
             className="d-flex justify-content-center"
             style={{ marginTop: "1rem" }}
           >
-            <Button.Ripple color="primary" onClick={handleAttemptQuiz}>
+            <Button.Ripple
+              color="primary"
+              disabled={test?.limitTimesDoTest <= testsHistory?.length}
+              onClick={handleAttemptQuiz}
+            >
               {t("fieldName.attemptQuiz")}
             </Button.Ripple>
           </div>
         </CardBody>
-        <TableHistory />
+        <TableHistory testsHistory={testsHistory} />
       </Card>
     </Fragment>
   );

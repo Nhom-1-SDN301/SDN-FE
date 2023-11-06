@@ -53,8 +53,6 @@ const ManageTest = ({ user, klass }) => {
   const [loading, setLoading] = useState(false);
   const [testSelected, setTestSelected] = useState(null);
 
-  console.log(data);
-
   useEffect(() => {
     if (klass?._id) {
       fetchTests({ classId: klass?._id });
