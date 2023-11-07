@@ -7,6 +7,8 @@ import { QUIZ_API_URL } from "../../constants/index";
 export const authApi = {
   login: (data) => axiosClient.post(`${QUIZ_API_URL}/auth/login`, data),
   register: (data) => axiosClient.post(`${QUIZ_API_URL}/auth/register`, data),
+  changePassword: (data) =>
+    axiosClient.patch(`${QUIZ_API_URL}/auth/password`, data),
   thirdPartyLogin: (data) =>
     axiosClient.post(`${QUIZ_API_URL}/auth/login-third-party`, data),
 };

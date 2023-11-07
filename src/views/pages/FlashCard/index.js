@@ -120,6 +120,8 @@ const FlashCard = () => {
             window.location.href = jwtConfig.logoutEndpoint;
           });
       } else loadStudySet();
+    } else if (canAccess) {
+      loadStudySet();
     }
   }, [canAccess]);
 
@@ -222,11 +224,7 @@ const FlashCard = () => {
       <MainCard data={data} isAuthor={isAuthor} />
 
       {/* Author */}
-      <Author
-        author={studySet?.user}
-        isAuthor={isAuthor}
-        studySet={studySet}
-      />
+      <Author author={studySet?.user} isAuthor={isAuthor} studySet={studySet} />
 
       {/* Detail all card */}
       <Detail

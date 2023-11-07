@@ -29,6 +29,8 @@ import { useTranslation } from "react-i18next";
 import UILoader from "@components/ui-loader";
 import Spinner from "@components/spinner/Loading-spinner";
 import DataTable from "react-data-table-component";
+import ModalAccept from "./ModalAccept";
+import ModalReject from "./ModalReject";
 import { columns } from "./columns";
 
 // ** Third libs
@@ -47,8 +49,6 @@ import "@styles/base/plugins/extensions/ext-component-sweet-alerts.scss";
 
 // ** Apis
 import { studySetApi } from "../../../../../@core/api/quiz/studySetApi";
-import ModalAccept from "./ModalAccept";
-import ModalReject from "./ModalReject";
 
 // ** Bootstrap Checkbox Component
 const BootstrapCheckbox = forwardRef((props, ref) => (

@@ -21,6 +21,9 @@ export const studySetApi = {
       visitPassword,
     });
   },
+  getAllStudySetByUserId: () => {
+      return axiosClient.get(`${QUIZ_API_URL}/study-set/getAll`);
+  },
   deleteStudySet: ({ studySetId }) => {
     return axiosClient.delete(`${QUIZ_API_URL}/study-set?id=${studySetId}`);
   },

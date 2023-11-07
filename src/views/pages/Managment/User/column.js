@@ -64,7 +64,7 @@ const renderRole = (row) => {
 };
 
 // ** Renders Gender Columns
-const renderGender = (gender, t) => {
+export const renderGender = (gender, t) => {
   const genderObj = {
     0: {
       color: "#ba3ebc",
@@ -79,14 +79,17 @@ const renderGender = (gender, t) => {
   const Icon = genderObj[gender] ? genderObj[gender].icon : Edit2;
 
   return (
-    <span className="text-truncate text-capitalize align-middle">
+    <div
+      className="text-truncate text-capitalize align-middle d-flex"
+      style={{ width: "100%", justifyContent: "center" }}
+    >
       <Icon
         size={18}
         className={`me-50`}
         style={{ color: genderObj[gender]?.color }}
       />
       {gender === 0 ? t("fieldName.female") : t("fieldName.male")}
-    </span>
+    </div>
   );
 };
 
@@ -111,7 +114,7 @@ export const columns = ({ t, handleUpdateStatusUser }) => [
           <Link
             // to={`/apps/user/view/${row.id}`}
             className="user_name text-truncate text-body"
-            // onClick={() => store.dispatch(getUser(row.id))}
+          // onClick={() => store.dispatch(getUser(row.id))}
           >
             <span className="fw-bolder">{row.fullName}</span>
           </Link>
@@ -168,17 +171,19 @@ export const columns = ({ t, handleUpdateStatusUser }) => [
     name: "Actions",
     minWidth: "100px",
     cell: (row) => (
-      <div className="column-action">
+      <div
+        className="column-action"
+      >
         <UncontrolledDropdown>
           <DropdownToggle tag="div" className="btn btn-sm">
-            <MoreVertical size={14} className="cursor-pointer" />
+              <MoreVertical size={14} className="cursor-pointer" />
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem
               tag={Link}
               className="w-100"
               to={`#`}
-              //   onClick={() => store.dispatch(getUser(row.id))}
+            //   onClick={() => store.dispatch(getUser(row.id))}
             >
               <FileText size={14} className="me-50" />
               <span className="align-middle">{t("common.detail")}</span>

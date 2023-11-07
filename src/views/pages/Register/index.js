@@ -1,5 +1,5 @@
 // ** React Imports
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // ** Custom Hooks
 import { useSkin } from "@hooks/useSkin";
@@ -26,6 +26,10 @@ import {
   FormFeedback,
 } from "reactstrap";
 
+// ** React
+import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+
 // ** Illustrations Imports
 import illustrationsLight from "@src/assets/images/pages/register-v2.svg";
 import illustrationsDark from "@src/assets/images/pages/register-v2-dark.svg";
@@ -38,11 +42,17 @@ import { useTranslation } from "react-i18next";
 
 // ** Third Party Components
 import * as yup from "yup";
-import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import classNames from "classnames";
+import { toast } from "react-hot-toast";
+
+// ** Apis
+import { authApi } from "../../../@core/api/quiz/authApi";
 
 const Register = () => {
   const { t } = useTranslation();
+  const [gender, setGender] = useState(0);
+
   const SignupSchema = yup.object().shape({
     email: yup
       .string()
@@ -57,9 +67,36 @@ const Register = () => {
       ),
     password: yup
       .string()
-      .min(6)
+      .min(8)
       .required(
         t("validationMessage.required", { field: t("fieldName.password") })
+      )
+      .test(
+        "Oke",
+        t("validationMessage.passwordValidate_1"),
+        (value, context) => {
+          const hasUpperCase = /[A-Z]/.test(value);
+          const hasLowerCase = /[a-z]/.test(value);
+          const hasNumber = /[0-9]/.test(value);
+          const hasSymbole = /[!@#%&]/.test(value);
+
+          let validCondition = 0;
+          const numberOfMustBeValidConditions = 3;
+          const conditions = [
+            hasUpperCase,
+            hasLowerCase,
+            hasNumber,
+            hasSymbole,
+          ];
+
+          conditions.forEach((condition) =>
+            condition ? validCondition++ : null
+          );
+
+          if (validCondition >= numberOfMustBeValidConditions) return true;
+
+          return false;
+        }
       ),
     cPassword: yup
       .string()
@@ -68,25 +105,65 @@ const Register = () => {
           field: t("fieldName.confirmPassword"),
         })
       )
-      .oneOf([yup.ref("password"), null], "Confirm password not match"),
-    gender: yup.number().required(),
+      .oneOf(
+        [yup.ref("password"), null],
+        t("validationMessage.notMatch", { field: t("fieldName.password") })
+      ),
   });
 
   // ** Hooks
   const { skin } = useSkin();
+  const navigate = useNavigate();
   const {
-    reset,
     control,
     handleSubmit,
+    setError,
     formState: { errors },
-  } = useForm({ mode: "onChange", resolver: yupResolver(SignupSchema) });
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(SignupSchema),
+  });
 
   // Handler
-  const onSubmit = () => {
-    console.log("submit");
+  const onSubmit = (data) => {
+    let isError = false;
+
+    Object.keys(data).forEach((key) => {
+      data[key] = data[key].trim();
+      if (data[key] === "")
+        setError(key, {
+          type: "manual",
+          message: t("validationMessage.required", { field: key }),
+        });
+    });
+
+    if (isError) return;
+
+    delete data.cPassword;
+
+    authApi
+      .register({
+        ...data,
+        gender,
+      })
+      .then(({ data }) => {
+        if (data.isSuccess) {
+          toast.success(
+            t("message.createSuccess", { value: t("fieldName.account") })
+          );
+          navigate("/login");
+        } else {
+          toast.error(data.message);
+        }
+      })
+      .catch((err) => {
+        toast.error(err?.message || t("error.unknow"));
+      });
   };
 
   const source = skin === "dark" ? illustrationsDark : illustrationsLight;
+
+  console.log("render");
 
   return (
     <div className="auth-wrapper auth-cover">
@@ -178,17 +255,20 @@ const Register = () => {
               {t("title.registerDescription")}
             </CardText>
             <Form
-              className="auth-register-form mt-2"
+              // className="auth-register-form mt-2"
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="mb-1">
-                <Label className="form-label" for="email">
+                <Label
+                  className={classNames("form-label", {
+                    "text-danger": errors.email,
+                  })}
+                  for="email"
+                >
                   {t("fieldName.email")}
                 </Label>
                 <Controller
-                  id="email"
                   name="email"
-                  defaultValue=""
                   control={control}
                   render={({ field }) => (
                     <Input
@@ -201,17 +281,22 @@ const Register = () => {
                   )}
                 />
                 {errors.email && (
-                  <FormFeedback>{errors.email.message}</FormFeedback>
+                  <FormFeedback className="text-danger">
+                    {errors.email.message}
+                  </FormFeedback>
                 )}
               </div>
               <div className="mb-1">
-                <Label className="form-label" for="password">
+                <Label
+                  className={classNames("form-label", {
+                    "text-danger": errors.password,
+                  })}
+                  for="password"
+                >
                   {t("fieldName.password")}
                 </Label>
                 <Controller
-                  id="password"
                   name="password"
-                  defaultValue=""
                   control={control}
                   render={({ field }) => (
                     <InputPasswordToggle
@@ -223,17 +308,22 @@ const Register = () => {
                   )}
                 />
                 {errors.password && (
-                  <FormFeedback>{errors.password.message}</FormFeedback>
+                  <FormFeedback className="text-danger">
+                    {errors.password.message}
+                  </FormFeedback>
                 )}
               </div>
               <div className="mb-1">
-                <Label className="form-label" for="cPassword">
+                <Label
+                  className={classNames("form-label", {
+                    "text-danger": errors.cPassword,
+                  })}
+                  for="cPassword"
+                >
                   {t("fieldName.confirmPassword")}
                 </Label>
                 <Controller
-                  id="cPassword"
                   name="cPassword"
-                  defaultValue=""
                   control={control}
                   render={({ field }) => (
                     <InputPasswordToggle
@@ -245,7 +335,9 @@ const Register = () => {
                   )}
                 />
                 {errors.cPassword && (
-                  <FormFeedback>{errors.cPassword.message}</FormFeedback>
+                  <FormFeedback className="text-danger">
+                    {errors.cPassword.message}
+                  </FormFeedback>
                 )}
               </div>
               <div className="mb-1">
@@ -253,14 +345,12 @@ const Register = () => {
                   {t("fieldName.fullName")}
                 </Label>
                 <Controller
-                  id="fullName"
                   name="fullName"
-                  defaultValue=""
                   control={control}
                   render={({ field }) => (
                     <Input
-                      type="text"
                       id="fullName"
+                      type="text"
                       placeholder="johndoe"
                       autoFocus
                       invalid={errors.fullName && true}
@@ -269,11 +359,13 @@ const Register = () => {
                   )}
                 />
                 {errors.fullName && (
-                  <FormFeedback>{errors.fullName.message}</FormFeedback>
+                  <FormFeedback className="text-danger">
+                    {errors.fullName.message}
+                  </FormFeedback>
                 )}
               </div>
               <div>
-                <Label className="form-label" for="gender">
+                <Label cPassword for="gender">
                   {t("fieldName.gender")}
                 </Label>
                 <div className="mb-1 demo-inline-spacing">
@@ -283,14 +375,26 @@ const Register = () => {
                       id="male"
                       name="gender"
                       value={0}
-                      defaultChecked
+                      checked={gender === 0}
+                      onClick={(e) => {
+                        if (gender !== 0) setGender(0);
+                      }}
                     />
                     <Label className="form-check-label" for="male">
                       {t("fieldName.male")}
                     </Label>
                   </div>
                   <div className="form-check mt-1">
-                    <Input type="radio" name="gender" id="female" value={1} />
+                    <Input
+                      type="radio"
+                      name="gender"
+                      id="female"
+                      value={1}
+                      checked={gender === 1}
+                      onClick={(e) => {
+                        if (gender !== 1) setGender(1);
+                      }}
+                    />
                     <Label className="form-check-label" for="female">
                       {t("fieldName.female")}
                     </Label>
@@ -317,26 +421,9 @@ const Register = () => {
             <p className="text-center mt-2">
               <span className="me-25">{t("fieldName.alreadyHaveAccount")}</span>
               <Link to="/login">
-                <span>{t("fieldName.signIn")}</span>
+                <span className="text-primary">{t("fieldName.signIn")}</span>
               </Link>
             </p>
-            <div className="divider my-2">
-              <div className="divider-text">or</div>
-            </div>
-            <div className="auth-footer-btn d-flex justify-content-center">
-              <Button color="facebook">
-                <Facebook size={14} />
-              </Button>
-              <Button color="twitter">
-                <Twitter size={14} />
-              </Button>
-              <Button color="google">
-                <Mail size={14} />
-              </Button>
-              <Button className="me-0" color="github">
-                <GitHub size={14} />
-              </Button>
-            </div>
           </Col>
         </Col>
       </Row>

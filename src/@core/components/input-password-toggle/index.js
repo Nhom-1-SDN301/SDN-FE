@@ -42,7 +42,10 @@ const InputPasswordToggle = forwardRef((props, ref) => {
   return (
     <Fragment>
       {label ? (
-        <Label className="form-label" for={htmlFor}>
+        <Label
+          className={classnames("form-label", { "text-danger": invalid })}
+          for={htmlFor}
+        >
           {label}
         </Label>
       ) : null}

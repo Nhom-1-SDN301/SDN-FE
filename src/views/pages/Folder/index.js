@@ -1,14 +1,15 @@
-import React, {useCallback ,useEffect, useState } from 'react';
-import { Button, Col, Input, InputGroup, InputGroupText, Row, Spinner } from 'reactstrap';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Button, Col, Input, InputGroup, InputGroupText, Row, Spinner, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Search, Plus } from 'react-feather';
 import BreadCrumbsPage from '@components/breadcrumbs';
 import CreateFolderModal from './NewFolder';
+import EditFolderModal from './EditFolderModal';
 import FolderCard from './ItemFolder';
 import _ from "lodash";
 import styles from './folderStyle.module.scss';
 import { useTranslation } from "react-i18next";
 import { toast } from "react-hot-toast";
-import { folderApi } from "../../../@core/api/quiz/folderApi"
+import { folderApi } from "../../../@core/api/quiz/folderApi";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import ReactPaginate from 'react-paginate';
@@ -27,30 +28,33 @@ const Folder = (id, numberOfTerms, author, title, description) => {
   const [loadingFolder, setLoadingFolder] = useState(false)
   const MySwal = withReactContent(Swal);
   const [page, setPage] = useState(0);
-  const [offset, setOffSet] = useState(0);
   const [totalPage, setTotalPage] = useState(1);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editFolder, setEditFolder] = useState(null);
+  
 
+  
   useEffect(() => {
     handleFetch(5, page, search);
   }, [page], [search]);
 
-  const handleFetch = (limit, offset, search) =>{
+  const handleFetch = (limit, offset, search) => {
     setLoadingFolder(true);
     setFolders(() => []);
 
-    folderApi.getAllFolder({limit, offset, search})
-    .then((res)=> {
+    folderApi.getAllFolder({ limit, offset, search })
+      .then((res) => {
         setFolders(res.data?.allFolder.folders);
         setTotalPage(res.data?.allFolder.totalPage)
-    })
-    
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(()=>{
-      setLoadingSearch(false);
-      setLoadingFolder(false);
-    })
+      })
+
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoadingSearch(false);
+        setLoadingFolder(false);
+      })
   }
 
   const searchDebounce = useCallback(
@@ -75,48 +79,53 @@ const Folder = (id, numberOfTerms, author, title, description) => {
     console.log(`navigate to profile user id: ${author.id}`);
   };
 
-  // const handleEdit = async (id) =>{
+  const handleEdit = async (folder) => {
+    setIsEditModalOpen(true);
+    setEditFolder(folder);
+     console.log(folder);
+    
+  };
 
-  // }
+
 
   const handleDelete = async (id) => {
-  return MySwal.fire({
-    title: t("message.areYouSure"),
-    text: t("message.delete"),
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: t("fieldName.confirmDelete"),
-    customClass: {
-      confirmButton: `btn btn-danger`,
-      cancelButton: "btn btn-secondary ms-1",
-    },
-    buttonsStyling: false,
-  })
-    .then((result) => {
-      if (result.value) {
-        setLoadingDelete(true);
-        return folderApi.deleteFolder({ folderId: id });
-      }
+    return MySwal.fire({
+      title: t("message.areYouSure"),
+      text: t("message.delete"),
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: t("fieldName.confirmDelete"),
+      customClass: {
+        confirmButton: `btn btn-danger`,
+        cancelButton: "btn btn-secondary ms-1",
+      },
+      buttonsStyling: false,
     })
-    .then((resp) => {
-      if (resp) {
-        const { data } = resp;
-        if (data.isSuccess) {
-          toast.success(
-            t("message.deleteSuccess", { value: t("fieldName.folder") })
-          );
-          const updatedFolders = folders.filter((folder) => folder._id !== id);
-          setFolders(updatedFolders);
+      .then((result) => {
+        if (result.value) {
+          setLoadingDelete(true);
+          return folderApi.deleteFolder({ folderId: id });
         }
-      }
-    })
-    .catch((err) => {
-      toast.error(t("error.unknow"));
-    })
-    .finally(() => {
-      setLoadingDelete(false);
-    });
-};
+      })
+      .then((resp) => {
+        if (resp) {
+          const { data } = resp;
+          if (data.isSuccess) {
+            toast.success(
+              t("message.deleteSuccess", { value: t("fieldName.folder") })
+            );
+            const updatedFolders = folders.filter((folder) => folder._id !== id);
+            setFolders(updatedFolders);
+          }
+        }
+      })
+      .catch((err) => {
+        toast.error(t("error.unknow"));
+      })
+      .finally(() => {
+        setLoadingDelete(false);
+      });
+  };
 
 
   return (
@@ -139,7 +148,7 @@ const Folder = (id, numberOfTerms, author, title, description) => {
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
-                 searchDebounce(5, page, e.target.value);
+                searchDebounce(5, page, e.target.value);
               }}
             />
             {loadingSearch && (
@@ -150,7 +159,7 @@ const Folder = (id, numberOfTerms, author, title, description) => {
           </InputGroup>
         </Col>
       </Row>
-      
+
       <CreateFolderModal
         isOpen={showCreateModal}
         toggle={() => setShowCreateModal(!showCreateModal)}
@@ -159,11 +168,21 @@ const Folder = (id, numberOfTerms, author, title, description) => {
         onModalClose={close =>
           setShowCreateModal(!showCreateModal)
         }
-        />
-        {/* {showNewCard && ( */}
-
+      />
+      <EditFolderModal
+        isOpen={isEditModalOpen}
+        isEditModalOpen={isEditModalOpen} 
+        setData={setFolders}
+        setIsEditModalOpen={setIsEditModalOpen}
+        editFolder={editFolder}
+        toggle={() => setIsEditModalOpen(!isEditModalOpen)}
+        onModalClose={close =>
+          setIsEditModalOpen(!isEditModalOpen)
+        }
+      />
       <FolderCard
         handleDelete={handleDelete}
+        handleEdit={handleEdit}
         folders={folders}
       />
       {/* )} */}

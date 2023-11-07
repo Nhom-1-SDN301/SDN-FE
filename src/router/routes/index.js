@@ -49,10 +49,14 @@ const ModeratorStudySet = lazy(() =>
 const StudySetEditTerm = lazy(() =>
   import("../../views/pages/StudySet/EditTerm")
 );
+
+// const Permissions = lazy(() => import("../../views/pages/permissions/index"));
 const ClassPage = lazy(() => import("../../views/pages/Class/index"));
+const Classroom = lazy(() => import("../../views/pages/Classroom/index"));
 const Setting = lazy(() => import("../../views/pages/Setting/index"));
 const Profile = lazy(() => import("../../views/pages/Profile/index"));
 const ProfileSetting = lazy(() => import("../../views/pages/ProfileSettings/index"));
+
 
 // ** Merge Routes
 const useCustomRoutes = (user) => {
@@ -121,8 +125,12 @@ const useCustomRoutes = (user) => {
       element: <FlashCard />,
     },
     {
-      path: "/classroom",
+      path: "/classes",
       element: authorizedPage(<ClassPage />, [1, 2, 3]),
+    },
+    {
+      path: "/classroom/:id",
+      element: authorizedPage(<Classroom />, [1, 2, 3]),
     },
     {
       path: "/setting",
@@ -144,6 +152,17 @@ const useCustomRoutes = (user) => {
     {
       path: "/managment/moderator-study-set",
       element: authorizedPage(<ModeratorStudySet />, [1, 2]),
+    },
+    {
+      path: "/classroom/:classId/test/:testId",
+      element: authorizedPage(<Test />, [1, 2, 3]),
+    },
+    {
+      path: "/test-attempt/:testId",
+      element: authorizedPage(<TestAttempt />, [1, 2, 3]),
+      meta: {
+        layout: "blank"
+      }
     },
     {
       path: "/unauthorize",

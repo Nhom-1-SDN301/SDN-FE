@@ -104,3 +104,35 @@ export const formatDateISOToDDMMYYY_HHMM = (ISOString) => {
 
   return `${day}-${month}-${year} ${hours}:${minutes}`;
 };
+
+export const formatDateISOTODDMMYYYY = (ISOString) => {
+  const date = new Date(ISOString);
+
+  // Get day, month, year, hours, and minutes
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const year = date.getFullYear();
+
+  return `${day}-${month}-${year}`;
+};
+
+export const splitFile = (file) => {
+  const fileSplit = file.split(".");
+
+  return {
+    filename: fileSplit[0],
+    type: fileSplit[1],
+  };
+};
+
+export const formatSecondToHHMMSS = (seconds) => {
+  let hours = Math.floor(seconds / 3600);
+  let minutes = Math.floor((seconds % 3600) / 60);
+  let remainingSeconds = seconds % 60;
+
+  hours = String(hours).padStart(2, "0");
+  minutes = String(minutes).padStart(2, "0");
+  remainingSeconds = String(remainingSeconds).padStart(2, "0");
+
+  return `${hours}:${minutes}:${remainingSeconds}`;
+};

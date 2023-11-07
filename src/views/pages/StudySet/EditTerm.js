@@ -313,7 +313,11 @@ const EditTerm = () => {
               padding: "1rem 24rem",
             }}
           >
-            <Button.Ripple style={{ float: "right" }} color="primary">
+            <Button.Ripple
+              style={{ float: "right" }}
+              color="primary"
+              onClick={() => history.back()}
+            >
               {t("fieldName.done")}
             </Button.Ripple>
           </div>
