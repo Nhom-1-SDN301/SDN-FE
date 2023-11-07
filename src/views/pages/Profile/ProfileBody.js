@@ -21,12 +21,13 @@ import {
 } from "reactstrap";
 import Information from "./Information";
 import Course from "./Course";
-import { Box } from "@mui/material";
+import { Box, CardContent } from "@mui/material";
 
 const ProfileBody = () => {
   // ** States
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("info");
+  const [selectedAchievement, setSelectedAchievement] = useState(null);
 
   const personalInfo = {
     name: "John Doe",
@@ -60,13 +61,48 @@ const ProfileBody = () => {
     setIsOpen(!isOpen);
   };
 
-//   const card = [
-//     {name: "flash-card",  src: "https://quizlet.com/static/achievements/badge-StudiedWithFlashcards.svg", alt: "Flash Card"},
-//     {name: "learn",  src: "https://quizlet.com/static/achievements/badge-StudiedWithLearn.svg", alt: "Learn"},
-//     {name: "night-owl",  src: "https://quizlet.com/static/achievements/badge-NightOwl.svg", alt: "Night Owl"},
-//     {name: "early bird",  src: "https://quizlet.com/static/achievements/badge-EarlyBird.svg", alt: "Early Bird"},
-//     {name: "test",  src: "https://quizlet.com/static/achievements/badge-StudiedWithTest.svg", alt: "Test"},
-// ]
+  const selectAchievement = (achievement) => {
+    setSelectedAchievement(achievement);
+    toggle();
+  };
+
+  const achievements = [
+    {
+      src: "https://quizlet.com/static/achievements/badge-StudiedWithFlashcards.svg",
+      alt: "Flash Card",
+      title: "Flash Card",
+      subtitle: "21 tháng 4, 2023",
+      contentcard: "Get rewarded for learning with Flashcards for the first time!"
+    },
+    {
+      src: "https://quizlet.com/static/achievements/badge-StudiedWithLearn.svg",
+      alt: "Learn",
+      title: "Learn",
+      subtitle: "06 tháng 4, 2023",
+      contentcard: "Get rewarded for learning with Learn for the first time!"
+    },
+    {
+      src: "https://quizlet.com/static/achievements/badge-NightOwl.svg",
+      alt: "NightOwl",
+      title: "Night Owl",
+      subtitle: "23 tháng 8, 2023",
+      contentcard: "Get rewarded for learning with Night Owl for the first time!"
+    },
+    {
+      src: "https://quizlet.com/static/achievements/badge-EarlyBird.svg",
+      alt: "EarlyBird",
+      title: "Early Bird",
+      subtitle: "03 tháng 11, 2023",
+      contentcard: "Get rewarded for learning with Early Bird for the first time!"
+    },
+    {
+      src: "https://quizlet.com/static/achievements/badge-StudiedWithTest.svg",
+      alt: "Test",
+      title: "Test",
+      subtitle: "15 tháng 6, 2023",
+      contentcard: "Get rewarded for learning with Test for the first time!"
+    },
+  ];
 
   return (
     <Box>
@@ -116,70 +152,47 @@ const ProfileBody = () => {
         </CardBody>
       </Card>
 
-      <h4 className="mt-4 mb-2"><b>Studying</b></h4>
+      <h4 className="mt-4 mb-2">
+        <b>Studying</b>
+      </h4>
       <Card>
         <CardBody>
           <Row>
-            <Col className="text-center">
-              <img
-                src="https://quizlet.com/static/achievements/badge-StudiedWithFlashcards.svg"
-                alt="Flash Card"
-                onClick={toggle}
-                style={{ cursor: 'pointer' }}
-              />
-              <CardTitle>Flash Card</CardTitle>
-              <CardSubtitle>23 tháng 4, 2023</CardSubtitle>
-            </Col>
-            <Col className="text-center">
-              <img
-                src="https://quizlet.com/static/achievements/badge-StudiedWithLearn.svg"
-                alt="Learn"
-                onClick={toggle}
-                style={{ cursor: 'pointer' }}
-              />
-              <CardTitle>Learn</CardTitle>
-              <CardSubtitle>23 tháng 4, 2023</CardSubtitle>
-            </Col>
-            <Col className="text-center">
-              <img
-                src="https://quizlet.com/static/achievements/badge-NightOwl.svg"
-                alt="NightOwl"
-                onClick={toggle}
-                style={{ cursor: 'pointer' }}
-              />
-              <CardTitle>Night Owl</CardTitle>
-              <CardSubtitle>23 tháng 4, 2023</CardSubtitle>
-            </Col>
-            <Col className="text-center">
-              <img
-                src="https://quizlet.com/static/achievements/badge-EarlyBird.svg"
-                alt="EarlyBird"
-                onClick={toggle}
-                style={{ cursor: 'pointer' }}
-              />
-              <CardTitle>Early Bird</CardTitle>
-              <CardSubtitle>23 tháng 4, 2023</CardSubtitle>
-            </Col>
-            <Col className="text-center">
-              <img
-                src="https://quizlet.com/static/achievements/badge-StudiedWithTest.svg"
-                alt="Test"
-                onClick={toggle}
-                style={{ cursor: 'pointer' }}
-              />
-              <CardTitle>Test</CardTitle>
-              <CardSubtitle>23 tháng 4, 2023</CardSubtitle>
-            </Col>
+            {achievements.map((achievement, index) => (
+              <Col
+                key={index}
+                className="text-center"
+                style={{ cursor: "pointer" }}
+                onClick={() => selectAchievement(achievement)}
+              >
+                <img src={achievement.src} alt={achievement.alt} />
+                <CardTitle>{achievement.title}</CardTitle>
+                <CardSubtitle>{achievement.subtitle}</CardSubtitle>
+              </Col>
+            ))}
           </Row>
         </CardBody>
       </Card>
       <Modal isOpen={isOpen} toggle={toggle}>
         <ModalHeader toggle={toggle}>Thông báo</ModalHeader>
-        <ModalBody>
-          Bạn hãy cố gắng hoàn thành hết các thẻ học trong quizz nhé để nhận được huy hiệu
+        <ModalBody className="text-center">
+          {selectedAchievement && (
+            <>
+            <CardTitle><h3><b>{selectedAchievement.title}</b></h3></CardTitle>
+              <img
+                src={selectedAchievement.src}
+                alt={selectedAchievement.alt}
+              />
+              <CardSubtitle><h4><b>{selectedAchievement.subtitle}</b></h4></CardSubtitle>
+              <CardContent>{selectedAchievement.contentcard}</CardContent>
+            </>
+            
+          )}
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
         </ModalFooter>
       </Modal>
     </Box>
