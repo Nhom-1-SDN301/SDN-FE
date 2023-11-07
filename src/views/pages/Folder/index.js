@@ -33,7 +33,7 @@ const Folder = (id, numberOfTerms, author, title, description) => {
   const [editFolder, setEditFolder] = useState(null);
   
 
-  
+  console.log("123", author);
   useEffect(() => {
     handleFetch(5, page, search);
   }, [page], [search]);
@@ -73,10 +73,6 @@ const Folder = (id, numberOfTerms, author, title, description) => {
   const createNewFolder = () => {
     setShowCreateModal(false);
     setShowNewCard(true);
-  };
-  const handleRidirecToProfileOwner = (e) => {
-    e.stopPropagation();
-    console.log(`navigate to profile user id: ${author.id}`);
   };
 
   const handleEdit = async (folder) => {
