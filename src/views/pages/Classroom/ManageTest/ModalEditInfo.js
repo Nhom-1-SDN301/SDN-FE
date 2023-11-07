@@ -67,7 +67,9 @@ const ModalEditInfo = ({ open, setOpen, selectedTest, setData }) => {
             prev.map((t) => (t._id === data.data.test._id ? data.data.test : t))
           );
           setOpen(false);
-          toast.success(t("message.updateSuccess", { value: t("fieldName.test") }));
+          toast.success(
+            t("message.updateSuccess", { value: t("fieldName.test") })
+          );
         } else {
           toast.error(data?.message || t("error.unknow"));
         }
@@ -147,7 +149,7 @@ const ModalEditInfo = ({ open, setOpen, selectedTest, setData }) => {
               <span style={{ margin: "0 .5rem" }}>:</span>
               <InputNumber
                 id="basic-number-input"
-                value={test.time % 3600}
+                value={(test.time % 3600) / 60}
                 min={0}
                 max={60}
                 upHandler={<Plus />}
@@ -156,7 +158,7 @@ const ModalEditInfo = ({ open, setOpen, selectedTest, setData }) => {
                   setTest((prev) => {
                     return {
                       ...prev,
-                      time: Math.floor(test.time / 3600) * 3600 + e,
+                      time: Math.floor(test.time / 3600) * 3600 + e * 60,
                     };
                   })
                 }

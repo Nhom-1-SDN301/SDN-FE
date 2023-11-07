@@ -57,6 +57,9 @@ const Setting = lazy(() => import("../../views/pages/Setting/index"));
 const Profile = lazy(() => import("../../views/pages/Profile/index"));
 const Test = lazy(() => import("../../views/pages/Test/index"));
 const TestAttempt = lazy(() => import("../../views/pages/TestAttempt/index"));
+const ResetPassword = lazy(() =>
+  import("../../views/pages/ResetPassword/index")
+);
 
 // ** Merge Routes
 const useCustomRoutes = (user) => {
@@ -80,9 +83,15 @@ const useCustomRoutes = (user) => {
     },
     {
       path: "/folder",
-      element: <Folder />,
+      element: authorizedPage(<Folder />, [1, 2, 3]),
     },
-
+    {
+      path: "/reset-password/:token",
+      element: <ResetPassword />,
+      meta: {
+        layout: "blank",
+      },
+    },
     {
       path: "/folder/:inforFolder",
       element: <InfoFolder />,
@@ -156,8 +165,8 @@ const useCustomRoutes = (user) => {
       path: "/test-attempt/:testId",
       element: authorizedPage(<TestAttempt />, [1, 2, 3]),
       meta: {
-        layout: "blank"
-      }
+        layout: "blank",
+      },
     },
     {
       path: "/unauthorize",

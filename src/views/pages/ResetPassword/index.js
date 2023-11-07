@@ -1,5 +1,5 @@
 // ** React Imports
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 // ** Custom Hooks
 import { useSkin } from "@hooks/useSkin";
@@ -31,6 +31,9 @@ import "@styles/react/pages/page-authentication.scss";
 // ** I18n
 import { useTranslation } from "react-i18next";
 
+// ** Components
+import InputPasswordToggle from "@components/input-password-toggle";
+
 // ** Third libs
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -43,20 +46,60 @@ import { useState } from "react";
 // ** Apis
 import { authApi } from "../../../@core/api/quiz/authApi";
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
   // ** Hooks
   const { skin } = useSkin();
   const { t } = useTranslation();
+  const { token } = useParams();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const source = skin === "dark" ? illustrationsDark : illustrationsLight;
 
   const Schema = yup.object().shape({
-    email: yup
+    password: yup
       .string()
-      .email()
+      .min(8)
       .required(
-        t("validationMessage.required", { field: t("fieldName.email") })
+        t("validationMessage.required", { field: t("fieldName.newPassword") })
+      )
+      .test(
+        "Oke",
+        t("validationMessage.passwordValidate_1"),
+        (value, context) => {
+          const hasUpperCase = /[A-Z]/.test(value);
+          const hasLowerCase = /[a-z]/.test(value);
+          const hasNumber = /[0-9]/.test(value);
+          const hasSymbole = /[!@#%&]/.test(value);
+
+          let validCondition = 0;
+          const numberOfMustBeValidConditions = 3;
+          const conditions = [
+            hasUpperCase,
+            hasLowerCase,
+            hasNumber,
+            hasSymbole,
+          ];
+
+          conditions.forEach((condition) =>
+            condition ? validCondition++ : null
+          );
+
+          if (validCondition >= numberOfMustBeValidConditions) return true;
+
+          return false;
+        }
+      ),
+    confirmPassword: yup
+      .string()
+      .required(
+        t("validationMessage.required", {
+          field: t("fieldName.confirmPassword"),
+        })
+      )
+      .oneOf(
+        [yup.ref("password"), null],
+        t("validationMessage.notMatch", { field: t("fieldName.password") })
       ),
   });
 
@@ -73,16 +116,17 @@ const ForgotPassword = () => {
   const onSubmit = (data) => {
     setLoading(true);
     authApi
-      .verifyResetPassword({ email: data.email })
+      .resetPassword({ password: data.password, token })
       .then(({ data }) => {
         if (data.isSuccess) {
-          toast.success(t("message.sendedLinkResetPassword"))
+          toast.success(t("message.resetPasswordSuccess"));
+          navigate("/login");
         } else {
           toast.error(data.message || t("error.unknow"));
         }
       })
       .catch((err) => {
-        toast.error(err?.message || t("error.unknow"));
+        toast.error(err.message || t("error.unknow"));
       })
       .finally(() => {
         setLoading(false);
@@ -92,7 +136,11 @@ const ForgotPassword = () => {
   return (
     <div className="auth-wrapper auth-cover">
       <Row className="auth-inner m-0">
-        <Link className="brand-logo" to="/home">
+        <Link
+          className="brand-logo"
+          to="/home"
+          onClick={(e) => e.preventDefault()}
+        >
           <svg viewBox="0 0 139 95" version="1.1" height="28">
             <defs>
               <linearGradient
@@ -173,33 +221,51 @@ const ForgotPassword = () => {
         >
           <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
             <CardTitle tag="h2" className="fw-bold mb-1">
-              {t("common.forgotPassword")} 🔒
+              {t("fieldName.resetPassword")} 🔒
             </CardTitle>
-            <CardText className="mb-2">{t("message.forgotPassword")}</CardText>
             <Form
               className="auth-forgot-password-form mt-2"
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="mb-1">
-                <Label className="form-label" for="email">
-                  Email
+                <Label className="form-label" for="new-password">
+                  {t("fieldName.newPassword")}
                 </Label>
                 <Controller
-                  name="email"
+                  name="password"
                   control={control}
                   render={({ field }) => (
-                    <Input
-                      type="email"
-                      id="email"
-                      placeholder="john@example.com"
-                      invalid={errors.email && true}
+                    <InputPasswordToggle
+                      id="new-password"
+                      invalid={errors.password && true}
                       {...field}
                     />
                   )}
                 />
-                {errors.email && (
+                {errors.password && (
                   <FormFeedback className="text-danger">
-                    {errors.email.message}
+                    {errors.password.message}
+                  </FormFeedback>
+                )}
+              </div>
+              <div className="mb-1">
+                <Label className="form-label" for="confirm-new-password">
+                  {t("fieldName.confirmNewPassword")}
+                </Label>
+                <Controller
+                  name="confirmPassword"
+                  control={control}
+                  render={({ field }) => (
+                    <InputPasswordToggle
+                      id="confirm-new-password"
+                      invalid={errors.confirmPassword && true}
+                      {...field}
+                    />
+                  )}
+                />
+                {errors.confirmPassword && (
+                  <FormFeedback className="text-danger">
+                    {errors.confirmPassword.message}
                   </FormFeedback>
                 )}
               </div>
@@ -209,17 +275,9 @@ const ForgotPassword = () => {
                     style={{ width: 16, height: 16, marginRight: ".5rem" }}
                   />
                 )}
-                {t("fieldName.sendLinkResetPassword")}
+                {t("fieldName.resetPassword")}
               </Button>
             </Form>
-            <p className="text-center mt-2">
-              <Link to="/login">
-                <ChevronLeft className="rotate-rtl me-25" size={14} />
-                <span className="align-middle">
-                  {t("fieldName.backToLogin")}
-                </span>
-              </Link>
-            </p>
           </Col>
         </Col>
       </Row>
@@ -227,4 +285,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

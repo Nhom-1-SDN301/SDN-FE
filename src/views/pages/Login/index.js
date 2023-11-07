@@ -277,7 +277,7 @@ const Login = () => {
   return (
     <div className="auth-wrapper auth-cover">
       <Row className="auth-inner m-0">
-        <Link className="brand-logo" to="/" onClick={(e) => e.preventDefault()}>
+        <Link className="brand-logo" to="/home">
           <svg viewBox="0 0 139 95" version="1.1" height="28">
             <defs>
               <linearGradient

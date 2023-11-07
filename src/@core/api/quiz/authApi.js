@@ -11,4 +11,30 @@ export const authApi = {
     axiosClient.patch(`${QUIZ_API_URL}/auth/password`, data),
   thirdPartyLogin: (data) =>
     axiosClient.post(`${QUIZ_API_URL}/auth/login-third-party`, data),
+  verifyResetPassword: ({ email }) => {
+    return axiosClient.post(
+      `${QUIZ_API_URL}/auth/reset-password`,
+      { email },
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  },
+  resetPassword: ({ password, token }) => {
+    return axiosClient.post(
+      `${QUIZ_API_URL}/auth/reset-password/${token}`,
+      {
+        password,
+      },
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  },
 };

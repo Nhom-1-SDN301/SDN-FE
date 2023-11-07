@@ -34,6 +34,13 @@ const MySwal = withReactContent(Swal);
  *
  * [{questionId: id, choices: [answerId]}]
  */
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
 
 const TestAttempt = () => {
   // ** Hooks
@@ -56,7 +63,11 @@ const TestAttempt = () => {
 
   useEffect(() => {
     const handleBlur = () => {
-      console.log("submit");
+      if (test?._id)
+        submitTest({
+          doTime: (new Date().valueOf() - initTime) / 1000,
+          testId: test._id,
+        });
     };
 
     window.addEventListener("blur", handleBlur);
@@ -64,7 +75,7 @@ const TestAttempt = () => {
     return () => {
       window.removeEventListener("blur", handleBlur);
     };
-  }, []);
+  }, [test?._id]);
 
   // ** Handler
   const fetchTest = ({ testId }) => {
@@ -75,7 +86,7 @@ const TestAttempt = () => {
           const { questions, ...test } = data.data.test;
 
           setTest(test);
-          setQuestions(questions);
+          setQuestions(shuffleArray(questions));
           setUserChoices(
             questions.map((question) => ({
               questionId: question._id,
@@ -108,16 +119,19 @@ const TestAttempt = () => {
       buttonsStyling: false,
     }).then(({ isConfirmed }) => {
       if (isConfirmed) {
-        submitTest({ doTime: (new Date().valueOf() - initTime) / 1000 });
+        submitTest({
+          doTime: (new Date().valueOf() - initTime) / 1000,
+          testId: test._id,
+        });
       }
     });
   };
 
-  const submitTest = ({ doTime }) => {
+  const submitTest = ({ doTime, testId }) => {
     setLoadingSubmit(true);
     testApi
       .submitTest({
-        testId: test._id,
+        testId,
         data: {
           userChoices,
           doTime: Number.parseInt(doTime),
@@ -158,6 +172,7 @@ const TestAttempt = () => {
                     <ProgressTime
                       initTime={test?.time}
                       submitTest={submitTest}
+                      testId={test._id}
                     />
                   </CardBody>
                 </Card>

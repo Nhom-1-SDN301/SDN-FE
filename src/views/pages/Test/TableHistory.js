@@ -2,10 +2,18 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Table } from "reactstrap";
+import { useState } from "react";
+
+// ** Components
+import ModalDetailHistory from "./ModalDetailHistory";
+
+// ** Utils
+import { formatDateISOToDDMMYYY_HHMM } from '../../../utility/Utils';
 
 const TableHistory = ({ testsHistory }) => {
   // ** Hooks
   const { t } = useTranslation();
+  const [selected, setSelected] = useState(null);
 
   const isCorrectQuestion = ({ question }) => {
     let isCorrect = false;
@@ -34,7 +42,7 @@ const TableHistory = ({ testsHistory }) => {
       }
     }
 
-    return `${totalCorrect}/${history.questions.length}`;
+    return totalCorrect;
   };
 
   return (
@@ -47,7 +55,9 @@ const TableHistory = ({ testsHistory }) => {
           <tr>
             <th className="text-center">{t("fieldName.attempt")}</th>
             <th className="text-center">State</th>
+            <th className="text-center">Question</th>
             <th className="text-center">Mark</th>
+            <th className="text-center">Date</th>
             <th className="text-center">Review</th>
           </tr>
         </thead>
@@ -61,15 +71,33 @@ const TableHistory = ({ testsHistory }) => {
                 {"Submited"}
               </td>
               <td style={{ background: "transparent" }} className="text-center">
-                {calMark({ history })}
+                {`${calMark({ history })}/${history.questions.length}`}
               </td>
               <td style={{ background: "transparent" }} className="text-center">
-                <Link to={"#"}>Review</Link>
+                {(
+                  (calMark({ history }) / history.questions.length) *
+                  10
+                ).toFixed(2)}
+              </td>
+              <td style={{ background: "transparent" }} className="text-center">
+                {formatDateISOToDDMMYYY_HHMM(history.createdAt)}
+              </td>
+              <td style={{ background: "transparent" }} className="text-center">
+                <Link to={"#"} onClick={() => setSelected(history)}>
+                  Review
+                </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
+
+      {/* Modal */}
+      <ModalDetailHistory
+        selectedTestHistory={selected}
+        setSelectedTestHistory={setSelected}
+        isCorrectQuestion={isCorrectQuestion}
+      />
     </div>
   );
 };

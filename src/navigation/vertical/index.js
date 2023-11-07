@@ -71,6 +71,8 @@ const getMenuData = ({ t }) => [
     title: t("fieldName.folder"),
     icon: <Folder size={20} />,
     navLink: "/folder",
+    authorization: true,
+    can: [1, 2, 3],
   },
 ];
 
