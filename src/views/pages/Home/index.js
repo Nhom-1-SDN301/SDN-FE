@@ -110,13 +110,7 @@ const Home = () => {
             </Row>
             <Row style={{ paddingRight: 0 }}>
               <CardTerm />
-              <CardTerm />
-              <CardTerm />
-              <CardTerm />
-              <CardTerm />
-              <CardTerm />
-              <CardTerm />
-              <CardTerm />
+          
             </Row>
 
             <Card>
