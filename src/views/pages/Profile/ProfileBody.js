@@ -15,6 +15,7 @@ import {
   Col, 
   Row
 } from "reactstrap";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Information from "./Information";
 import Course from "./Course";
 import { Box } from "@mui/material";
@@ -64,6 +65,20 @@ const ProfileBody = () => {
   const [showAll, setShowAll] = useState(false);
   const displayedStreaks = showAll ? Streaks : Streaks.slice(0, 4);
 
+  // set modal Streaks
+  const [isModalOpenStreaks, setIsModalOpenStreaks] = useState(false);
+  const [selectedStreak, setSelectedStreak] = useState(null);
+
+  const openModal = (streak) => {
+    setSelectedStreak(streak);
+    setIsModalOpenStreaks(true); 
+  };
+
+  const closeModal = () => {
+    setIsModalOpenStreaks(false);
+    setSelectedStreak(null);
+  };
+
   const weeklyStreaks = [
     {name: "3-week streak", image:"	https://quizlet.com/static/achievements/badge-Week.svg", time:"Earned 08/08/22", number:"3"},
     {name: "5-week streak", image:"	https://quizlet.com/static/achievements/badge-Week.svg", time:"Earned 03/10/22", number:"5"},
@@ -85,6 +100,20 @@ const ProfileBody = () => {
 
   const [showAllStreak, setShowAllStreak] = useState(false);
   const displayedWeeklyStreaks = showAllStreak ? weeklyStreaks : weeklyStreaks.slice(0, 4);
+
+  // set modal weeklyStreaks
+  const [isModalOpenWeeklyStreaks, setIsModalOpenWeeklyStreaks] = useState(false);
+  const [selectedWeeklyStreaks, setSelectedWeeklyStreaks] = useState(null);
+
+  const openModalWeeklyStreaks = (weeklyStreaks) => {
+    setSelectedWeeklyStreaks(weeklyStreaks);
+    setIsModalOpenWeeklyStreaks(true); 
+  };
+
+  const closeModalWeeklyStreaks = () => {
+    setIsModalOpenWeeklyStreaks(false);
+    setSelectedWeeklyStreaks(null);
+  };
 
 
   const studied = [
@@ -130,6 +159,7 @@ const ProfileBody = () => {
   const [showAllRoundStudied, setShowAllRoundStudied] = useState(false);
   const displayedRoundStudied = showAllRoundStudied ? roundStudied : roundStudied.slice(0, 4);
 
+  
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -190,7 +220,7 @@ const ProfileBody = () => {
           <Row>
               {
                 displayedStreaks.map((streak, index) => (
-                  <Col className="text-center mt-3" lg="3" md="6" key={index}>
+                  <Col className="text-center mt-3" lg="3" md="6" key={index} onClick={() => openModal(streak)}>
                     <div style={{ position: "relative" }}>
                       <img src={streak?.image} alt={streak?.name} />
                       <span
@@ -225,32 +255,71 @@ const ProfileBody = () => {
             </div>
           </Row>
 
+          {/* modal Streaks*/}
+
+          <Modal isOpen={isModalOpenStreaks} toggle={closeModal}>
+            <ModalHeader>{selectedStreak?.name}</ModalHeader>
+            <ModalBody 
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',}}
+              >
+              <div style={{ position: "relative" }}>
+                <img src={selectedStreak?.image} alt={selectedStreak?.name} />
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    color: "black",
+                    fontWeight: "bolder",
+                    fontSize: "x-large",
+                  }}
+                >
+                  {selectedStreak?.number}
+                </span>
+              </div>
+              <CardTitle>{selectedStreak?.name}</CardTitle>
+              <CardSubtitle>{selectedStreak?.time}</CardSubtitle>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="secondary" onClick={closeModal}>
+                Close
+              </Button>
+            </ModalFooter>
+          </Modal>
+
+          {/* ------------ */}
+
           <h4 className="mb-2" style={{marginTop:"5rem"}}>Weekly streaks</h4>
           <Row>
-              {
-                displayedWeeklyStreaks.map((weeklyStreak, index) => (
-                  <Col className="text-center mt-3" lg="3" md="6" key={index}>
-                    <div style={{ position: "relative" }}>
-                      <img src={weeklyStreak?.image} alt={weeklyStreak?.name} />
-                      <span
-                        style={{
-                          position: "absolute",
-                          top: "50%",
-                          left: "50%",
-                          transform: "translate(-50%, -50%)",
-                          color:"black", 
-                          fontWeight:"bolder", 
-                          fontSize:"x-large"
-                        }}
-                      >
-                        {weeklyStreak?.number}
-                      </span>
-                    </div>
-                    <CardTitle>{weeklyStreak?.name}</CardTitle>
-                    <CardSubtitle>{weeklyStreak?.time}</CardSubtitle>
-                  </Col>
-                ))
-              }
+          {
+              displayedWeeklyStreaks.map((weeklyStreak, index) => (
+                <Col className="text-center mt-3" lg="3" md="6" key={index} onClick={() => openModalWeeklyStreaks(weeklyStreak)}>
+                  <div style={{ position: "relative" }}>
+                    <img src={weeklyStreak?.image} alt={weeklyStreak?.name} />
+                    <span
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        color: "black",
+                        fontWeight: "bolder",
+                        fontSize: "x-large",
+                      }}
+                    >
+                      {weeklyStreak?.number}
+                    </span>
+                  </div>
+                  <CardTitle>{weeklyStreak?.name}</CardTitle>
+                  <CardSubtitle>{weeklyStreak?.time}</CardSubtitle>
+                </Col>
+              ))
+            }
           </Row>
           <Row className="text-center mt-3">
             <div className="d-flex justify-content-center">
@@ -265,6 +334,46 @@ const ProfileBody = () => {
           </Row>
         </CardBody>
       </Card>
+
+      {/* modal weekly Streaks*/}
+
+      <Modal isOpen={isModalOpenWeeklyStreaks} toggle={closeModalWeeklyStreaks}>
+          <ModalHeader>{selectedWeeklyStreaks?.name}</ModalHeader>
+            <ModalBody 
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+              }}
+            >
+              <div style={{ position: "relative" }}>
+                <img src={selectedWeeklyStreaks?.image} alt={selectedWeeklyStreaks?.name} />
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    color: "black",
+                    fontWeight: "bolder",
+                    fontSize: "x-large",
+                  }}
+                >
+                  {selectedWeeklyStreaks?.number}
+                </span>
+              </div>
+              <CardTitle>{selectedWeeklyStreaks?.name}</CardTitle>
+              <CardSubtitle>{selectedWeeklyStreaks?.time}</CardSubtitle>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="secondary" onClick={closeModalWeeklyStreaks}>
+                Close
+              </Button>
+            </ModalFooter>
+          </Modal>
+
+          {/* ------------ */}
 
       <h4 className="mb-2 fw-bolder" style={{marginTop:"6rem"}}>Lifetime</h4>
       <Card className="p-4">
