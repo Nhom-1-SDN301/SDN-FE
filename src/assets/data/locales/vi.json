@@ -24,6 +24,33 @@
     "add": "Thêm",
     "studySetLinkReport": "Đường dẫn tới học phần",
     "here": "Đây",
+    "updateFeatures": "Hãy thử các tính năng cập nhật này",
+    "replyTo": "Trả lời",
+    "upload": "Tải lên",
+    "sendEmail": "Gửi Email",
+    "doTest": "Làm bài kiểm tra",
+    "timeLimits": "Thời gian giới hạn",
+    "timeLimit":"Thời gian làm bài giới hạn",
+    "numberOfQuestion":"Số câu hỏi",
+    "creater":"Người tạo",
+    "testHistoryTitle":"Lịch sử kiểm tra",
+    "startAttempt":"Bắt đầu",
+    "disabled":"Vô hiệu hóa",
+    "remove": "Xóa",
+    "editInfo":"Chỉnh sửa thông tin",
+    "editQuestions":"Chỉnh sửa câu hỏi",
+    "editValue": "Chỉnh sửa {{value}}",
+    "questionRequired": "Yêu cầu câu hỏi",
+    "questionRequirment1":"Câu hỏi không được vượt quá 1000 ký tự và chứa tối đa 1 ảnh",
+    "questionRequirment2": "Mỗi câu hỏi chỉ có thể có từ 2 đến 4 câu trả lời",
+    "question": "Câu hỏi",
+    "content" :"Nội dung",
+    "totalQuestions":"Tổng số câu hỏi",
+    "questionType":"Loại câu hỏi",
+    "timeLeft": "Thời gian còn lại",
+    "timeOut": "Hết thời gian",
+    "done": "Đã xong",
+    "forgotPassword": "Quên mật khẩu?",
     "placeholder": {
       "ratingStudySet": "Học phần rất bổ ích",
       "createStudySetTitle": "Hoa quả...",
@@ -36,7 +63,8 @@
       "enterDefinition": "Nhập định nghĩa",
       "enterComment": "Nhập bình luận",
       "createFolderDescription": "Mô tả thư mục",
-      "createFolderTitle": "Tiêu đề thư mục"
+      "createFolderTitle": "Tiêu đề thư mục",
+      "postClass" : "Thông báo tới lớp học của bạn"
     },
     "reports": {
       "inacurrateInfomation": "Chứa thông tin không chính xác",
@@ -51,12 +79,25 @@
       "createFolderDescription": "Mô tả thư mục",
       "createFolderTitle": "Tiêu đề thư mục",
       "searchWithEmail": "...@domain.com"
+    },
+    "classroom":{
+      "sendEmail": "Gửi Email",
+      "removeFromClass": "Xóa khỏi lớp học",
+      "canComment": "Có thể bình luận",
+      "canPost": "Có thể đăng",
+      "canManageTest": "Có thể quản lý kiểm tra",
+      "canDoTest": "Có thể làm bài kiểm tra",
+      "singleChoice" : "Lựa chọn duy nhất",
+      "multipleChoice": "Nhiều lựa chọn"
     }
   },
   "fieldName": {
     "email": "Email",
     "password": "Mật khẩu",
+    "currentPassword":"Mật khẩu hiện tại",
+    "newPassword":"Mật khẩu mới",
     "confirmPassword": "Xác nhận mật khẩu",
+    "confirmNewPassword":"Xác nhận mật khẩu mới",
     "fullName": "Họ tên",
     "gender": "Giới tính",
     "male": "Nam",
@@ -121,7 +162,57 @@
     "copy": "Sao chép",
     "account": "Tài khoản",
     "security": "Bảo mật",
-    "provider": "Nhà cung cấp"
+    "provider": "Nhà cung cấp",
+    "profile" : "Hồ sơ",
+    "layout" : "Bố cục",
+    "successfully": "Thành công",
+    "createClass" : "Tạo lớp",
+    "joinClass": "Tham gia vào lớp học",
+    "className": "Tên lớp",
+    "teaching": "Dạy học",
+    "enrolled": "Đã tham gia",
+    "filter":"Lọc",
+    "add":"Thêm",
+    "unenrol":"Hủy tham gia",
+    "classCode":"Mã lớp học",
+    "stream": "Bảng tin",
+    "test":"Kiểm tra",
+    "people":"Thành viên",
+    "post": "Bài viết",
+    "reset":"Tải lại",
+    "turnOff": "Tắt",
+    "comments":"Bình luận",
+    "addComment":"Thêm bình luận",
+    "postComment":"Đăng bình luận",
+    "confirm":"Xác nhận",
+    "enable":"Cho phép",
+    "picture":"Hình ảnh",
+    "class":"Lớp",
+    "permission":"Cho phép",
+    "members":"Thành viên",
+    "subject":"Môn học",
+    "message":"Tin nhắn",
+    "attemptQuiz":"Kiểm tra thử",
+    "attempt":"Lượt thử",
+    "manageTest":"Quản lý kiểm tra",
+    "creater":"Người tạo",
+    "questions":"Câu hỏi",
+    "isActive":"Đang hoạt động",
+    "endAt":"Kết thúc tại",
+    "actions":"Hành động",
+    "import":"Thêm vào",
+    "downloadSample":"Tải mẫu",
+    "upload":"Tải lên",
+    "uploadImage":"Tải ảnh lên",
+    "numberOfAnswers":"Số câu trả lời",
+    "remove":"Xóa",
+    "question":"Câu hỏi",
+    "limitTimesDoTest":"Thời gian kiểm tra giới hạn",
+    "time":"Thời gian",
+    "publicTest":"Kiểm tra công khai",
+    "sendedLinkResetPassword":"Gửi đường dẫn đặt lại mật khẩu",
+    "backToLogin":"Quay về màn hình đăng nhập",
+    "resetPassword":"Đặt lại mật khẩu"
   },
   "message": {
     "welcomeTo": "Chào mừng đến",
@@ -142,13 +233,35 @@
     "updateStatusUserSuccess": "Cập nhật trạng thái thành công người dùng {{email}}",
     "requiredOptionReportStudySet": "Vui lòng chọn ít nhất 1 lý do để báo cáo",
     "reportStudySetSuccess": "Báo cáo học phần thành công, bạn có thể xem lịch sử báo cáo tại",
-    "softDeleteMessageText": "{{value}} sẽ tạm thời bị xóa"
+    "softDeleteMessageText": "{{value}} sẽ tạm thời bị xóa",
+    "imageLessThanOrEqual":"Kích thước hình ảnh phải nhỏ hơn hoặc bằng {{value}}MB",
+    "greaterThan":"{{field}} phải lớn hơn {{value}}",
+    "addClassToStart":"Thêm một lớp học để bắt đầu",
+    "messageClassCodeJoin":"Hỏi giáo viên mã lớp học của bạn, sau đó nhập vào đây",
+    "joinClassSuccess":"Tham gia lớp học thành công",
+    "showComments":"Hiển thị {{value}} bình luận",
+    "hideComments":"Ẩn bình luận",
+    "copiedToClipboard":"Sao chép vào bộ nhớ tạm!",
+    "resetInviteCodeSuccess":"Đặt lại mã cho lời mời thành công",
+    "turnOffInviteCode":"Thao tác này sẽ xóa mã lớp và liên kết mời lớp cho lớp này. Bạn có thể tạo mã mới cũng như liên kết mới cho lời mời tham gia lớp học trong cài đặt lớp học của mình.",
+    "turnOffInviteCodeSuccess":"Hủy lời mời thành công",
+    "turnOnInviteCodeSuccess":"Tạo mã mời thành công",
+    "sendEmailSuccess":"Gửi email cho thành viên thành công!",
+    "startAttempt":"Bài kiểm tra có giới hạn thời gian là {{value}}. Thời gian sẽ đếm ngược kể từ thời điểm bạn bắt đầu thi và bạn phải nộp trước khi hết hạn. Bạn có chắc chắn muốn bắt đầu ngay bây giờ không?",
+    "questionRequired":"Mỗi câu hỏi cần có ít nhất một nội dung hoặc 1 hình ảnh",
+    "answerRequired1Correct": "Câu hỏi phải có ít nhất 1 câu trả lời đúng",
+    "acceptPrivacy": "Vui lòng chấp nhận chính sách quyền riêng tư và các điều khoản trong tài khoản của bạn",
+    "forgotPassword": "Nhập email của bạn và chúng tôi sẽ gửi cho bạn hướng dẫn để đặt lại mật khẩu của bạn",
+    "sendedLinkResetPassword": "Link đổi mật khẩu đã được gửi tới email của bạn",
+    "resetPasswordSuccess": "Đặt lại mật khẩu thành công"
   },
   "validationMessage": {
     "required": "{{field}} là bắt buộc",
     "minLength": "{{field}} phải lơn hơn {{value}} ký tự.",
     "maxLength": "{{field}} không được quá {{value}} ký tự.",
-    "duplicated": "{{field}} bị trùng lặp"
+    "duplicated": "{{field}} bị trùng lặp",
+    "passwordValidate_1": "Mật khẩu phải chứa ít nhất một ký tự chữ hoa, một ký tự chữ thường và một ký hiệu",
+    "notMatch": "{{field}} không khớp"
   },
   "title": {
     "loginDescription": "Vui lòng đăng nhập vào tài khoản của bạn và bắt đầu cuộc phiêu lưu",
@@ -157,11 +270,23 @@
     "termInThisSet": "Số thẻ trong học phần",
     "peopleReviews": "Đánh giá của mọi người",
     "createStudySet": "Tạo học phần",
+    "createNewFolder":"Tạo mới thư mục",
     "shareStudySet": "Chia sẻ học phần với bạn bè",
     "filters": "Lọc",
     "reportStudySet": "Báo cáo học phần",
     "whyReportStudySet": "Tại sao bạn lại báo cáo học phần này?",
-    "editFolder": "Chỉnh sửa thư mục"
+    "editFolder": "Chỉnh sửa thư mục",
+    "joinClass": "Tham gia vào lớp học",
+    "classCode": "Mã lớp học",
+    "classCodeDisabled": "Mã lớp học vô hiệu hóa",
+    "turnOffInviteCode": "Tắt lời mời mã tham gia",
+    "customiseAppearance": "Tùy chỉnh ngoại hình",
+    "classmates": "Thành viên trong lớp",
+    "teacher": "Giáo viên",
+    "permission": "Cho phép",
+    "manageTest": "Quản lý kiểm tra",
+    "editTestInfo": "Chỉnh sửa thông tin bài kiểm tra",
+    "addQuestion": "Thêm câu hỏi"
   },
   "error": {
     "unknown": "Xảy ra lỗi không xác định được. Vui lòng thử lại sau!"
@@ -181,5 +306,93 @@
     "profileSettings": "Cài đặt hồ sơ",
     "profileDetails": "Chi tiết hồ sơ",
     "setting": "Setting"
-  }
+  },
+"btn_homePage":{
+  "readOutImpactReport": "Đọc báo cáo tác động"
+},
+"title_homePage": {
+  "aboutQuizRoom": "Giới thiệu về Quizroom",
+  "makingEveryStudentUnstoppable": "Làm cho tất cả học sinh không thể dừng lại",
+  "makingEveryStudentUnstoppable_DetailFirst": "Tại Quizroom, chúng tôi tin rằng bất kỳ ai cũng có thể học được bất cứ điều gì. Tất cả những gì cần là một tinh thần bền bỉ, sự hướng dẫn đúng đắn và các công cụ để vượt qua. Chúng tôi biết rằng sinh viên đang chịu nhiều áp lực hơn bao giờ hết. Nó có thể khiến họ choáng ngợp, gây lo lắng và khiến mọi việc trở nên quá dễ dàng để kiệt sức.",
+  "makingEveryStudentUnstoppable_DetailSecond": "Nhiệm vụ của chúng ta là cung cấp cho mỗi học sinh những công cụ và sự tự tin để thành công, bất kể động cơ của chúng là gì hay chúng đang phấn đấu để đạt được điều gì.",
+  "fromSingleClassroomToSchools": "Từ một lớp học duy nhất đến các trường học trên khắp thế giới",
+  "fromSingleClassroomToSchools_Detail": "Những gì bắt đầu như một công cụ đơn giản đã phát triển thành bảy phương thức học tập khác nhau, các công cụ giúp giáo viên tận dụng tối đa học sinh của mình và các hoạt động giúp cả lớp học tập và vui chơi cùng nhau. Và đó mới chỉ là sự khởi đầu. Chúng tôi đang nỗ lực tận dụng sự kỳ diệu của phương pháp học tập từng người một cho mọi học sinh, định hình tương lai của phương pháp học tập được cá nhân hóa thông qua một trợ lý giúp hướng dẫn và động viên mọi người học."
+},
+"slider_homePage": {
+  "Recent_press": "Báo chí gần đây"
+},
+"ourPartners_homePage": {
+  "ourPartners": "Cộng sự của chúng tôi"
+},
+"quote_homePage": {
+  "quote1": "Quizroom làm cho việc học tập trở nên dễ dàng! Không còn đống thẻ flashcard khổng lồ, không còn ghi chú bị thất lạc. Tôi rất biết ơn tôi đã tìm thấy công cụ nghiên cứu này!",
+  "quote2": "Tôi có xu hướng trì hoãn việc học để chuẩn bị cho các bài kiểm tra, nếu tôi có học chút nào. Sử dụng Quizroom đã giúp tôi thực sự muốn học vì nó đã được chứng minh là thành công trong việc giúp tôi chuẩn bị cho các bài kiểm tra.",
+  "quote3": "TÔI YÊU QUIZROOM!! Nó thực sự giúp tôi đảm bảo rằng tôi có một phương pháp học tập tương tác giúp tôi không cảm thấy nhàm chán."
+},
+"aboutUs_Footer": {
+  "aboutUs": "Thông tin về chúng tôi",
+  "aboutQuizroom": "Thông tin về Quizroom",
+  "careers": "Nghề nghiệp",
+  "AdvertiseWithUs": "Quảng cáo với chúng tôi",
+  "GetTheApp": "Tải ứng dụng"
+},
+"forStudents_Footer": {
+  "forStudents": "Dành cho học sinh",
+  "flashcards": "Flashcards",
+  "test": "Kiểm tra",
+  "learn": "Học",
+  "solutions": "Giải pháp",
+  "Q_chat": "Q-chat"
+},
+"forTeachers_Footer": {
+  "forTeachers": "Dành cho giáo viên",
+  "live": "Trực tiếp",
+  "checkPoint": "Đích đến",
+  "blog": "blog"
+},
+"resources_Footer": {
+  "resources": "Tài nguyên",
+  "helpCentre": "Trung tâm hỗ trợ",
+  "honourCode": "Mã danh dự",
+  "communityGuide": "Hướng dẫn cộng đồng",
+  "privacy": "Chính sách bảo mật",
+  "terms": "Điều kiện",
+  "adAndCookiePolicy": "Chính sách quảng cáo và cookie"
+},
+"language_Footer": {
+  "languages": "Ngôn ngữ",
+  "english": "Tiếng Anh (UK)",
+  "vietnamese": "Tiếng Việt (VN)"
+},
+"advantages_homePage": {
+  "advantages": "Ưu điểm của Quizroom",
+  "vastContentLibrary": "Thư viện nội dung rộng lớn",
+  "vastContentLibrary_content": "Tự hào có một thư viện rộng lớn gồm các tài liệu học tập do người dùng tạo, bao gồm thẻ nhớ, câu đố và bộ học tập, bao gồm nhiều chủ đề và chủ đề khác nhau.",
+  "customizable_Flashcards": "Flashcards có thể tùy chỉnh",
+  "customizable_Flashcards_content": "Người dùng có thể tạo thẻ ghi chú của riêng mình bằng văn bản, hình ảnh và âm thanh, điều chỉnh tài liệu học tập theo nhu cầu cụ thể của họ.",
+  "collaborative_Learning": "Học tập có tính hợp tác",
+  "collaborative_Learning_content": "Người dùng có thể cộng tác với các bạn cùng lớp và giáo viên bằng cách chia sẻ các học phần, nuôi dưỡng ý thức cộng đồng trong học tập.",
+  "effective_Study_Strategies": "Chiến lược học tập hiệu quả",
+  "effective_Study_Strategies_content": "Quizroom khuyến khích việc ghi nhớ tích cực, lặp lại cách quãng và các kỹ thuật nghiên cứu dựa trên nghiên cứu khác."
+},
+"contactUs_homePage": {
+  "contactUs": "Liên hệ với chúng tôi",
+  "contactUs_content": "Chúng tôi ở đây để đảm bảo bạn có trải nghiệm học tập tốt nhất.",
+  "phone": "Số điện thoại",
+  "location": "Địa chỉ",
+  "call_us": "Gọi cho chúng tôi",
+  "location_upper": "ĐỊA CHỈ",
+  "hours": "GIỜ"
+},
+"updateFeatures_homePage": {
+  "title1": "Tối ưu hóa tìm kiếm",
+  "content1": "Tìm flashcards về bất kỳ chủ đề nào bạn cần học",
+  "title2": "Cải thiện hiệu quả về việc học",
+  "content2": "Học với các câu hỏi được cải thiện, khả năng kiểm soát và gợi ý nhiều hơn",
+  "title3": "Hãy sẵn sàng cho kỳ thi của bạn",
+  "content3": "Chế độ kiểm tra với các gợi ý và hướng dẫn học tập được tăng cường bởi AI",
+  "weekStreak": "chuỗi 4 tuần",
+  "weekStreak_content": "hãy học trong 7 ngày tới để duy trì thành tích của bạn!"
 }
+}
+
