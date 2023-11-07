@@ -87,6 +87,50 @@ const ProfileBody = () => {
   const displayedWeeklyStreaks = showAllStreak ? weeklyStreaks : weeklyStreaks.slice(0, 4);
 
 
+  const studied = [
+    {name: "Studied first set", image:"	https://quizlet.com/static/achievements/badge-SetsStudied.svg", time:"Earned 09/12/22", number:"1"},
+    {name: "3 sets studied", image:"	https://quizlet.com/static/achievements/badge-SetsStudied.svg", time:"Earned 28/12/22", number:"3"},
+    {name: "5 sets studied", image:"	https://quizlet.com/static/achievements/badge-SetsStudied.svg", time:"Earned 28/12/22", number:"5"},
+    {name: "10 sets studied", image:"	https://quizlet.com/static/achievements/badge-SetsStudied.svg", time:"Earned 14/01/23", number:"10"},
+    {name: "25 sets studied", image:"	https://quizlet.com/static/achievements/badge-SetsStudied.svg", time:"Earned 14/02/23", number:"25"},
+    {name: "50 sets studied", image:"	https://quizlet.com/static/achievements/badge-SetsStudied.svg", time:"Earned 21/04/23", number:"50"},
+    {name: "75 sets studied", image:"	https://quizlet.com/static/achievements/badge-SetsStudied.svg", time:"Earned 22/09/23", number:"75"},
+    {name: "100 sets studied", image:"https://quizlet.com/static/achievements/badge-SetsStudied.svg", time:"Earned 06/11/23", number:"100"},
+    {name: "150 sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"150"},
+    {name: "250 sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"250"},
+    {name: "300 sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"300"},
+    {name: "400 sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"400"},
+    {name: "450 sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"450"},
+    {name: "500 sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"500"},
+    {name: "700 sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"700"},
+    {name: "900 sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"900"},
+    {name: "1k sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"1k"},
+    {name: "2k sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"2k"},
+    {name: "2.5k sets studied", image:"https://quizlet.com/static/achievements/locked-badge-SetsStudied.svg", time:"", number:"2.5k"},
+  ]
+
+  const [showAllStudied, setShowAllStudied] = useState(false);
+  const displayedStudied = showAllStudied ? studied : studied.slice(0, 4);
+
+  const roundStudied = [
+    {name: "Studied first round", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"1"},
+    {name: "3 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"3"},
+    {name: "5 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"5"},
+    {name: "10 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"10"},
+    {name: "25 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"25"},
+    {name: "50 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"50"},
+    {name: "75 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"75"},
+    {name: "100 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"100"},
+    {name: "150 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"150"},
+    {name: "200 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"200"},
+    {name: "250 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"250"},
+    {name: "300 rounds studied", image:"https://quizlet.com/static/achievements/locked-badge-RoundsStudied.svg", time:"", number:"300"},
+  ]
+
+  const [showAllRoundStudied, setShowAllRoundStudied] = useState(false);
+  const displayedRoundStudied = showAllRoundStudied ? roundStudied : roundStudied.slice(0, 4);
+
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -181,7 +225,7 @@ const ProfileBody = () => {
             </div>
           </Row>
 
-          <h4 className="mb-2" style={{marginTop:"8rem"}}>Weekly streaks</h4>
+          <h4 className="mb-2" style={{marginTop:"5rem"}}>Weekly streaks</h4>
           <Row>
               {
                 displayedWeeklyStreaks.map((weeklyStreak, index) => (
@@ -222,6 +266,88 @@ const ProfileBody = () => {
         </CardBody>
       </Card>
 
+      <h4 className="mb-2 fw-bolder" style={{marginTop:"6rem"}}>Lifetime</h4>
+      <Card className="p-4">
+        <CardBody>
+          <h4 className="mb-2">Sets studied</h4>
+          <Row>
+              {
+                displayedStudied.map((studied, index) => (
+                  <Col className="text-center mt-3" lg="3" md="6" key={index}>
+                    <div style={{ position: "relative" }}>
+                      <img src={studied?.image} alt={studied?.name} />
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: "40%",
+                          left: "49%",
+                          transform: "translate(-50%, -50%)",
+                          color:"black", 
+                          fontWeight:"bolder", 
+                          fontSize:"x-large"
+                        }}
+                      >
+                        {studied?.number}
+                      </span>
+                    </div>
+                    <CardTitle>{studied?.name}</CardTitle>
+                    <CardSubtitle>{studied?.time}</CardSubtitle>
+                  </Col>
+                ))
+              }
+          </Row>
+          <Row className="text-center mt-3">
+            <div className="d-flex justify-content-center">
+              <Button
+                color="info"
+                style={{ width: "120px" }}
+                onClick={() => setShowAllStudied(!showAllStudied)}
+              >
+                {showAllStudied ? "View less" : "View all"}
+              </Button>
+            </div>
+          </Row>
+
+          <h4 className="mb-2" style={{marginTop:"5rem"}}>Rounds studied</h4>
+          <Row>
+              {
+                displayedRoundStudied.map((roundStudied, index) => (
+                  <Col className="text-center mt-3" lg="3" md="6" key={index}>
+                    <div style={{ position: "relative" }}>
+                      <img src={roundStudied?.image} alt={roundStudied?.name} />
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
+                          color:"black", 
+                          fontWeight:"bolder", 
+                          fontSize:"x-large"
+                        }}
+                      >
+                        {roundStudied?.number}
+                      </span>
+                    </div>
+                    <CardTitle>{roundStudied?.name}</CardTitle>
+                    <CardSubtitle>{roundStudied?.time}</CardSubtitle>
+                  </Col>
+                ))
+              }
+          </Row>
+          <Row className="text-center mt-3">
+            <div className="d-flex justify-content-center">
+              <Button
+                color="info"
+                style={{ width: "120px" }}
+                onClick={() => setShowAllRoundStudied(!showAllRoundStudied)}
+              >
+                {showAllRoundStudied ? "View less" : "View all"}
+              </Button>
+            </div>
+          </Row>
+        </CardBody>
+      </Card>
 
     </Box>
   );
