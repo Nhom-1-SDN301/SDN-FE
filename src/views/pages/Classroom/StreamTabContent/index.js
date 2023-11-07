@@ -131,6 +131,13 @@ const StreamTabContent = ({ klass, setKlass }) => {
     return false;
   }, [user, klass]);
 
+  const canComment = useMemo(() => {
+    if (klass && user) {
+      return klass.members.find((mem) => mem.userId === user._id)?.canComment;
+    }
+    return false;
+  }, [user, klass]);
+
   return (
     <Fragment>
       <Card className={styles.bg_class} style={{ position: "relative" }}>
@@ -290,6 +297,8 @@ const StreamTabContent = ({ klass, setKlass }) => {
               posts={posts}
               loadingFetchPost={loadingFetchPost}
               classId={klass._id}
+              canComment={canComment}
+              isRoot={user._id === klass?.userId}
             />
           )}
         </Col>

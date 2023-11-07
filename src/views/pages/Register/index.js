@@ -52,6 +52,7 @@ import { authApi } from "../../../@core/api/quiz/authApi";
 const Register = () => {
   const { t } = useTranslation();
   const [gender, setGender] = useState(0);
+  const [isAcceptPrivacy, setIsAcceptPrivacy] = useState(false);
 
   const SignupSchema = yup.object().shape({
     email: yup
@@ -137,6 +138,11 @@ const Register = () => {
         });
     });
 
+    if (!isAcceptPrivacy) {
+      isError = true;
+      toast.error(t("message.acceptPrivacy"))
+    }
+
     if (isError) return;
 
     delete data.cPassword;
@@ -163,12 +169,10 @@ const Register = () => {
 
   const source = skin === "dark" ? illustrationsDark : illustrationsLight;
 
-  console.log("render");
-
   return (
     <div className="auth-wrapper auth-cover">
       <Row className="auth-inner m-0">
-        <Link className="brand-logo" to="/" onClick={(e) => e.preventDefault()}>
+        <Link className="brand-logo" to="/home">
           <svg viewBox="0 0 139 95" version="1.1" height="28">
             <defs>
               <linearGradient
@@ -402,7 +406,12 @@ const Register = () => {
                 </div>
               </div>
               <div className="form-check mb-1">
-                <Input type="checkbox" id="terms" />
+                <Input
+                  type="checkbox"
+                  id="terms"
+                  checked={isAcceptPrivacy}
+                  onChange={(e) => setIsAcceptPrivacy(e.target.checked)}
+                />
                 <Label className="form-check-label" for="terms">
                   {t("fieldName.agreeTo")}
                   <a

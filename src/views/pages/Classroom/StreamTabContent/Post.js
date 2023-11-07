@@ -127,7 +127,7 @@ const FileUpload = ({ file }) => {
   );
 };
 
-const Post = ({ post, classId }) => {
+const Post = ({ post, classId, canComment, isRoot }) => {
   // ** Hooks
   const { t, i18n } = useTranslation();
   const user = useSelector((state) => state.auth.user);
@@ -301,14 +301,16 @@ const Post = ({ post, classId }) => {
             ))}
 
           {/* Form Submit Comment */}
-          <InputComment
-            inputRef={inputCommentRef}
-            replyTo={replyTo}
-            setReplyTo={setReplyTo}
-            postId={post?._id}
-            classId={post?.classId}
-            setComments={setComments}
-          />
+          {(canComment || isRoot) && (
+            <InputComment
+              inputRef={inputCommentRef}
+              replyTo={replyTo}
+              setReplyTo={setReplyTo}
+              postId={post?._id}
+              classId={post?.classId}
+              setComments={setComments}
+            />
+          )}
         </div>
       )}
     </Card>

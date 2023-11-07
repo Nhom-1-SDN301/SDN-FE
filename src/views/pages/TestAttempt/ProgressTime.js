@@ -22,7 +22,7 @@ const formatTime = (time) => {
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 };
 
-const ProgressTime = ({ initTime, submitTest }) => {
+const ProgressTime = ({ initTime, submitTest, testId }) => {
   // ** Hooks
   const { t } = useTranslation();
   const [time, setTime] = useState(initTime);
@@ -34,7 +34,7 @@ const ProgressTime = ({ initTime, submitTest }) => {
         setTime(newTime);
       } else {
         clearInterval(timer);
-        submitTest({ doTime: initTime - time });
+        submitTest({ doTime: initTime - time, testId });
       }
     }, 1000);
     return () => clearInterval(timer);

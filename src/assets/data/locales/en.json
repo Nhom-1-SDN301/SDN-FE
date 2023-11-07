@@ -49,6 +49,8 @@
     "questionType": "Question type",
     "timeLeft": "Time left",
     "timeOut": "Time out",
+    "done": "Done",
+    "forgotPassword": "Forgot Password?",
     "placeholder": {
       "ratingStudySet": "Good study set",
       "createStudySetTitle": "Fruit...",
@@ -137,7 +139,7 @@
     "visitPassword": "Visit password",
     "confirmDelete": "Yes, delete it!",
     "createNewFolder": "Create New Folder",
-    "addStudySet" :"Add StudySet",
+    "addStudySet": "Add StudySet",
     "enterEmail": "Enter email",
     "status": "Status",
     "refresh": "Refresh",
@@ -207,7 +209,10 @@
     "question": "Quesion",
     "limitTimesDoTest": "Limit times do test",
     "time": "Time",
-    "publicTest": "Public test"
+    "publicTest": "Public test",
+    "sendLinkResetPassword": "Send link reset password",
+    "backToLogin": "Back to login",
+    "resetPassword": "Reset password"
   },
   "message": {
     "welcomeTo": "Welcome to",
@@ -244,7 +249,11 @@
     "sendEmailSuccess": "Send email to members successfully!",
     "startAttempt": "The quiz has a time limit of {{value}}. Time will count down from the moment you start your attempt and you must submit before it expires. Are you sure that you wish to start now?",
     "questionRequired": "Each question needs to have at least a contetn or 1 image",
-    "answerRequired1Correct": "The question must have at least 1 correct answer"
+    "answerRequired1Correct": "The question must have at least 1 correct answer",
+    "acceptPrivacy": "Please accept the privacy policy and terms in your account",
+    "forgotPassword": "Enter your email and we'll send you instructions to reset your password",
+    "sendedLinkResetPassword": "The password change link has been sent to your email",
+    "resetPasswordSuccess": "Reset password successfully"
   },
   "validationMessage": {
     "required": "{{field}} is required",
