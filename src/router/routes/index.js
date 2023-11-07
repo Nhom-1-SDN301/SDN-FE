@@ -56,6 +56,8 @@ const Classroom = lazy(() => import("../../views/pages/Classroom/index"));
 const Setting = lazy(() => import("../../views/pages/Setting/index"));
 const Profile = lazy(() => import("../../views/pages/Profile/index"));
 const ProfileSetting = lazy(() => import("../../views/pages/ProfileSettings/index"));
+const Test = lazy(() => import("../../views/pages/Test/index"));
+const TestAttempt = lazy(() => import("../../views/pages/TestAttempt/index"));
 
 
 // ** Merge Routes

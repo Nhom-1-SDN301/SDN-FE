@@ -4,7 +4,7 @@ import { Input, Row, Col } from "reactstrap";
 
 import Select from "react-select";
 
-import CardTerm from "../../ui-elements/cards/advance/CardTerm";
+import CardTermProfile from "../../ui-elements/cards/advance/CartTermProfile";
 
 const options = [
   {
@@ -26,7 +26,7 @@ const options = [
 ];
 
 const Course = ({ courses }) => {
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("recent");
 
   return (
     <div>
@@ -47,7 +47,7 @@ const Course = ({ courses }) => {
               filter === "all" ? true : course.status === filter
             )
             .map((course, index) => (
-              <CardTerm lg="4" md="3" />
+              <CardTermProfile lg="4" md="3" />
             ))}
         </Row>
       </div>
