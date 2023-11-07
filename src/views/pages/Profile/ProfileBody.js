@@ -64,6 +64,28 @@ const ProfileBody = () => {
   const [showAll, setShowAll] = useState(false);
   const displayedStreaks = showAll ? Streaks : Streaks.slice(0, 4);
 
+  const weeklyStreaks = [
+    {name: "3-week streak", image:"	https://quizlet.com/static/achievements/badge-Week.svg", time:"Earned 08/08/22", number:"3"},
+    {name: "5-week streak", image:"	https://quizlet.com/static/achievements/badge-Week.svg", time:"Earned 03/10/22", number:"5"},
+    {name: "10-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"10"},
+    {name: "20-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"20"},
+    {name: "30-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"30"},
+    {name: "40-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"40"},
+    {name: "52-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"52"},
+    {name: "60-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"60"},
+    {name: "70-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"70"},
+    {name: "80-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"80"},
+    {name: "90-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"90"},
+    {name: "104-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"104"},
+    {name: "125-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"125"},
+    {name: "156-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"156"},
+    {name: "175-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"175"},
+    {name: "204-week streak", image:"	https://quizlet.com/static/achievements/locked-badge-Week.svg", time:"", number:"204"},
+  ]
+
+  const [showAllStreak, setShowAllStreak] = useState(false);
+  const displayedWeeklyStreaks = showAllStreak ? weeklyStreaks : weeklyStreaks.slice(0, 4);
+
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -135,7 +157,7 @@ const ProfileBody = () => {
                           transform: "translate(-50%, -50%)",
                           color:"black", 
                           fontWeight:"bolder", 
-                          fontSize:"large"
+                          fontSize:"x-large"
                         }}
                       >
                         {streak?.number}
@@ -155,6 +177,45 @@ const ProfileBody = () => {
                 onClick={() => setShowAll(!showAll)}
               >
                 {showAll ? "View less" : "View all"}
+              </Button>
+            </div>
+          </Row>
+
+          <h4 className="mb-2" style={{marginTop:"8rem"}}>Weekly streaks</h4>
+          <Row>
+              {
+                displayedWeeklyStreaks.map((weeklyStreak, index) => (
+                  <Col className="text-center mt-3" lg="3" md="6" key={index}>
+                    <div style={{ position: "relative" }}>
+                      <img src={weeklyStreak?.image} alt={weeklyStreak?.name} />
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
+                          color:"black", 
+                          fontWeight:"bolder", 
+                          fontSize:"x-large"
+                        }}
+                      >
+                        {weeklyStreak?.number}
+                      </span>
+                    </div>
+                    <CardTitle>{weeklyStreak?.name}</CardTitle>
+                    <CardSubtitle>{weeklyStreak?.time}</CardSubtitle>
+                  </Col>
+                ))
+              }
+          </Row>
+          <Row className="text-center mt-3">
+            <div className="d-flex justify-content-center">
+              <Button
+                color="info"
+                style={{ width: "120px" }}
+                onClick={() => setShowAllStreak(!showAllStreak)}
+              >
+                {showAllStreak ? "View less" : "View all"}
               </Button>
             </div>
           </Row>
