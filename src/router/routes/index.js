@@ -138,7 +138,8 @@ const useCustomRoutes = (user) => {
     },
     {
       path: "/profile",
-      element: authorizedPage(<Profile />, [1, 2, 3]),
+      // element: authorizedPage(<Profile />, [1, 2, 3]),
+      element: <Profile/>
     },
     {
       path: "/managment/user",

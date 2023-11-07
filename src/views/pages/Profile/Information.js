@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const Information = ({ personalInfo }) => {
   const auth = useSelector((state) => state.auth);
 
-  return (
+  return ( 
     <div>
       <p>
         <strong>Name:</strong> {auth?.user?.fullName}

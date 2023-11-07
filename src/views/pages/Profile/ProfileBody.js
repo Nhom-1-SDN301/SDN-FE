@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AlignJustify, Rss, Info } from "react-feather";
-import { Card, CardImg, CardBody, Collapse, Navbar, Nav, NavItem, NavLink, Button } from "reactstrap";
+import { Card, CardImg, CardBody, Collapse, Navbar, Nav, NavItem, NavLink, Button, Row, Col, CardTitle, CardSubtitle } from "reactstrap";
 import Information from "./Information";
 import Course from "./Course";
 import { Box } from "@mui/material";
@@ -77,6 +77,39 @@ const ProfileBody = () => {
         <CardBody>
           {activeTab === "info" && <Information personalInfo={personalInfo} />}
           {activeTab === "course" && <Course courses={courses} />}
+        </CardBody>
+      </Card>
+
+      <h4>Studying</h4>
+      <Card>
+        <CardBody>
+          <Row>
+            <Col>
+            <img src="https://quizlet.com/static/achievements/badge-StudiedWithFlashcards.svg" alt ="Flash Card"/>
+            <CardTitle>Flash Card</CardTitle>
+            <CardSubtitle>23 tháng 4, 2023</CardSubtitle>
+            </Col>
+            <Col>
+            <img src="https://quizlet.com/static/achievements/badge-StudiedWithLearn.svg" alt ="Learn"/>
+            <CardTitle>Learn</CardTitle>
+            <CardSubtitle>23 tháng 4, 2023</CardSubtitle>
+            </Col>
+            <Col>
+            <img src="https://quizlet.com/static/achievements/badge-NightOwl.svg" alt ="NightOwl"/>
+            <CardTitle>Night Owl</CardTitle>
+            <CardSubtitle>23 tháng 4, 2023</CardSubtitle>
+            </Col>
+            <Col>
+            <img src="https://quizlet.com/static/achievements/badge-EarlyBird.svg" alt ="EarlyBird"/>
+            <CardTitle>Early Bird</CardTitle>
+            <CardSubtitle>23 tháng 4, 2023</CardSubtitle>
+            </Col>
+            <Col>
+            <img src="https://quizlet.com/static/achievements/badge-StudiedWithTest.svg" alt ="Test"/>
+            <CardTitle>Test</CardTitle>
+            <CardSubtitle>23 tháng 4, 2023</CardSubtitle>
+            </Col>
+          </Row>
         </CardBody>
       </Card>
     </Box>
