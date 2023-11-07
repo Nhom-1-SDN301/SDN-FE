@@ -23,6 +23,7 @@ const InfoFolder = ({
   title,
   handleDeleteInfo,
   handleEditInfo,
+  userId
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -35,16 +36,13 @@ const InfoFolder = ({
   };
   const linkToFlashCard = `/flash-card`;
 
-  const handleInfoFolderClick = () => {
-    navigate(termsUrl);
-  };
 
   const getStudySetByFolderId = () => {
     folderApi
       .getStudySetByFolderId(params.inforFolder)
       .then((res) => {
         const studySetsData = res.data.data.studySets;
-        console.log("100");
+        console.log("100", studySetsData);
         setStudySets(studySetsData);
       })
       .catch((error) => {
@@ -88,20 +86,18 @@ const InfoFolder = ({
                 style={{ height: "100px", marginTop: "10px" }}
                 className={`${styles.card_infoFolder}`}
               >
-                <CardBody onClick={handleInfoFolderClick}>
+                <CardBody >
                   <div className={`${styles.card_infoFolderHover}`}>
-                    {/* <div style={{ position: 'relative' }}>
-                                                <Trash2 className={styles.trash_infoFolder} onClick={() => handleDeleteInfo(id)} />
-                                            </div> */}
                   </div>
                   <div className="d-flex">
                     <div
-                      className="d-flex align-items-center"
-                      color="primary"
-                      style={{
-                        paddingRight: "1rem",
-                        borderRight: "2px solid #b8b4b4",
-                      }}
+                    //   className="d-flex align-items-center"
+                    //   color="primary"
+                    //   style={{
+                    //     paddingRight: "1rem",
+                    //     borderRight: "2px solid #b8b4b4",
+                    //   }
+                    // }
                     >
                       {/* <h6 className="m-0" style={{ fontSize: '.9rem' }}>
                         {`${studySet?.numberOfTerms} ${t('fieldName.terms')}`}
@@ -114,41 +110,17 @@ const InfoFolder = ({
                       <Avatar
                         size="sm"
                         img={
-                          author?.avatar ||
-                          "/src/assets/images/portrait/small/avatar-s-11.jpg"
-                        }
+                          studySet.userId.picture
+                       }
                       />
                       <h5 style={{ margin: "0 0 0 .5rem" }}>
-                        {studySet.title}
+                        {studySet.userId.fullName}
                       </h5>
                     </div>
                   </div>
                   <Row className="mt-2">
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <h6
-                        id={`title-tooltip-${studySet.id}`}
-                        style={{
-                          margin: ".5rem 0 0 .5rem",
-                          fontSize: "1.0rem",
-                          whiteSpace: "nowrap",
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          width: "100%",
-                        }}
-                      >
-                        {studySet.description.length > 65
-                          ? `${studySet.description.slice(0, 65)}...`
-                          : studySet.description}
-                      </h6>
-                      <UncontrolledTooltip
-                        target={`title-tooltip-${studySet.id}`}
-                        placement="top"
-                      >
-                        {studySet.description}
-                      </UncontrolledTooltip>
-                      {/* <h6 style={{ margin: "0 0 0 .5rem", fontSize: ".9rem" }}>
-                                            {studySet.description}
-                                        </h6> */}
+                    <div style={{ display: "flex", flexDirection: "column", marginLeft: "15px" }}>
+                      <h6>{studySet.title}</h6>
                     </div>
                   </Row>
                 </CardBody>
