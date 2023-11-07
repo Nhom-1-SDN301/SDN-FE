@@ -1,6 +1,6 @@
 // ** React
 import { Fragment, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // ** Reactstrap
 import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
@@ -95,10 +95,12 @@ const TestAttempt = () => {
           );
         } else {
           toast.error(data.message || t("error.unknow"));
+          history.back();
         }
       })
       .catch((err) => {
         toast.error(err.message || t("error.unknow"));
+        history.back();
       })
       .finally(() => {
         setLoading(false);
@@ -172,7 +174,7 @@ const TestAttempt = () => {
                     <ProgressTime
                       initTime={test?.time}
                       submitTest={submitTest}
-                      testId={test._id}
+                      testId={test?._id}
                     />
                   </CardBody>
                 </Card>

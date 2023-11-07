@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { AlignJustify, Rss, Info } from "react-feather";
-import { Card, CardImg, CardBody, Collapse, Navbar, Nav, NavItem, NavLink, Button } from "reactstrap";
+import {
+  Card,
+  CardImg,
+  CardBody,
+  Collapse,
+  Navbar,
+  Nav,
+  NavItem,
+  NavLink,
+  Button,
+} from "reactstrap";
 import Information from "./Information";
 import Course from "./Course";
 import { Box } from "@mui/material";
@@ -20,8 +30,18 @@ const ProfileBody = () => {
 
   const courses = [
     { name: "Course 1", created: "2023-01-15", students: 50, status: "recent" },
-    { name: "Course 2", created: "2022-10-20", students: 30, status: "in-progress" },
-    { name: "Course 3", created: "2022-08-05", students: 70, status: "completed" },
+    {
+      name: "Course 2",
+      created: "2022-10-20",
+      students: 30,
+      status: "in-progress",
+    },
+    {
+      name: "Course 3",
+      created: "2022-08-05",
+      students: 70,
+      status: "completed",
+    },
   ];
 
   const handleTabChange = (tab) => {
@@ -73,14 +93,9 @@ const ProfileBody = () => {
           </Collapse>
         </Navbar>
       </Card>
-      <Card>
-        <CardBody>
-          {activeTab === "info" && <Information personalInfo={personalInfo} />}
-          {activeTab === "course" && <Course courses={courses} />}
-        </CardBody>
-      </Card>
+      {activeTab === "info" && <Information personalInfo={personalInfo} />}
+      {activeTab === "course" && <Course courses={courses} />}
     </Box>
-      
   );
 };
 

@@ -20,11 +20,18 @@ import { useTranslation } from "react-i18next";
 
 // ** Third Party Components
 import { Editor } from "react-draft-wysiwyg";
-import { convertToRaw, EditorState } from "draft-js";
+import {
+  convertToRaw,
+  EditorState,
+  ContentState,
+  convertFromHTML,
+} from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import Select from "react-select";
 import { v4 as uuidv4 } from "uuid";
 import { Image } from "antd";
+import toast from "react-hot-toast";
+import { containsHTML } from "../../../../utility/Utils";
 
 // ** Icons
 import { Upload } from "react-feather";
@@ -34,7 +41,8 @@ import {
   LIMIT_ANSWER_OPTIONS,
   QUESTION_TYPES_OPTIONS,
 } from "../../../../@core/constants";
-import toast from "react-hot-toast";
+
+// ** Apis
 import { testApi } from "../../../../@core/api/quiz/testApi";
 
 const Answer = ({ typeInput, label, isCorrect, id, setAnswers }) => {
@@ -48,7 +56,7 @@ const Answer = ({ typeInput, label, isCorrect, id, setAnswers }) => {
 
     setAnswers((prev) =>
       prev.map((ans) => {
-        if (ans.id === id) {
+        if (ans._id === id) {
           return { ...ans, content: value.trim() };
         }
         return ans;
@@ -72,11 +80,10 @@ const Answer = ({ typeInput, label, isCorrect, id, setAnswers }) => {
           onClick={(e) => {
             setAnswers((prev) =>
               prev.map((ans) => {
-                if (ans.id === id) {
+                if (ans._id === id) {
                   return { ...ans, isCorrect: !isCorrect };
                 }
 
-                console.log(typeInput === "radio");
                 return typeInput === "radio"
                   ? { ...ans, isCorrect: false }
                   : ans;
@@ -141,42 +148,129 @@ const ModalEditQuestionDetail = ({
   selectedQuestion,
   setSelectedQuestion,
   testId,
+  setQuestions,
 }) => {
   // ** Hooks
   const { t } = useTranslation();
 
   // ** State
   const [loading, setLoading] = useState(false);
-  const [question, setQuestion] = useState(selectedQuestion);
+  const [picture, setPicture] = useState(null);
+  const [question, setQuestion] = useState({
+    _id: selectedQuestion?._id,
+    picture: selectedQuestion?.picture,
+    content: containsHTML(selectedQuestion?.content)
+      ? EditorState.createWithContent(
+          ContentState.createFromBlockArray(
+            convertFromHTML(selectedQuestion?.content)
+          )
+        )
+      : EditorState.createWithText(selectedQuestion?.content),
+    type: QUESTION_TYPES_OPTIONS(t).find(
+      (type) => type.value === selectedQuestion?.type
+    ),
+  });
+  const [answers, setAnswers] = useState(selectedQuestion?.answers);
+  const [numberOfAnswers, setNumberOfAnswers] = useState(
+    LIMIT_ANSWER_OPTIONS(t).find((type) => type.value === answers.length)
+  );
+
+  // ** Default value
+  const defaultAnswers = {
+    content: "",
+    picture: null,
+    isCorrect: false,
+  };
 
   // ** Handler
   const closeModal = () => {
     setSelectedQuestion(null);
   };
 
-  //   const handleChangeNumberQuestion = (option) => {
-  //     const value = option.value;
+  const handleChangeNumberQuestion = (option) => {
+    const value = option.value;
 
-  //     if (answers.length > value) {
-  //       setAnswers((prev) => [...prev.slice(0, value)]);
-  //     } else {
-  //       const numberToPush = value - answers.length;
+    if (answers.length > value) {
+      setAnswers((prev) => [...prev.slice(0, value)]);
+    } else {
+      const numberToPush = value - answers.length;
 
-  //       setAnswers((prev) => [
-  //         ...prev,
-  //         ...Array.from({ length: numberToPush }, () => ({
-  //           ...defaultAnswers,
-  //           content: `Answer`,
-  //           id: uuidv4(),
-  //         })),
-  //       ]);
-  //     }
-  //   };
+      setAnswers((prev) => [
+        ...prev,
+        ...Array.from({ length: numberToPush }, () => ({
+          ...defaultAnswers,
+          content: `Answer`,
+          id: uuidv4(),
+        })),
+      ]);
+    }
+  };
 
-  console.log(question);
+  const handleUpdateQuestion = () => {
+    if (
+      !question.content.getCurrentContent().getPlainText().trim() &&
+      picture === null
+    ) {
+      return toast.error(t("message.questionRequired"));
+    }
+
+    const isHasAtLeast1CorrectAns = answers.some((q) => q.isCorrect);
+
+    if (!isHasAtLeast1CorrectAns)
+      return toast.error(t("message.answerRequired1Correct"));
+
+    const content = draftToHtml(
+      convertToRaw(question.content.getCurrentContent())
+    ).trim();
+
+    const formData = new FormData();
+    if (picture) formData.append("picture", picture);
+    formData.append("content", content);
+    formData.append("type", question.type.value);
+    formData.append(
+      "answers",
+      JSON.stringify(
+        answers.map((ans) => {
+          const newAns = { ...ans };
+          delete newAns._id;
+          delete newAns.id;
+
+          return newAns;
+        })
+      )
+    );
+
+    setLoading(true);
+    testApi
+      .updateQuestion({
+        testId,
+        questionId: question._id,
+        data: formData,
+      })
+      .then(({ data }) => {
+        if (data.isSuccess) {
+          console.log(data.data.question);
+          setQuestions((prev) =>
+            prev.map((question) => {
+              if (question._id === data.data.question._id)
+                return data.data.question;
+              else return question;
+            })
+          );
+          setSelectedQuestion(null);
+          toast.success(t("message.updateSuccess", { value: t("common.question")}));
+        } else toast.error(data?.message || t("error.unknow"));
+      })
+      .catch((err) => {
+        toast.error(err?.message || t("error.unknow"));
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   return (
-    <Modal className="modal-lg" centered isOpen={open}>
+    <Modal className="modal-lg" centered isOpen={Boolean(selectedQuestion)}>
       <ModalHeader toggle={closeModal}>{t("title.addQuestion")}</ModalHeader>
       <ModalBody style={{ maxHeight: "77vh", overflow: "auto" }}>
         <div>
@@ -214,7 +308,7 @@ const ModalEditQuestionDetail = ({
               className="react-select role-select"
               classNamePrefix="select"
               options={QUESTION_TYPES_OPTIONS(t)}
-              value={question.type}
+              value={question?.type}
               onChange={(data) => {
                 setQuestion((prev) => ({ ...prev, type: data }));
                 setAnswers((prev) =>
@@ -234,9 +328,9 @@ const ModalEditQuestionDetail = ({
               className="react-select role-select"
               classNamePrefix="select"
               options={LIMIT_ANSWER_OPTIONS(t)}
-              value={question.numberOfAnswers}
+              value={numberOfAnswers}
               onChange={(data) => {
-                setQuestion((prev) => ({ ...prev, numberOfAnswers: data }));
+                setNumberOfAnswers(data);
                 handleChangeNumberQuestion(data);
               }}
             />
@@ -267,15 +361,16 @@ const ModalEditQuestionDetail = ({
                       );
 
                     setPicture(file);
+                    e.target.files = null;
                   }}
                 />
               </Button>
             </div>
-            {picture && (
+            {(question.picture || picture) && (
               <div>
                 <img
                   style={{ width: 80, height: 80, objectFit: "cover" }}
-                  src={URL.createObjectURL(picture)}
+                  src={question.picture || URL.createObjectURL(picture)}
                 />
                 <Button.Ripple
                   style={{ marginLeft: "1rem" }}
@@ -292,12 +387,12 @@ const ModalEditQuestionDetail = ({
         <Row className="mt-1">
           {answers.map((answer) => (
             <Answer
-              key={answer.id}
-              id={answer.id}
+              key={answer._id}
+              id={answer._id}
               isCorrect={answer.isCorrect}
               label={answer.content}
               typeInput={
-                question.type.value === "single" ? "radio" : "checkbox"
+                question?.type?.value === "single" ? "radio" : "checkbox"
               }
               setAnswers={setAnswers}
             />
@@ -313,7 +408,7 @@ const ModalEditQuestionDetail = ({
           color="primary"
           disabled={loading}
           type="submit"
-          onClick={handleAddQuestion}
+          onClick={handleUpdateQuestion}
         >
           {loading && (
             <Spinner

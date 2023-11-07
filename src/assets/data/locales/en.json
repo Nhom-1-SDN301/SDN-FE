@@ -51,6 +51,8 @@
     "timeOut": "Time out",
     "done": "Done",
     "forgotPassword": "Forgot Password?",
+    "loadMore": "Load more",
+    "post": "Post",
     "placeholder": {
       "ratingStudySet": "Good study set",
       "createStudySetTitle": "Fruit...",
@@ -253,7 +255,8 @@
     "acceptPrivacy": "Please accept the privacy policy and terms in your account",
     "forgotPassword": "Enter your email and we'll send you instructions to reset your password",
     "sendedLinkResetPassword": "The password change link has been sent to your email",
-    "resetPasswordSuccess": "Reset password successfully"
+    "resetPasswordSuccess": "Reset password successfully",
+    "importQuestionSuccess": "Import questions successfully"
   },
   "validationMessage": {
     "required": "{{field}} is required",
