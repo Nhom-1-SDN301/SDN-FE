@@ -55,11 +55,13 @@ const ClassPage = lazy(() => import("../../views/pages/Class/index"));
 const Classroom = lazy(() => import("../../views/pages/Classroom/index"));
 const Setting = lazy(() => import("../../views/pages/Setting/index"));
 const Profile = lazy(() => import("../../views/pages/Profile/index"));
+const ProfileSetting = lazy(() => import("../../views/pages/ProfileSettings/index"));
 const Test = lazy(() => import("../../views/pages/Test/index"));
 const TestAttempt = lazy(() => import("../../views/pages/TestAttempt/index"));
 const ResetPassword = lazy(() =>
   import("../../views/pages/ResetPassword/index")
 );
+
 
 // ** Merge Routes
 const useCustomRoutes = (user) => {
@@ -150,6 +152,11 @@ const useCustomRoutes = (user) => {
       element: authorizedPage(<Profile />, [1, 2, 3]),
     },
     {
+      path: "/profile-setting",
+      // element: authorizedPage(<ProfileSetting />, [1, 2, 3]),
+      element: (<ProfileSetting />),
+    },
+    {
       path: "/managment/user",
       element: authorizedPage(<UserManagment />, [1]),
     },
@@ -221,7 +228,7 @@ const MergeLayoutRoutes = (layout, defaultLayout, user) => {
             // eslint-disable-next-line multiline-ternary
             isObjEmpty(route.element.props) && isBlank === false
               ? // eslint-disable-next-line multiline-ternary
-                LayoutWrapper
+              LayoutWrapper
               : Fragment;
 
           route.element = (
