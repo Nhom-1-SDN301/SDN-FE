@@ -56,6 +56,7 @@ const StreamTabContent = ({ klass, setKlass }) => {
   const [posts, setPosts] = useState([]);
   const [offset, setOffset] = useState(0);
   const [limit] = useState(5);
+  const [hasMorePost, setHasMorePost] = useState(false);
 
   const [loadingFetchPost, setLoadingFetchPost] = useState(false);
 
@@ -64,20 +65,21 @@ const StreamTabContent = ({ klass, setKlass }) => {
   const [openModalEditClass, setOpenModalEditClass] = useState(false);
 
   useEffect(() => {
-    if (klass?._id) fetchingPosts(klass?._id);
-  }, [klass?._id]);
+    if (klass?._id) fetchingPosts({ classId: klass?._id, limit, offset });
+  }, [klass?._id, limit, offset]);
 
   // ** Handler
-  const fetchingPosts = (id) => {
+  const fetchingPosts = ({ classId, limit, offset }) => {
     setLoadingFetchPost(true);
     classApi
       .getPostsOfClass({
-        classId: id,
+        classId,
         limit,
         offset,
       })
       .then(({ data }) => {
-        setPosts(data.data.posts);
+        setPosts((prev) => [...prev, ...data.data.posts]);
+        setHasMorePost(data.data.isHasMore);
       })
       .finally(() => {
         setLoadingFetchPost(false);
@@ -295,10 +297,13 @@ const StreamTabContent = ({ klass, setKlass }) => {
           {user && klass && (
             <PostList
               posts={posts}
+              setPosts={setPosts}
               loadingFetchPost={loadingFetchPost}
               classId={klass._id}
               canComment={canComment}
               isRoot={user._id === klass?.userId}
+              hasMorePost={hasMorePost}
+              setOffset={setOffset}
             />
           )}
         </Col>

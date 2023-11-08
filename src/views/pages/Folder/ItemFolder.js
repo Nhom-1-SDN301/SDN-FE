@@ -7,8 +7,9 @@ import { useTranslation } from "react-i18next";
 import { Link } from 'react-router-dom';
 import { folderApi } from "../../../@core/api/quiz/folderApi"
 
-const FolderCard = ({ id, numberOfTerms, author, title, description, handleDelete, handleEdit, handleRidirecToFolder, folders }) => {
+const FolderCard = ({ id, numberOfTerms, author, title, description, handleDelete, handleEdit, handleRidirecToFolder, folders, userId }) => {
     const { t } = useTranslation();
+    console.log("1235", userId);
     if (!Array.isArray(folders)) {
         return null;
     }
@@ -38,11 +39,11 @@ const FolderCard = ({ id, numberOfTerms, author, title, description, handleDelet
                                 </div>
                             </div>
                             <div className="d-flex">
-                                <div className="d-flex align-items-center" color="primary" style={{ paddingRight: "1rem", borderRight: "2px solid #b8b4b4" }}>
+                                {/* <div className="d-flex align-items-center" color="primary" style={{ paddingRight: "1rem", borderRight: "2px solid #b8b4b4" }}>
                                     <h6 className="m-0" style={{ fontSize: ".9rem", whiteSpace: "nowrap" }}>
                                         {`${numberOfTerms || 0} ${t("fieldName.terms")}`}
                                     </h6>
-                                </div>
+                                </div> */}
                                 <div
                                     className={`${styles.author} d-flex align-items-center cursor-pointer`}
                                     style={{ marginLeft: "1rem" }}
@@ -50,8 +51,7 @@ const FolderCard = ({ id, numberOfTerms, author, title, description, handleDelet
                                     <Avatar
                                         size="sm"
                                         img={
-                                            author?.avatar ||
-                                            "/src/assets/images/portrait/small/avatar-s-11.jpg"
+                                           folder.userId.picture
                                         }
 
                                     />

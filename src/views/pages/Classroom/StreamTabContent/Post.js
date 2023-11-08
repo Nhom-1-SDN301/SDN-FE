@@ -25,10 +25,15 @@ import defaultPic from "../../../../assets/images/portrait/small/avatar-s-11.jpg
 import Avatar from "@components/avatar";
 import UILoader from "@components/ui-loader";
 import SpinnerComponent from "@components/spinner/Loading-spinner";
+import Comment from "./Comment";
+import InputComment from "./InputComment";
 
 // ** I18n
 import { useTranslation } from "react-i18next";
+
+// ** Hooks
 import { useSkin } from "../../../../utility/hooks/useSkin";
+import { useSelector } from "react-redux";
 
 // ** Icons
 import {
@@ -54,9 +59,11 @@ import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 // ** Third libs
 import { formatDistance } from "date-fns";
 import { vi, enUS } from "date-fns/locale";
-import Comment from "./Comment";
-import InputComment from "./InputComment";
-import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const ImageUpload = ({ srcPicture }) => {
   return (
@@ -127,7 +134,7 @@ const FileUpload = ({ file }) => {
   );
 };
 
-const Post = ({ post, classId, canComment, isRoot }) => {
+const Post = ({ post, classId, canComment, isRoot, setPosts }) => {
   // ** Hooks
   const { t, i18n } = useTranslation();
   const user = useSelector((state) => state.auth.user);
@@ -160,6 +167,45 @@ const Post = ({ post, classId, canComment, isRoot }) => {
       0
     );
   }, [comments]);
+
+  const handleDeletePort = async () => {
+    return MySwal.fire({
+      title: t("message.areYouSure"),
+      text: t("message.delete"),
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: t("fieldName.confirmDelete"),
+      cancelButtonText: t("fieldName.cancel"),
+      customClass: {
+        confirmButton: `btn btn-danger`,
+        cancelButton: "btn btn-secondary ms-1",
+      },
+      buttonsStyling: false,
+    })
+      .then(({ isConfirmed }) => {
+        if (isConfirmed) {
+          return classApi.removePost({ classId, postId: post._id });
+        }
+      })
+      .then((resp) => {
+        if (resp) {
+          const { data } = resp;
+          if (data.isSuccess) {
+            setPosts((prev) =>
+              prev.filter((p) => p._id !== data.data.post._id)
+            );
+            toast.success(
+              t("message.deleteSuccess", { value: t("common.post") })
+            );
+          } else {
+            toast.error(data.message || t("error.unknow"));
+          }
+        }
+      })
+      .catch((err) => {
+        toast.error(err?.message || t("error.unknow"));
+      });
+  };
 
   return (
     <Card>
@@ -210,6 +256,7 @@ const Post = ({ post, classId, canComment, isRoot }) => {
                         display: "flex",
                         alignItems: "center",
                       }}
+                      onClick={handleDeletePort}
                     >
                       <span style={{ marginLeft: ".5rem" }}>
                         {t("fieldName.delete")}

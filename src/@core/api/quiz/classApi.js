@@ -29,6 +29,11 @@ export const classApi = {
       responseType: "json",
     });
   },
+  removePost: ({ classId, postId }) => {
+    return axiosClient.delete(
+      `${QUIZ_API_URL}/class/${classId}/post/${postId}`
+    );
+  },
   getPostsOfClass: ({ classId, limit, offset }) => {
     return axiosClient.get(
       `${QUIZ_API_URL}/class/${classId}/post?limit=${limit}&offset=${offset}`
@@ -126,12 +131,14 @@ export const classApi = {
     return axiosClient.get(`${QUIZ_API_URL}/class/${classId}/test`);
   },
   getAllTestsInClass: ({ classId }) => {
-    return axiosClient.get(`${QUIZ_API_URL}/class/${classId}/test/manager`)
+    return axiosClient.get(`${QUIZ_API_URL}/class/${classId}/test/manager`);
   },
   removeTestInClass: ({ classId, testId }) => {
-    return axiosClient.delete(`${QUIZ_API_URL}/class/${classId}/test/${testId}`)
+    return axiosClient.delete(
+      `${QUIZ_API_URL}/class/${classId}/test/${testId}`
+    );
   },
   getTest: ({ classId, testId }) => {
-    return axiosClient.get(`${QUIZ_API_URL}/class/${classId}/test/${testId}`)
-  }
+    return axiosClient.get(`${QUIZ_API_URL}/class/${classId}/test/${testId}`);
+  },
 };

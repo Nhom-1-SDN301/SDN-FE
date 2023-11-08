@@ -42,13 +42,15 @@ const CardTerm = ({ lg = "3", md = "6", bg }) => {
                   <div className="d-flex align-items-center">
                     <Avatar
                       size="sm"
-                      img="/src/assets/images/portrait/small/avatar-s-11.jpg"
+                      img={
+                        studySet.userId.picture
+                      }
                     />
-                    <h6 style={{ margin: "0 0 0 .5rem" }}>{studySet.description}</h6>
+                    <h6 style={{ margin: "0 0 0 .5rem" }}>{studySet.userId.fullName}</h6>
                   </div>
                 </CardBody>
               </Card>
-              </Link>
+            </Link>
           </Col>
         ))}
       </Row>

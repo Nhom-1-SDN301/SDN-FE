@@ -136,3 +136,8 @@ export const formatSecondToHHMMSS = (seconds) => {
 
   return `${hours}:${minutes}:${remainingSeconds}`;
 };
+
+export const containsHTML = (str) => {
+  const doc = new DOMParser().parseFromString(str, "text/html");
+  return Array.from(doc.body.childNodes).some((node) => node.nodeType === 1);
+};

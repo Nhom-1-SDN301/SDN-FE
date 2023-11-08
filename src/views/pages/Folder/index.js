@@ -32,8 +32,6 @@ const Folder = (id, numberOfTerms, author, title, description) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editFolder, setEditFolder] = useState(null);
   
-
-  console.log("123", author);
   useEffect(() => {
     handleFetch(5, page, search);
   }, [page], [search]);
@@ -77,12 +75,10 @@ const Folder = (id, numberOfTerms, author, title, description) => {
 
   const handleEdit = async (folder) => {
     setIsEditModalOpen(true);
-    setEditFolder(folder);
-     console.log(folder);
-    
+    setEditFolder(folder);    
   };
 
-
+  console.log("123",folders);
 
   const handleDelete = async (id) => {
     return MySwal.fire({
@@ -122,7 +118,7 @@ const Folder = (id, numberOfTerms, author, title, description) => {
         setLoadingDelete(false);
       });
   };
-
+  
 
   return (
     <div style={{ maxWidth: 1080 }}>
@@ -180,7 +176,9 @@ const Folder = (id, numberOfTerms, author, title, description) => {
         handleDelete={handleDelete}
         handleEdit={handleEdit}
         folders={folders}
+        
       />
+
       {/* )} */}
       <Row className="mt-2">
         <ReactPaginate

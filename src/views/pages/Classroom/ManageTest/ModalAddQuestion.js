@@ -34,7 +34,11 @@ import {
   LIMIT_ANSWER_OPTIONS,
   QUESTION_TYPES_OPTIONS,
 } from "../../../../@core/constants";
+
+// ** Third libs
 import toast from "react-hot-toast";
+
+// ** Apis
 import { testApi } from "../../../../@core/api/quiz/testApi";
 
 const Answer = ({ typeInput, label, isCorrect, id, setAnswers }) => {

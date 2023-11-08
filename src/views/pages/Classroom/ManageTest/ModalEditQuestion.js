@@ -11,6 +11,7 @@ import {
   ModalFooter,
   ModalHeader,
   Row,
+  Spinner,
 } from "reactstrap";
 
 // ** I18n
@@ -37,6 +38,7 @@ import SpinnerComponent from "@components/spinner/Loading-spinner";
 // ** Styles
 import styles from "../style.module.scss";
 import toast from "react-hot-toast";
+import ModalEditQuestionDetail from "./ModalEditQuestionDetail";
 
 const MySwal = withReactContent(Swal);
 
@@ -44,10 +46,15 @@ const ModalEditQuestion = ({ selectedTest, setSelectedTest, setData }) => {
   // ** Hooks
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const [loadingImportExcel, setLoadingImportExcel] = useState(false);
+
   const [questions, setQuestions] = useState([]);
 
   const [openModalEditInfo, setOpenModalEditInfo] = useState(false);
   const [openModalAddQuestion, setOpenModalAddQuestion] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+
+  console.log(openModalAddQuestion);
 
   useEffect(() => {
     if (selectedTest?._id) {
@@ -105,6 +112,38 @@ const ModalEditQuestion = ({ selectedTest, setSelectedTest, setData }) => {
     });
   };
 
+  const handleImportExcel = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    setLoadingImportExcel(true);
+    testApi
+      .addQuestionsExcel({
+        testId: selectedTest?._id,
+        data: formData,
+      })
+      .then(({ data }) => {
+        if (data.isSuccess) {
+          setQuestions(data.data.test.questions);
+          toast.success(t("message.importQuestionSuccess"));
+        } else {
+          toast.error(data.message || t("error.unknow"));
+        }
+      })
+      .catch((err) => {
+        toast.error(err?.message || t("error.unknow"));
+      })
+      .finally(() => {
+        e.target.files = null;
+        setLoadingImportExcel(false);
+      });
+  };
+
+  console.log(questions);
+
   return (
     <Modal className="modal-fullscreen" isOpen={Boolean(selectedTest)}>
       <ModalHeader toggle={handleCloseModal}>
@@ -112,14 +151,43 @@ const ModalEditQuestion = ({ selectedTest, setSelectedTest, setData }) => {
       </ModalHeader>
       <ModalBody style={{ overflow: "hidden" }}>
         <Row className="justify-content-between mb-1 border-bottom pb-1">
-          <Col md={6}>
-            <Button color="primary" outline>
-              <ArrowDown width={16} height={16} />
-              <span style={{ marginLeft: ".5rem" }}>
+          <Col md={6} className="d-flex">
+            <Button
+              className="d-flex align-items-center"
+              color="primary"
+              outline
+              style={{ margin: 0 }}
+              tag={Label}
+              htmlFor="import-excel"
+              disabled={loadingImportExcel}
+            >
+              {loadingImportExcel ? (
+                <Spinner
+                  className="text-primary"
+                  style={{ width: 16, height: 16 }}
+                />
+              ) : (
+                <ArrowDown className="text-primary" width={16} height={16} />
+              )}
+              <span className="text-primary" style={{ marginLeft: ".5rem" }}>
                 {t("fieldName.import")}
               </span>
+              <input
+                hidden
+                type="file"
+                id="import-excel"
+                onChange={handleImportExcel}
+                accept=".xlsx"
+              />
             </Button>
-            <Button color="primary" style={{ marginLeft: ".5rem" }} outline>
+            <Button
+              className="d-flex align-items-center"
+              tag={"a"}
+              href="/src/assets/files/QuestionSample.xlsx"
+              color="primary"
+              style={{ marginLeft: ".5rem" }}
+              outline
+            >
               <Download width={16} height={16} />
               <span style={{ marginLeft: ".5rem" }}>
                 {t("fieldName.downloadSample")}
@@ -202,6 +270,7 @@ const ModalEditQuestion = ({ selectedTest, setSelectedTest, setData }) => {
                           size="sm"
                           color="primary"
                           style={{ marginRight: ".5rem" }}
+                          onClick={() => setSelectedQuestion(question)}
                         >
                           {t("fieldName.edit")}
                         </Button>
@@ -248,6 +317,14 @@ const ModalEditQuestion = ({ selectedTest, setSelectedTest, setData }) => {
         testId={selectedTest?._id}
         setQuestions={setQuestions}
       />
+      {selectedQuestion && (
+        <ModalEditQuestionDetail
+          selectedQuestion={selectedQuestion}
+          setSelectedQuestion={setSelectedQuestion}
+          testId={selectedTest?._id}
+          setQuestions={setQuestions}
+        />
+      )}
     </Modal>
   );
 };

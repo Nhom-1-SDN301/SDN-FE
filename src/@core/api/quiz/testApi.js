@@ -11,6 +11,26 @@ export const testApi = {
   addQuestion: ({ testId, data }) => {
     return axiosClient.patch(`${QUIZ_API_URL}/test/${testId}`, data);
   },
+  updateQuestion: ({ testId, questionId, data }) => {
+    return axiosClient.patch(
+      `${QUIZ_API_URL}/test/${testId}/questions/${questionId}`,
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        responseType: "json",
+      }
+    );
+  },
+  addQuestionsExcel: ({ testId, data }) => {
+    return axiosClient.post(`${QUIZ_API_URL}/test/${testId}/questions`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      responseType: "json",
+    });
+  },
   removeQuestion: ({ testId, questionId }) => {
     return axiosClient.delete(
       `${QUIZ_API_URL}/test/${testId}/questions/${questionId}`
