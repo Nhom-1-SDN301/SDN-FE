@@ -417,7 +417,7 @@ const ModalEditQuestionDetail = ({
               color="dark"
             />
           )}
-          <span>{t("fieldName.add")}</span>
+          <span>{t("fieldName.save")}</span>
         </Button.Ripple>
       </ModalFooter>
     </Modal>

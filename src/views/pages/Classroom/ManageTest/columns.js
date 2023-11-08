@@ -13,7 +13,7 @@ import {
   DropdownToggle,
   UncontrolledDropdown,
 } from "reactstrap";
-import { Edit, Edit3, FileText, MoreVertical, Trash } from "react-feather";
+import { Edit, Edit3, FileText, MoreVertical, Trash, Trello } from "react-feather";
 
 const styleTextOverflow = {
   textOverflow: "ellipsis",
@@ -23,7 +23,12 @@ const styleTextOverflow = {
 
 const renderStatus = ({ color, label }) => <Badge color={color}>{label}</Badge>;
 
-export const testColumn = ({ t, handleRemoveTest, setTestSelected }) => [
+export const testColumn = ({
+  t,
+  handleRemoveTest,
+  setTestSelected,
+  setSelectTestReport,
+}) => [
   {
     name: t("fieldName.creater"),
     sortable: true,
@@ -195,6 +200,13 @@ export const testColumn = ({ t, handleRemoveTest, setTestSelected }) => [
             >
               <Trash size={14} className="me-50" />
               <span className="align-middle">{t("common.remove")}</span>
+            </DropdownItem>
+            <DropdownItem
+              className="w-100"
+              onClick={() => setSelectTestReport(row)}
+            >
+              <Trello size={14} className="me-50" />
+              <span className="align-middle">{t("common.markReport")}</span>
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>

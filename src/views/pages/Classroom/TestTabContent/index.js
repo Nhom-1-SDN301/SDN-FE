@@ -58,7 +58,7 @@ const TestTabContent = ({ klass }) => {
 
   return (
     <Fragment>
-      <div style={{ marginTop: "1rem" }}>
+      <Row style={{ marginTop: "1rem" }}>
         {data.map((test) => (
           <Col md="6" key={test._id}>
             <Card className="mb-4">
@@ -120,7 +120,7 @@ const TestTabContent = ({ klass }) => {
             </Card>
           </Col>
         ))}
-      </div>
+      </Row>
     </Fragment>
   );
 };

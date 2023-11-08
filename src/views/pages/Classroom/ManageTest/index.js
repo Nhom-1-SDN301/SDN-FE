@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
 // ** Icons
-import { ChevronDown, RefreshCcw } from "react-feather";
+import { ChevronDown, Plus, RefreshCcw } from "react-feather";
 
 // ** Components
 import Select from "react-select";
@@ -36,6 +36,8 @@ import "@styles/base/plugins/extensions/ext-component-sweet-alerts.scss";
 
 // ** Apis
 import { classApi } from "../../../../@core/api/quiz";
+import ModalCreateTest from "./ModalCreateTest";
+import ModalTestReport from "./ModalTestReport";
 
 const MySwal = withReactContent(Swal);
 
@@ -51,7 +53,10 @@ const ManageTest = ({ user, klass }) => {
   const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+
   const [testSelected, setTestSelected] = useState(null);
+  const [selectTestReport, setSelectTestReport] = useState(null);
+  const [openModalCreate, setOpenModalCreate] = useState(false);
 
   useEffect(() => {
     if (klass?._id) {
@@ -146,12 +151,22 @@ const ManageTest = ({ user, klass }) => {
               />
             </div>
             <Button
-              className="add-new-user d-flex align-items-center"
+              className="add-new-user d-flex align-items-center me-1"
               color="primary"
             >
               <RefreshCcw size={16} />
               <span style={{ marginLeft: ".5rem" }}>
                 {t("fieldName.refresh")}
+              </span>
+            </Button>
+            <Button
+              className="add-new-user d-flex align-items-center"
+              color="primary"
+              onClick={() => setOpenModalCreate(true)}
+            >
+              <Plus size={16} />
+              <span style={{ marginLeft: ".5rem" }}>
+                {t("fieldName.create")}
               </span>
             </Button>
           </Col>
@@ -167,7 +182,7 @@ const ManageTest = ({ user, klass }) => {
             pagination
             responsive
             paginationServer
-            columns={testColumn({ t, handleRemoveTest, setTestSelected })}
+            columns={testColumn({ t, handleRemoveTest, setTestSelected, setSelectTestReport })}
             // onSort={handleSort}
             sortIcon={<ChevronDown />}
             selectableRowsComponent={BootstrapCheckbox}
@@ -187,6 +202,18 @@ const ManageTest = ({ user, klass }) => {
           setData={setData}
         />
       )}
+
+      <ModalCreateTest
+        open={openModalCreate}
+        setOpen={setOpenModalCreate}
+        classId={klass?._id}
+        setData={setData}
+      />
+
+      <ModalTestReport
+        selectedTest={selectTestReport}
+        setSelectedTest={setSelectTestReport}
+      />
     </Card>
   );
 };
