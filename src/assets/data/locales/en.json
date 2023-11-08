@@ -53,6 +53,7 @@
     "forgotPassword": "Forgot Password?",
     "loadMore": "Load more",
     "post": "Post",
+    "markReport": "Mark report",
     "placeholder": {
       "ratingStudySet": "Good study set",
       "createStudySetTitle": "Fruit...",
@@ -256,7 +257,8 @@
     "forgotPassword": "Enter your email and we'll send you instructions to reset your password",
     "sendedLinkResetPassword": "The password change link has been sent to your email",
     "resetPasswordSuccess": "Reset password successfully",
-    "importQuestionSuccess": "Import questions successfully"
+    "importQuestionSuccess": "Import questions successfully",
+    "timeAtleast1Min": "The time of test must greater than or equal 1 minute"
   },
   "validationMessage": {
     "required": "{{field}} is required",
@@ -289,7 +291,8 @@
     "permission": "Permission",
     "manageTest": "Manage test",
     "editTestInfo": "Edit test info",
-    "addQuestion": "Add question"
+    "addQuestion": "Add question",
+    "createTest": "Create test"
   },
   "error": {
     "unknown": "Unknown error occurred. Please try again later!"

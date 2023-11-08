@@ -5,6 +5,9 @@ import axiosClient from "../../auth/jwt/jwtService";
 import { QUIZ_API_URL } from "../../constants";
 
 export const testApi = {
+  createTest: ({ classId, data }) => {
+    return axiosClient.post(`${QUIZ_API_URL}/class/${classId}/test`, data)
+  },
   getTestToDoById: ({ testId }) => {
     return axiosClient.get(`${QUIZ_API_URL}/test/${testId}`);
   },
@@ -48,4 +51,7 @@ export const testApi = {
   getTestsHistory: ({ testId }) => {
     return axiosClient.get(`${QUIZ_API_URL}/test/${testId}/history`);
   },
+  getTestsHistoryTeacher: ({ testId }) => {
+    return axiosClient.get(`${QUIZ_API_URL}/test/${testId}/history/teacher`)
+  }
 };
