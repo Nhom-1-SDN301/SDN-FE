@@ -10,12 +10,15 @@ import {
   NavItem,
   NavLink,
   Button,
+  Row,
+  Col,
   CardTitle,
   CardSubtitle,
-  Col,
-  Row,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Information from "./Information";
 import Course from "./Course";
 import { Box, CardContent } from "@mui/material";
@@ -937,6 +940,50 @@ const ProfileBody = () => {
 
         </CardBody>
       </Card>
+
+      <h4 className="mt-4 mb-2">
+        <b>Studying</b>
+      </h4>
+      <Card>
+        <CardBody>
+          <Row>
+            {achievements.map((achievement, index) => (
+              <Col
+                key={index}
+                className="text-center"
+                style={{ cursor: "pointer" }}
+                onClick={() => selectAchievement(achievement)}
+              >
+                <img src={achievement.src} alt={achievement.alt} />
+                <CardTitle>{achievement.title}</CardTitle>
+                <CardSubtitle>{achievement.subtitle}</CardSubtitle>
+              </Col>
+            ))}
+          </Row>
+        </CardBody>
+      </Card>
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Thông báo</ModalHeader>
+        <ModalBody className="text-center">
+          {selectedAchievement && (
+            <>
+            <CardTitle><h3><b>{selectedAchievement.title}</b></h3></CardTitle>
+              <img
+                src={selectedAchievement.src}
+                alt={selectedAchievement.alt}
+              />
+              <CardSubtitle><h4><b>{selectedAchievement.subtitle}</b></h4></CardSubtitle>
+              <CardContent>{selectedAchievement.contentcard}</CardContent>
+            </>
+            
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </Modal>
     </Box>
   );
 };
