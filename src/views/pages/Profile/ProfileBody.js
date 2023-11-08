@@ -10,8 +10,6 @@ import {
   NavItem,
   NavLink,
   Button,
-<<<<<<< HEAD
-=======
   Row,
   Col,
   CardTitle,
@@ -20,7 +18,6 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
->>>>>>> ef66c7f430d94beacc0325f784e121cb82418c6d
 } from "reactstrap";
 import Information from "./Information";
 import Course from "./Course";
@@ -148,10 +145,6 @@ const ProfileBody = () => {
           </Collapse>
         </Navbar>
       </Card>
-<<<<<<< HEAD
-      {activeTab === "info" && <Information personalInfo={personalInfo} />}
-      {activeTab === "course" && <Course courses={courses} />}
-=======
       <Card>
         <CardBody>
           {activeTab === "info" && <Information personalInfo={personalInfo} />}
@@ -202,7 +195,6 @@ const ProfileBody = () => {
           </Button>
         </ModalFooter>
       </Modal>
->>>>>>> ef66c7f430d94beacc0325f784e121cb82418c6d
     </Box>
   );
 };
