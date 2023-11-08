@@ -141,4 +141,7 @@ export const classApi = {
   getTest: ({ classId, testId }) => {
     return axiosClient.get(`${QUIZ_API_URL}/class/${classId}/test/${testId}`);
   },
+  unenrol: ({ classId }) => {
+    return axiosClient.patch(`${QUIZ_API_URL}/class/${classId}/unenroll`);
+  },
 };

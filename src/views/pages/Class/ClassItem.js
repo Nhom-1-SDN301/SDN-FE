@@ -25,12 +25,32 @@ import { useTranslation } from "react-i18next";
 // ** Redux
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { classApi } from "../../../@core/api/quiz";
+import toast from "react-hot-toast";
 
-const ClassItem = ({ image, name, id, author }) => {
+const ClassItem = ({ image, name, id, author, setData }) => {
   // ** Hooks
   const { t } = useTranslation();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
+
+  // ** Handler
+  const handleUnenrol = () => {
+    classApi
+      .unenrol({
+        classId: id,
+      })
+      .then(({ data }) => {
+        if (data.isSuccess) {
+          console.log("oke");
+        } else {
+          toast.error(data?.message || t("error.unknow"));  
+        }
+      })
+      .catch((err) => {
+        toast.error(err?.message || t("error.unknow"));
+      });
+  };
 
   return (
     <Col lg="3" md="4">
@@ -156,6 +176,7 @@ const ClassItem = ({ image, name, id, author }) => {
                         display: "flex",
                         alignItems: "center",
                       }}
+                      onClick={handleUnenrol}
                     >
                       <span style={{ marginLeft: ".5rem" }}>
                         {t("fieldName.unenrol")}

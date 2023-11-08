@@ -19,6 +19,7 @@ const Classes = ({ data, setData, filter, setFilter }) => {
             image={klass?.picture}
             name={klass?.name}
             author={klass?.user}
+            setData={setData}
           />
         ))}
       </Row>
